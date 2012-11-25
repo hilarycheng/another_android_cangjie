@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Another Cangjie Input Method</string>
+    <string name="cangjie_input_label">Cangjie Input Method</string>
+    <string name="label_english">英</string>
+</resources>

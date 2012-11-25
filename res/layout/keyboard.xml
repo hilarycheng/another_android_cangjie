@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+<com.diycircuits.cangjie.KeyboardContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content" >
+
+  <ViewFlipper
+    android:id="@+id/alpha_floatable"
+    android:layout_alignParentBottom="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+   <com.diycircuits.cangjie.SoftKeyboardView
+     android:id="@+id/alpha_view1"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"/>
+   <com.diycircuits.cangjie.SoftKeyboardView
+     android:id="@+id/alpha_view2"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"/>
+     
+  </ViewFlipper>
+
+</com.diycircuits.cangjie.KeyboardContainer>
+-->
+<com.diycircuits.cangjie.SoftKeyboardView
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     android:id="@+id/mainKeyboard"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content" />
