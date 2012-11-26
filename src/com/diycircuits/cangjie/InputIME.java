@@ -1,5 +1,7 @@
 package com.diycircuits.cangjie;
 
+import java.io.InputStream;
+import android.view.inputmethod.EditorInfo;
 import android.content.Context;
 import android.inputmethodservice.InputMethodService;
 import android.util.Log;
@@ -14,6 +16,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 	private SoftKeyboardView mKeyboard = null;
 	private CandidateView mCandidate = null;
+        private int numberOfKey = 0;
+        private StringBuffer sb = new StringBuffer();
 
 	@Override
 	public View onCreateInputView() {
@@ -25,6 +29,12 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		
 		mKeyboard.setOnKeyboardActionListener(this);
 		setCandidatesViewShown(true);
+
+		try {
+		    InputStream is = getResources().openRawResource(R.raw.cj);
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
 		
 		return mKeyboard;
 	}
@@ -46,6 +56,17 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			IBinder token = getWindow().getWindow().getAttributes().token;
 			InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 			im.switchToNextInputMethod(token, false);
+		} else if (primaryKey == -5) {
+		    if (sb.length() > 0) {
+			sb.setLength(sb.length() - 1);
+			getCurrentInputConnection().setComposingText(sb.toString(), 1);
+		    } else {
+			getCurrentInputConnection().deleteSurroundingText(1, 0);
+		    }
+		} else {
+		    Log.i("Cangjie", "onKey " + primaryKey);
+		    sb.append(String.valueOf((char) primaryKey));
+		    getCurrentInputConnection().setComposingText(sb.toString(), 1);
 		}
 	}
 
@@ -59,6 +80,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 	@Override
 	public void onText(CharSequence arg0) {
+		Log.i("Cangjie", "onText " + arg0);
 	}
 
 	@Override
@@ -76,5 +98,11 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	@Override
 	public void swipeUp() {
 	}
-	
+
+	@Override
+        public void onStartInputView (EditorInfo info, boolean restarting) {
+	    sb.setLength(0);
+	    getCurrentInputConnection().setComposingText("", 1);
+	}
+
 }

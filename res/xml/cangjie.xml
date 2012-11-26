@@ -25,37 +25,37 @@
     >
 
     <Row>
-        <Key android:codes="25163" android:keyLabel="手" android:keyEdgeFlags="left"/>
-        <Key android:codes="30000" android:keyLabel="田"/>
-        <Key android:codes="27700" android:keyLabel="水"/>
-        <Key android:codes="21475" android:keyLabel="口"/>
-        <Key android:codes="24319" android:keyLabel="廿"/>
-        <Key android:codes="21340" android:keyLabel="卜"/>
-        <Key android:codes="23665" android:keyLabel="山"/>
-        <Key android:codes="25096" android:keyLabel="戈"/>
-        <Key android:codes="20154" android:keyLabel="人"/>
-        <Key android:codes="24515" android:keyLabel="心" android:keyEdgeFlags="right"/>
+        <Key android:codes="113" android:keyLabel="手" android:keyEdgeFlags="left"/>
+        <Key android:codes="119" android:keyLabel="田"/>
+        <Key android:codes="101" android:keyLabel="水"/>
+        <Key android:codes="114" android:keyLabel="口"/>
+        <Key android:codes="116" android:keyLabel="廿"/>
+        <Key android:codes="121" android:keyLabel="卜"/>
+        <Key android:codes="117" android:keyLabel="山"/>
+        <Key android:codes="105" android:keyLabel="戈"/>
+        <Key android:codes="111" android:keyLabel="人"/>
+        <Key android:codes="112" android:keyLabel="心" android:keyEdgeFlags="right"/>
     </Row>
     
     <Row>
-        <Key android:codes="26085" android:keyLabel="日" android:horizontalGap="5%p" />
-        <Key android:codes="23608" android:keyLabel="尸"/>
-        <Key android:codes="26408" android:keyLabel="木"/>
-        <Key android:codes="28779" android:keyLabel="火"/>
-        <Key android:codes="22303" android:keyLabel="土"/>
-        <Key android:codes="31481" android:keyLabel="竹"/>
-        <Key android:codes="21313" android:keyLabel="十"/>
-        <Key android:codes="22823" android:keyLabel="大"/>
-        <Key android:codes="20013" android:keyLabel="中"/>
+        <Key android:codes="97" android:keyLabel="日" android:horizontalGap="5%p" />
+        <Key android:codes="115" android:keyLabel="尸"/>
+        <Key android:codes="100" android:keyLabel="木"/>
+        <Key android:codes="102" android:keyLabel="火"/>
+        <Key android:codes="103" android:keyLabel="土"/>
+        <Key android:codes="104" android:keyLabel="竹"/>
+        <Key android:codes="106" android:keyLabel="十"/>
+        <Key android:codes="107" android:keyLabel="大"/>
+        <Key android:codes="108" android:keyLabel="中"/>
     </Row>
     
     <Row>
-        <Key android:codes="38627" android:keyLabel="難" android:horizontalGap="20%p" />
-        <Key android:codes="37329" android:keyLabel="金"/>
-        <Key android:codes="22899" android:keyLabel="女"/>
-        <Key android:codes="26376" android:keyLabel="月"/>
-        <Key android:codes="24339" android:keyLabel="弓"/>
-        <Key android:codes="19968" android:keyLabel="一"/>
+        <Key android:codes="120" android:keyLabel="難" android:horizontalGap="20%p" />
+        <Key android:codes="99" android:keyLabel="金"/>
+        <Key android:codes="118" android:keyLabel="女"/>
+        <Key android:codes="98" android:keyLabel="月"/>
+        <Key android:codes="110" android:keyLabel="弓"/>
+        <Key android:codes="109" android:keyLabel="一"/>
     </Row>
     
     <Row android:rowEdgeFlags="bottom" android:keyHeight="@dimen/key_height_bottom_row" >
