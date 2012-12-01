@@ -31,9 +31,6 @@ public class CandidateSelect extends View {
 	paint.setAntiAlias(true);
 	paint.setTextSize(64);
 	paint.setStrokeWidth(0);
-
-
-	Log.i("Cangjie", "Candidate Select Create");
     }
 
     public void setCandidateListener(CandidateListener listen) {
@@ -46,18 +43,14 @@ public class CandidateSelect extends View {
 
 	width  = w;
 	height = h;
-	
-	Log.i("Cangjie", "Candidate Select onSizeChanged " + w + " " + h + " " + oldw + " " + oldh);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-	Log.i("Cangjie", "Candidate Select on Draw ");
 	super.onDraw(canvas);
 	if (canvas == null) {
 	    return;
 	}
-	Log.i("Cangjie", "Candidate Select on Draw " + paint);
 
 	paint.setColor(Color.DKGRAY);
 	canvas.drawRect(0, 0, width, height - 10, paint);
@@ -66,12 +59,10 @@ public class CandidateSelect extends View {
 	if (match != null) {
 	    int _width = total > textWidth.length ? textWidth.length : total;
 	    int measured = paint.getTextWidths(match, 0, _width, textWidth);
-	    Log.i("Cangjie", "Candidate Select Text Width " + measured + " " + textWidth[0] + " " + textWidth[1]);
 
 	    int start = offset, index = 0;
 	    while (start < width && index < total) {
 		canvas.drawText(match, index, 1, start, 56, paint);
-		Log.i("Cangjie", "Candidate Select Text Width " + start + " " + index + " " + textWidth[index] + " " + match[index]);
 		start = start + (int) textWidth[index] + 10;
 		index++;
 	    }
@@ -99,10 +90,8 @@ public class CandidateSelect extends View {
 	switch (action) {
 	case MotionEvent.ACTION_DOWN:
 	case MotionEvent.ACTION_MOVE:
-	    Log.i("Cangjie", "Cadidate Select OnTouch Event Action Down/Move " + x + " " + y);
 	    break;
 	case MotionEvent.ACTION_UP:
-	    Log.i("Cangjie", "Cadidate Select OnTouch Event Action Up " + x + " " + y);
 	    if (listener != null && c != 0) listener.characterSelected(c);
 	    break;
 	}
@@ -114,7 +103,6 @@ public class CandidateSelect extends View {
 	match = _match;
 	total = _total;
 	offset = 10;
-	Log.i("Cangjie", "Update Match " + _total);
 	invalidate();
     }
 

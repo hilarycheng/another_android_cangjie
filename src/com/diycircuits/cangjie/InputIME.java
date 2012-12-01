@@ -31,7 +31,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 	@Override
 	public View onCreateInputView() {
-		Log.i("Cangjie", "onCreateInputView");
 		LayoutInflater inflater = getLayoutInflater(); 
 
 		mKeyboard = (SoftKeyboardView) inflater.inflate(R.layout.keyboard,
@@ -61,7 +60,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			    str.getChars(0, index, cangjie[count], 0);
 			    str.getChars(index + 1, index + 2, cangjie[count], 5);
 			    if (cangjie[count][0] == c) {
-				Log.i("Cangjie", "Char Index " + c + " " + count);
 				char_idx[c - 'a'] = count;
 				c = (char) (c + 1);
 			    }
@@ -95,7 +93,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
     
 	@Override
 	public View onCreateCandidatesView() {
-		Log.i("Cangjie", "onCreateCandidatesView");
 		LayoutInflater inflater = getLayoutInflater(); 
 
 		mCandidate = (CandidateView) inflater.inflate(R.layout.candidate,
@@ -147,10 +144,10 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    else j = char_idx[user_input[0] - 'a' + 1];
 
 	    totalMatch = 0;
-	    Log.i("Cangjie", "Range " + i + " " + j);
+	    // Log.i("Cangjie", "Range " + i + " " + j);
 	    for (int c = i; c < j; c++) {
 		if (sb.length() == 1) {
-		    Log.i("Cangjie", " Match " + cangjie[c][5] + " " + cangjie[c][0] + cangjie[c][1] + cangjie[c][2] + cangjie[c][3] + cangjie[c][4]);
+		    // Log.i("Cangjie", " Match " + cangjie[c][5] + " " + cangjie[c][0] + cangjie[c][1] + cangjie[c][2] + cangjie[c][3] + cangjie[c][4]);
 		    matchChar[totalMatch] = cangjie[c][5];
 		    totalMatch++;
 		} else {
@@ -161,16 +158,14 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			}
 		    }
 		    if (user_input[l] == 0) {
-			Log.i("Cangjie", " Match " + cangjie[c][5] + " " + cangjie[c][0] + cangjie[c][1] + cangjie[c][2] + cangjie[c][3] + cangjie[c][4]);
+			// Log.i("Cangjie", " Match " + cangjie[c][5] + " " + cangjie[c][0] + cangjie[c][1] + cangjie[c][2] + cangjie[c][3] + cangjie[c][4]);
 		        matchChar[totalMatch] = cangjie[c][5];
 			totalMatch++;
 		    }
 		}
 	    }
 
-	    Log.i("Cangjie", "Update Match 0");
 	    mSelect.updateMatch(matchChar, totalMatch);
-	    Log.i("Cangjie", "Update Match 1");
 
 	    return true;
 	}
@@ -185,7 +180,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 	@Override
 	public void onText(CharSequence arg0) {
-		Log.i("Cangjie", "onText " + arg0);
 	}
 
 	@Override
