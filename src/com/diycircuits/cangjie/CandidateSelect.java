@@ -2,7 +2,7 @@ package com.diycircuits.cangjie;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
+import android.view.*;
 import android.widget.LinearLayout;
 import android.graphics.*;
 import android.util.Log;
@@ -65,6 +65,24 @@ public class CandidateSelect extends View {
 		index++;
 	    }
 	}
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent me) {
+	int action = me.getAction();
+	int x = (int) me.getX();
+	int y = (int) me.getY();
+
+	switch (action) {
+	case MotionEvent.ACTION_DOWN:
+	case MotionEvent.ACTION_MOVE:
+	    Log.i("Cangjie", "Cadidate Select OnTouch Event Action Down/Move");
+	    break;
+	case MotionEvent.ACTION_UP:
+	    Log.i("Cangjie", "Cadidate Select OnTouch Event Action Up");
+	    break;
+	}
+	return true;
     }
 
     public void updateMatch(char[] _match, int _total) {
