@@ -16,6 +16,7 @@ public class CandidateSelect extends View {
     private Paint paint = null;
     private float[] textWidth = new float[24];
     private int offset = 10;
+    private int spacing = 10;
 
     private CandidateListener listener = null;
     
@@ -63,7 +64,7 @@ public class CandidateSelect extends View {
 	    int start = offset, index = 0;
 	    while (start < width && index < total) {
 		canvas.drawText(match, index, 1, start, 56, paint);
-		start = start + (int) textWidth[index] + 10;
+		start = start + (int) textWidth[index] + spacing;
 		index++;
 	    }
 	}
@@ -84,7 +85,7 @@ public class CandidateSelect extends View {
 		c = match[count];
 		break;
 	    }
-	    left = left + (int) textWidth[count];
+	    left = left + (int) textWidth[count] + spacing;
 	}
 
 	switch (action) {
