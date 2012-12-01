@@ -56,10 +56,12 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		    do {
 			str = reader.readLine();
 			index = str.indexOf(' ');
+			if (str.charAt(0) == 'z') index = str.indexOf('\t');
 			if (index > 0) {
 			    str.getChars(0, index, cangjie[count], 0);
 			    str.getChars(index + 1, index + 2, cangjie[count], 5);
 			    if (cangjie[count][0] == c) {
+				Log.i("Cangjie", "Char Index " + c + " " + count);
 				char_idx[c - 'a'] = count;
 				c = (char) (c + 1);
 			    }
@@ -126,7 +128,9 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			mSelect.updateMatch(null, 0);
 		    }
 		} else {
-		    if (sb.length() < 5 && primaryKey >= (int) 'a' && primaryKey <= (int) 'z') {
+		    if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 12290) {
+			characterSelected((char) primaryKey);
+		    } else if (sb.length() < 5 && primaryKey >= (int) 'a' && primaryKey <= (int) 'z') {
 			user_input[sb.length()] = (char) primaryKey;
 			sb.append(single[primaryKey - 'a']);
 			getCurrentInputConnection().setComposingText(sb.toString(), 1);
@@ -143,9 +147,10 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    else j = char_idx[user_input[0] - 'a' + 1];
 
 	    totalMatch = 0;
+	    Log.i("Cangjie", "Range " + i + " " + j);
 	    for (int c = i; c < j; c++) {
 		if (sb.length() == 1) {
-		    // Log.i("Cangjie", " Match " + cangjie[c][5] + " " + cangjie[c][0] + cangjie[c][1] + cangjie[c][2] + cangjie[c][3] + cangjie[c][4]);
+		    Log.i("Cangjie", " Match " + cangjie[c][5] + " " + cangjie[c][0] + cangjie[c][1] + cangjie[c][2] + cangjie[c][3] + cangjie[c][4]);
 		    matchChar[totalMatch] = cangjie[c][5];
 		    totalMatch++;
 		} else {
@@ -156,7 +161,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			}
 		    }
 		    if (user_input[l] == 0) {
-			// Log.i("Cangjie", " Match " + cangjie[c][5] + " " + cangjie[c][0] + cangjie[c][1] + cangjie[c][2] + cangjie[c][3] + cangjie[c][4]);
+			Log.i("Cangjie", " Match " + cangjie[c][5] + " " + cangjie[c][0] + cangjie[c][1] + cangjie[c][2] + cangjie[c][3] + cangjie[c][4]);
 		        matchChar[totalMatch] = cangjie[c][5];
 			totalMatch++;
 		    }
