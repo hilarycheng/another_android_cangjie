@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<com.diycircuits.cangjie.CandidateView
+<com.diycircuits.cangjie.CandidateView 
      xmlns:android="http://schemas.android.com/apk/res/android"
      android:id="@+id/candidateView"
      android:orientation="horizontal"
@@ -10,16 +10,23 @@
         android:id="@+id/arrow_left"
         android:src="@drawable/arrow_left"
         android:layout_width="33dp"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:clickable="true"
         />
 
+    <com.diycircuits.cangjie.CandidateSelect
+        android:id="@+id/match_view"
+        android:layout_width="fill_parent"
+        android:layout_height="42sp"
+        android:layout_weight="1"
+        />
+    
     <ImageButton
         android:id="@+id/arrow_right"
         android:src="@drawable/arrow_right"
         android:layout_width="33dp"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:clickable="true"
         />
-
-</com.diycircuits.cangjie.CandidateView>
+    
+</com.diycircuits.cangjie.CandidateView> 

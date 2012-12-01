@@ -11,17 +11,22 @@ import android.view.inputmethod.InputMethodManager;
 import android.inputmethodservice.KeyboardView;
 import android.inputmethodservice.Keyboard;
 import android.os.IBinder;
+import android.widget.*;
 
 public class InputIME extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
 
 	private SoftKeyboardView mKeyboard = null;
 	private CandidateView mCandidate = null;
+	private CandidateSelect mSelect = null;
+        private LinearLayout mLinear = null;
         private int numberOfKey = 0;
         private StringBuffer sb = new StringBuffer();
         private char[][] cangjie = new char[13167][6];
         private char[] single  = new char[26];
         private int[] char_idx = new int[26];
         private char[] user_input = new char[5];
+        private int totalMatch = 0;
+        private char matchChar[] = new char[13167];
 
 	@Override
 	public View onCreateInputView() {
@@ -79,7 +84,11 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		LayoutInflater inflater = getLayoutInflater(); 
 
 		mCandidate = (CandidateView) inflater.inflate(R.layout.candidate,
-				null);
+							  null);
+		mSelect    = (CandidateSelect) mCandidate.findViewById(R.id.match_view);
+
+		// Log.i("Cangjie", " Create Candidate View 0 " + mLinear);
+		// Log.i("Cangjie", " Create Candidate View 1 " + mCandidate);
 		
 		return mCandidate;
 	}
@@ -100,11 +109,12 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			user_input[0] = 0;
 			sb.setLength(0);
 			getCurrentInputConnection().setComposingText("", 1);
+			mSelect.updateMatch(null, 0);
 		    } else if (sb.length() == 0) {
 			getCurrentInputConnection().deleteSurroundingText(1, 0);
+			mSelect.updateMatch(null, 0);
 		    }
 		} else {
-		    // Log.i("Cangjie", "onKey " + primaryKey);
 		    if (sb.length() < 5 && primaryKey >= (int) 'a' && primaryKey <= (int) 'z') {
 			user_input[sb.length()] = (char) primaryKey;
 			sb.append(single[primaryKey - 'a']);
@@ -115,17 +125,18 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	}
 
         private boolean match() {
-	    int total = 0;
 	    int i = char_idx[user_input[0] - 'a'];
 	    int j = 0;
 	    
 	    if (user_input[0] == 'z') j = char_idx.length;
 	    else j = char_idx[user_input[0] - 'a' + 1];
-	    
+
+	    totalMatch = 0;
 	    for (int c = i; c < j; c++) {
 		if (sb.length() == 1) {
-		    Log.i("Cangjie", " Match " + cangjie[c][5] + " " + cangjie[c][0] + cangjie[c][1] + cangjie[c][2] + cangjie[c][3] + cangjie[c][4]);
-		    total++;
+		    // Log.i("Cangjie", " Match " + cangjie[c][5] + " " + cangjie[c][0] + cangjie[c][1] + cangjie[c][2] + cangjie[c][3] + cangjie[c][4]);
+		    matchChar[totalMatch] = cangjie[c][5];
+		    totalMatch++;
 		} else {
 		    int l = 1;
 		    for (int k = 1; k < 5; k++) {
@@ -134,12 +145,16 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			}
 		    }
 		    if (user_input[l] == 0) {
-			Log.i("Cangjie", " Match " + cangjie[c][5] + " " + cangjie[c][0] + cangjie[c][1] + cangjie[c][2] + cangjie[c][3] + cangjie[c][4]);
-			total++;
+			// Log.i("Cangjie", " Match " + cangjie[c][5] + " " + cangjie[c][0] + cangjie[c][1] + cangjie[c][2] + cangjie[c][3] + cangjie[c][4]);
+		        matchChar[totalMatch] = cangjie[c][5];
+			totalMatch++;
 		    }
 		}
-		if (total >= 9) break;
 	    }
+
+	    Log.i("Cangjie", "Update Match 0");
+	    mSelect.updateMatch(matchChar, totalMatch);
+	    Log.i("Cangjie", "Update Match 1");
 
 	    return true;
 	}
