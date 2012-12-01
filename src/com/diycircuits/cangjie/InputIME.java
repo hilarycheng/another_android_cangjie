@@ -13,7 +13,7 @@ import android.inputmethodservice.Keyboard;
 import android.os.IBinder;
 import android.widget.*;
 
-public class InputIME extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
+public class InputIME extends InputMethodService implements KeyboardView.OnKeyboardActionListener, CandidateSelect.CandidateListener {
 
 	private SoftKeyboardView mKeyboard = null;
 	private CandidateView mCandidate = null;
@@ -27,6 +27,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private char[] user_input = new char[5];
         private int totalMatch = 0;
         private char matchChar[] = new char[13167];
+        private StringBuffer commit = new StringBuffer();
 
 	@Override
 	public View onCreateInputView() {
@@ -78,6 +79,18 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		return mKeyboard;
 	}
 
+        public void characterSelected(char c) {
+	    commit.setLength(0);
+	    commit.append(c);
+	    getCurrentInputConnection().setComposingText("", 1);
+	    getCurrentInputConnection().beginBatchEdit();
+	    getCurrentInputConnection().commitText(commit.toString(), 1);
+	    getCurrentInputConnection().endBatchEdit();
+	    sb.setLength(0);
+	    for (int cc = 0; cc < user_input.length; cc++) user_input[cc] = 0;
+	    mSelect.updateMatch(null, 0);
+	}
+    
 	@Override
 	public View onCreateCandidatesView() {
 		Log.i("Cangjie", "onCreateCandidatesView");
@@ -86,10 +99,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		mCandidate = (CandidateView) inflater.inflate(R.layout.candidate,
 							  null);
 		mSelect    = (CandidateSelect) mCandidate.findViewById(R.id.match_view);
+		mSelect.setCandidateListener(this);
 
-		// Log.i("Cangjie", " Create Candidate View 0 " + mLinear);
-		// Log.i("Cangjie", " Create Candidate View 1 " + mCandidate);
-		
 		return mCandidate;
 	}
 

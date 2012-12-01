@@ -15,6 +15,13 @@ public class CandidateSelect extends View {
     private int total = 0;
     private Paint paint = null;
     private float[] textWidth = new float[24];
+    private int offset = 10;
+
+    private CandidateListener listener = null;
+    
+    public static interface CandidateListener {
+	void characterSelected(char c);
+    }
     
     public CandidateSelect(Context context, AttributeSet attrs) {
 	super(context, attrs);
@@ -29,6 +36,10 @@ public class CandidateSelect extends View {
 	Log.i("Cangjie", "Candidate Select Create");
     }
 
+    public void setCandidateListener(CandidateListener listen) {
+	listener = listen;
+    }
+    
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 	super.onSizeChanged(w, h, oldw, oldh);
@@ -57,7 +68,7 @@ public class CandidateSelect extends View {
 	    int measured = paint.getTextWidths(match, 0, _width, textWidth);
 	    Log.i("Cangjie", "Candidate Select Text Width " + measured + " " + textWidth[0] + " " + textWidth[1]);
 
-	    int start = 10, index = 0;
+	    int start = offset, index = 0;
 	    while (start < width && index < total) {
 		canvas.drawText(match, index, 1, start, 56, paint);
 		Log.i("Cangjie", "Candidate Select Text Width " + start + " " + index + " " + textWidth[index] + " " + match[index]);
@@ -72,22 +83,37 @@ public class CandidateSelect extends View {
 	int action = me.getAction();
 	int x = (int) me.getX();
 	int y = (int) me.getY();
+	int select = x - offset;
+	int left = 0;
+	char c = 0;
+
+	for (int count = 0; count < textWidth.length - 1; count++) {
+	    if (count >= total) continue;
+	    if (select > left && select < left + textWidth[count]) {
+		c = match[count];
+		break;
+	    }
+	    left = left + (int) textWidth[count];
+	}
 
 	switch (action) {
 	case MotionEvent.ACTION_DOWN:
 	case MotionEvent.ACTION_MOVE:
-	    Log.i("Cangjie", "Cadidate Select OnTouch Event Action Down/Move");
+	    Log.i("Cangjie", "Cadidate Select OnTouch Event Action Down/Move " + x + " " + y);
 	    break;
 	case MotionEvent.ACTION_UP:
-	    Log.i("Cangjie", "Cadidate Select OnTouch Event Action Up");
+	    Log.i("Cangjie", "Cadidate Select OnTouch Event Action Up " + x + " " + y);
+	    if (listener != null && c != 0) listener.characterSelected(c);
 	    break;
 	}
+
 	return true;
     }
 
     public void updateMatch(char[] _match, int _total) {
 	match = _match;
 	total = _total;
+	offset = 10;
 	Log.i("Cangjie", "Update Match " + _total);
 	invalidate();
     }
