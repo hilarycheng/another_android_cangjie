@@ -14,8 +14,9 @@ public class CandidateSelect extends View {
     private char match[] = null;
     private int total = 0;
     private Paint paint = null;
-    private float[] textWidth = new float[24];
+    private float[] textWidth = new float[13167];
     private int offset = 10;
+    private int charOffset = 0;
     private int spacing = 10;
 
     private CandidateListener listener = null;
@@ -61,7 +62,7 @@ public class CandidateSelect extends View {
 	    int _width = total > textWidth.length ? textWidth.length : total;
 	    int measured = paint.getTextWidths(match, 0, _width, textWidth);
 
-	    int start = offset, index = 0;
+	    int start = offset, index = charOffset;
 	    while (start < width && index < total) {
 		canvas.drawText(match, index, 1, start, 56, paint);
 		start = start + (int) textWidth[index] + spacing;
@@ -76,10 +77,10 @@ public class CandidateSelect extends View {
 	int x = (int) me.getX();
 	int y = (int) me.getY();
 	int select = x - offset;
-	int left = 0;
+	int left = offset;
 	char c = 0;
 
-	for (int count = 0; count < textWidth.length - 1; count++) {
+	for (int count = charOffset; count < textWidth.length - 1; count++) {
 	    if (count >= total) continue;
 	    if (select > left && select < left + textWidth[count]) {
 		c = match[count];
@@ -100,6 +101,22 @@ public class CandidateSelect extends View {
 	return true;
     }
 
+    public void showNextPage() {
+	if (match == null) return;
+	if (total > 1 && charOffset < (total - 1)) {
+	    charOffset++;
+	    invalidate();
+	}
+    }
+    
+    public void showPrevPage() {
+	if (match == null) return;
+	if (charOffset > 0) {
+	    charOffset--;
+	    invalidate();
+	}
+    }
+    
     public void updateMatch(char[] _match, int _total) {
 	match = _match;
 	total = _total;

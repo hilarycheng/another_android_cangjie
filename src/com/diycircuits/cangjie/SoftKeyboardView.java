@@ -22,22 +22,7 @@ public class SoftKeyboardView extends KeyboardView {
 		mKeyboardWidth = d.getWidth();
 		mKeyboardHeight = d.getHeight() / 2;
 		
-		Log.i("Cangjie", "Screen WidthxHeight : " + d.getWidth() + " x " + d.getHeight());
-		
 		setKeyboard(new SoftKeyboard(context, R.xml.cangjie));
 	}
 
-	/*
-	@Override
-	protected void onMeasure(int width, int height) {
-		int mwidth = MeasureSpec.makeMeasureSpec(mKeyboardWidth, MeasureSpec.EXACTLY);
-		int mheight = MeasureSpec.makeMeasureSpec(mKeyboardHeight, MeasureSpec.EXACTLY);
-		
-		super.onMeasure(mwidth, mheight);
-		
-		Log.i("Cangjie",
-				"SoftwareKeyboardView WidthxHeight : " + mKeyboardWidth+ " x " + mKeyboardHeight +
-				" Spec1 " + mwidth + " x " + mheight);
-	}
-	*/
 }
