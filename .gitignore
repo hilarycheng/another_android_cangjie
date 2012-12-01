@@ -4,3 +4,5 @@
 .project
 local.properties
 libs
+bin
+gen
