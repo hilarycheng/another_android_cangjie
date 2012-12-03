@@ -125,7 +125,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			mSelect.updateMatch(null, 0);
 		    }
 		} else {
-		    if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 12290) {
+		    if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 12290 || (primaryKey >= '0' && primaryKey <= '9')) {
 			characterSelected((char) primaryKey);
 		    } else if (sb.length() < 5 && primaryKey >= (int) 'a' && primaryKey <= (int) 'z') {
 			user_input[sb.length()] = (char) primaryKey;
