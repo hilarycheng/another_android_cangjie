@@ -13,6 +13,7 @@ public class SoftKeyboardView extends KeyboardView {
 
 	private int mKeyboardWidth = 0;
 	private int mKeyboardHeight = 0;
+        private Keyboard mKeyboard = null;
 	
 	@SuppressWarnings("deprecation")
 	public SoftKeyboardView(Context context, AttributeSet attrs) {
@@ -22,7 +23,15 @@ public class SoftKeyboardView extends KeyboardView {
 		mKeyboardWidth = d.getWidth();
 		mKeyboardHeight = d.getHeight() / 2;
 		
-		setKeyboard(new SoftKeyboard(context, R.xml.cangjie));
+		setKeyboard(mKeyboard = new SoftKeyboard(context, R.xml.cangjie));
 	}
+
+        public Keyboard getKeyboard() {
+	    return mKeyboard;
+	}
+
+        public void updateKeyboard() {
+	    setKeyboard(mKeyboard);
+        }
 
 }

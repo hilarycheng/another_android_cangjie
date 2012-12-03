@@ -1,6 +1,7 @@
 package com.diycircuits.cangjie;
 
 import java.io.*;
+import java.util.*;
 import android.view.inputmethod.EditorInfo;
 import android.content.Context;
 import android.inputmethodservice.InputMethodService;
@@ -28,6 +29,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private int totalMatch = 0;
         private char matchChar[] = new char[13167];
         private StringBuffer commit = new StringBuffer();
+        private int imeOptions = 0;
 
 	@Override
 	public View onCreateInputView() {
@@ -126,7 +128,20 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		    }
 		} else {
 		    if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 12290 || (primaryKey >= '0' && primaryKey <= '9')) {
-			characterSelected((char) primaryKey);
+			if (primaryKey == 10 && ((imeOptions & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == 0)) {
+			    if (((imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_DONE)     ||
+				((imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_GO)       ||
+				((imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_NEXT)     ||
+				((imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_PREVIOUS) ||
+				((imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_SEARCH)   ||
+				((imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_SEND)) {
+				getCurrentInputConnection().performEditorAction(imeOptions);
+			    } else {
+				characterSelected((char) primaryKey);
+			    }
+			} else {
+			    characterSelected((char) primaryKey);
+			}
 		    } else if (sb.length() < 5 && primaryKey >= (int) 'a' && primaryKey <= (int) 'z') {
 			user_input[sb.length()] = (char) primaryKey;
 			sb.append(single[primaryKey - 'a']);
@@ -202,6 +217,30 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         public void onStartInputView (EditorInfo info, boolean restarting) {
 	    sb.setLength(0);
 	    getCurrentInputConnection().setComposingText("", 1);
+
+	    if (mKeyboard == null || mKeyboard.getKeyboard() == null)
+		return;
+
+	    imeOptions = info.imeOptions;
+	    
+	    Keyboard key = mKeyboard.getKeyboard();
+	    List<Keyboard.Key> keys = key.getKeys();
+	    Keyboard.Key actionKey = null;
+	    for (int count = 0; count < keys.size(); count++) {
+		int[] codes = keys.get(count).codes;
+		if (codes == null || codes.length <= 0) continue;
+		if (codes[0] != 10) continue;
+		actionKey = keys.get(count);
+		break;
+	    }
+	    if (actionKey != null) {
+		if ((info.imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_SEARCH && ((imeOptions & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == 0)) {
+		    actionKey.icon = getResources().getDrawable(R.drawable.sym_keyboard_search);
+		} else {
+		    actionKey.icon = getResources().getDrawable(R.drawable.enter_icon);
+		}
+		mKeyboard.updateKeyboard();
+	    }
 	}
 
 }
