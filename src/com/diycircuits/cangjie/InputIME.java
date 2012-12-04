@@ -172,7 +172,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			    l++;
 			}
 		    }
-		    if (user_input[l] == 0) {
+		    if (l == 5 || user_input[l] == 0) {
 			// Log.i("Cangjie", " Match " + cangjie[c][5] + " " + cangjie[c][0] + cangjie[c][1] + cangjie[c][2] + cangjie[c][3] + cangjie[c][4]);
 		        matchChar[totalMatch] = cangjie[c][5];
 			totalMatch++;
