@@ -73,9 +73,8 @@
     
     <Row android:rowEdgeFlags="bottom" android:keyHeight="@dimen/key_height_bottom_row" >
         <Key android:codes="-200" android:keyLabel="@string/label_english" android:keyWidth="14%p"/>
-        <Key android:codes="-2" android:keyLabel="123" android:keyWidth="14%p"
-                android:isSticky="true" android:isModifier="false"/>
-        <Key android:codes="12290" android:keyWidth="12%p"
+        <Key android:codes="65292" android:keyLabel="，" android:keyWidth="13%p"/>
+        <Key android:codes="12290" android:keyWidth="13%p"
                 android:keyIcon="@drawable/period_icon"
                 android:iconPreview="@drawable/period_popup_icon" />
         <Key android:codes="32" android:keyIcon="@drawable/space_icon" 
