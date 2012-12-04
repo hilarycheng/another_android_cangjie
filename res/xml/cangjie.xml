@@ -63,7 +63,8 @@
     </Row>
     
     <Row>
-        <Key android:codes="120" android:keyLabel="難" android:horizontalGap="20%p" />
+        <Key android:codes="-300" android:keyLabel="倉" />
+        <Key android:codes="120" android:keyLabel="難" android:horizontalGap="10%p"  />
         <Key android:codes="99" android:keyLabel="金"/>
         <Key android:codes="118" android:keyLabel="女"/>
         <Key android:codes="98" android:keyLabel="月"/>

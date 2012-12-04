@@ -3,4 +3,6 @@
     <string name="cangjie_input_label">Cangjie Input Method</string>
     <string name="label_english">英</string>
     <string name="chinese_comma">，</string>
+    <string name="cangjie">倉</string>
+    <string name="quick">速</string>
 </resources>

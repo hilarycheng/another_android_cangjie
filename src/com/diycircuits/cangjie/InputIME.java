@@ -16,6 +16,9 @@ import android.widget.*;
 
 public class InputIME extends InputMethodService implements KeyboardView.OnKeyboardActionListener, CandidateSelect.CandidateListener {
 
+        private final static int CANGJIE = 0;
+        private final static int QUICK   = 1;
+    
 	private SoftKeyboardView mKeyboard = null;
 	private CandidateView mCandidate = null;
 	private CandidateSelect mSelect = null;
@@ -30,6 +33,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private char matchChar[] = new char[13167];
         private StringBuffer commit = new StringBuffer();
         private int imeOptions = 0;
+        private int mInputMethodState = CANGJIE;
 
 	@Override
 	public View onCreateInputView() {
@@ -127,7 +131,9 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			mSelect.updateMatch(null, 0);
 		    }
 		} else {
-		    if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 65292 || primaryKey == 12290 || (primaryKey >= '0' && primaryKey <= '9')) {
+		    if (primaryKey == -300) {
+			toggleInputMethod();
+		    } else if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 65292 || primaryKey == 12290 || (primaryKey >= '0' && primaryKey <= '9')) {
 			if (primaryKey == 10 && ((imeOptions & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == 0)) {
 			    if (((imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_DONE)     ||
 				((imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_GO)       ||
@@ -218,21 +224,11 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    sb.setLength(0);
 	    getCurrentInputConnection().setComposingText("", 1);
 
-	    if (mKeyboard == null || mKeyboard.getKeyboard() == null)
-		return;
 
 	    imeOptions = info.imeOptions;
 	    
-	    Keyboard key = mKeyboard.getKeyboard();
-	    List<Keyboard.Key> keys = key.getKeys();
-	    Keyboard.Key actionKey = null;
-	    for (int count = 0; count < keys.size(); count++) {
-		int[] codes = keys.get(count).codes;
-		if (codes == null || codes.length <= 0) continue;
-		if (codes[0] != 10) continue;
-		actionKey = keys.get(count);
-		break;
-	    }
+	    Keyboard.Key actionKey = searchKey(10);
+	    
 	    if (actionKey != null) {
 		if ((info.imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_SEARCH && ((imeOptions & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == 0)) {
 		    actionKey.icon = getResources().getDrawable(R.drawable.sym_keyboard_search);
@@ -243,4 +239,42 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    }
 	}
 
+        private Keyboard.Key searchKey(int code) {
+	    if (mKeyboard == null || mKeyboard.getKeyboard() == null)
+		return null;
+	    
+	    Keyboard key = mKeyboard.getKeyboard();
+	    List<Keyboard.Key> keys = key.getKeys();
+	    Keyboard.Key actionKey = null;
+
+	    for (int count = 0; count < keys.size(); count++) {
+		int[] codes = keys.get(count).codes;
+		if (codes == null || codes.length <= 0) continue;
+		if (codes[0] != code) continue;
+		actionKey = keys.get(count);
+		break;
+	    }
+
+	    return actionKey;
+        }
+    
+        public void toggleInputMethod() {
+	    Keyboard.Key methodKey = searchKey(-300);
+
+	    if (methodKey == null)
+		return;
+
+	    Log.i("Cangjie", "Input State " + mInputMethodState);
+	    
+	    if (mInputMethodState == CANGJIE) {
+		mInputMethodState = QUICK;
+		methodKey.label = getString(R.string.quick);
+	    } else {
+		mInputMethodState = CANGJIE;
+		methodKey.label = getString(R.string.cangjie);
+	    }
+
+	    mKeyboard.updateKeyboard();
+        }
+    
 }
