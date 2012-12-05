@@ -13,11 +13,13 @@ import android.inputmethodservice.KeyboardView;
 import android.inputmethodservice.Keyboard;
 import android.os.IBinder;
 import android.widget.*;
+import android.graphics.*;
 
 public class InputIME extends InputMethodService implements KeyboardView.OnKeyboardActionListener, CandidateSelect.CandidateListener {
 
-        private final static int CANGJIE = 0;
-        private final static int QUICK   = 1;
+        private final static int CANGJIE    = 0;
+        private final static int CANGJIE_HK = 0;
+        private final static int QUICK      = 1;
     
 	private SoftKeyboardView mKeyboard = null;
 	private CandidateView mCandidate = null;
@@ -27,15 +29,17 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private StringBuffer sb = new StringBuffer();
         private char[] single  = new char[26];
         private char[][] cangjie = new char[13167][6];
+        private char[][] cangjie_hk = new char[17578][6];
         private char[][] quick = new char[21529][3];
         private int[] cangjie_char_idx = new int[26];
         private int[] quick_char_idx = new int[26];
         private char[] user_input = new char[5];
         private int totalMatch = 0;
-        private char matchChar[] = new char[13167];
+        private char matchChar[] = new char[21529];
         private StringBuffer commit = new StringBuffer();
         private int imeOptions = 0;
         private int mInputMethodState = CANGJIE;
+        private Paint mPaint = null;
 
 	@Override
 	public View onCreateInputView() {
@@ -48,8 +52,11 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		
 		mKeyboard.setOnKeyboardActionListener(this);
 		setCandidatesViewShown(true);
-		
+
+		mPaint = new Paint();
+		loadCangjieKey();
 		loadCangjieTable();
+		loadCangjieHKTable();
 		loadQuickTable();
 		
 		for (int count = 0; count < 5; count++)
@@ -57,6 +64,28 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		
 		return mKeyboard;
 	}
+
+        private void loadCangjieKey() {
+	    try {
+		InputStream is = getResources().openRawResource(R.raw.cj_key);
+		InputStreamReader input = new InputStreamReader(is, "UTF-8");
+		BufferedReader reader = new BufferedReader(input);
+		String str = null;
+		int count = 0, index = 0;
+		char c = 'a';
+	
+		do {
+		    str = reader.readLine();
+		    single[count] = str.charAt(2);
+		    count++;
+		} while (str != null && count < 26);
+		    
+		reader.close();
+
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+        }
 
         private void loadCangjieTable() {
 	    try {
@@ -66,16 +95,13 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		String str = null;
 		int count = 0, index = 0;
 		char c = 'a';
-		do {
-		    str = reader.readLine();
-		    single[count] = str.charAt(2);
-		    count++;
-		} while (str != null && count < 26);
+
 		count = 0;
 		do {
 		    str = reader.readLine();
-		    index = str.indexOf(' ');
-		    if (str.charAt(0) == 'z') index = str.indexOf('\t');
+		    if (str == null)
+			break;
+		    index = str.indexOf('\t');
 		    if (index > 0) {
 			str.getChars(0, index, cangjie[count], 0);
 			str.getChars(index + 1, index + 2, cangjie[count], 5);
@@ -83,9 +109,52 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			    cangjie_char_idx[c - 'a'] = count;
 			    c = (char) (c + 1);
 			}
+
+			if (Character.isLetter(cangjie[count][5])) {
+			    count++;
+			} else {
+			    for (int column = 0; column < 6; column++) cangjie[count][column] = 0;
+			}
 		    }
-		    count++;
 		} while (str != null && count < cangjie.length);
+		    
+		reader.close();
+
+	    } catch (Exception ex) {
+		ex.printStackTrace();
+	    }
+        }
+    
+        private void loadCangjieHKTable() {
+	    try {
+		InputStream is = getResources().openRawResource(R.raw.cj);
+		InputStreamReader input = new InputStreamReader(is, "UTF-8");
+		BufferedReader reader = new BufferedReader(input);
+		String str = null;
+		int count = 0, index = 0;
+		char c = 'a';
+
+		count = 0;
+		do {
+		    str = reader.readLine();
+		    if (str == null)
+			break;
+		    index = str.indexOf('\t');
+		    if (index > 0) {
+			str.getChars(0, index, cangjie_hk[count], 0);
+			str.getChars(index + 1, index + 2, cangjie_hk[count], 5);
+			if (cangjie_hk[count][0] == c) {
+			    cangjie_char_idx[c - 'a'] = count;
+			    c = (char) (c + 1);
+			}
+
+			if (Character.isLetter(cangjie_hk[count][5])) {
+			    count++;
+			} else {
+			    for (int column = 0; column < 6; column++) cangjie_hk[count][column] = 0;
+			}
+		    }
+		} while (str != null && count < cangjie_hk.length);
 		    
 		reader.close();
 
@@ -105,6 +174,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		count = 0;
 		do {
 		    str = reader.readLine();
+		    if (str == null)
+			break;
 		    index = str.indexOf('\t');
 		    if (index > 0) {
 			str.getChars(0, index, quick[count], 0);
@@ -113,8 +184,14 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			    quick_char_idx[c - 'a'] = count;
 			    c = (char) (c + 1);
 			}
+			if (Character.isLetter(quick[count][2])) {
+			    count++;
+			} else {
+			    quick[count][0] = 0;
+			    quick[count][1] = 0;
+			    quick[count][2] = 0;
+			}
 		    }
-		    count++;
 		} while (str != null && count < quick.length);
 		    
 		reader.close();
@@ -127,6 +204,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         public void characterSelected(char c) {
 	    commit.setLength(0);
 	    commit.append(c);
+	    Log.i("Cangjie", "Commit " + commit.toString());
 	    getCurrentInputConnection().setComposingText("", 1);
 	    getCurrentInputConnection().beginBatchEdit();
 	    getCurrentInputConnection().commitText(commit.toString(), 1);
@@ -157,8 +235,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 		mSelect.setCandidateListener(this);
 
-		updateInputMethod(mInputMethodState);
-		
 		return mCandidate;
 	}
 

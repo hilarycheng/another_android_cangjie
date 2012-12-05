@@ -14,10 +14,11 @@ public class CandidateSelect extends View {
     private char match[] = null;
     private int total = 0;
     private Paint paint = null;
-    private float[] textWidth = new float[13167];
+    private float[] textWidth = new float[21529];
     private int offset = 10;
     private int charOffset = 0;
     private int spacing = 10;
+    private float charWidth = 0;
 
     private CandidateListener listener = null;
     
@@ -62,9 +63,18 @@ public class CandidateSelect extends View {
 	    int _width = total > textWidth.length ? textWidth.length : total;
 	    int measured = paint.getTextWidths(match, 0, _width, textWidth);
 
+	    // if (textWidth[0] > 0 && textWidth[0] > charWidth)
+	    // 	charWidth = textWidth[0];
+	    
+	    // Log.i("Cangjie", "Meausred " + measured + " " + textWidth[0] + " " + charWidth);
+	    // for (int count = 0; count < _width; count++) {
+	    // 	textWidth[count] = charWidth;
+	    // }
+	    
 	    int start = offset, index = charOffset;
 	    while (start < width && index < total) {
 		canvas.drawText(match, index, 1, start, 56, paint);
+		// start = start + (int) textWidth[index] + spacing;
 		start = start + (int) textWidth[index] + spacing;
 		index++;
 	    }
@@ -84,6 +94,7 @@ public class CandidateSelect extends View {
 	    if (count >= total) continue;
 	    if (select > left && select < left + textWidth[count]) {
 		c = match[count];
+		Log.i("Cangjie", "Matched " + c);
 		break;
 	    }
 	    left = left + (int) textWidth[count] + spacing;
