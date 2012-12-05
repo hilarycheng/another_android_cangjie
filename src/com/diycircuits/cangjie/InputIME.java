@@ -33,6 +33,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private char[][] cangjie_hk = new char[17578][6];
         private char[][] quick = new char[21529][3];
         private int[] cangjie_char_idx = new int[26];
+        private int[] cangjie_hk_char_idx = new int[26];
         private int[] quick_char_idx = new int[26];
         private char[] user_input = new char[5];
         private int totalMatch = 0;
@@ -148,7 +149,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			str.getChars(0, index, cangjie_hk[count], 0);
 			str.getChars(index + 1, index + 2, cangjie_hk[count], 5);
 			if (cangjie_hk[count][0] == c) {
-			    cangjie_char_idx[c - 'a'] = count;
+			    cangjie_hk_char_idx[c - 'a'] = count;
 			    c = (char) (c + 1);
 			}
 
@@ -316,11 +317,11 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         }
         
         private boolean matchCangjieHongKong() {
-	    int i = cangjie_char_idx[user_input[0] - 'a'];
+	    int i = cangjie_hk_char_idx[user_input[0] - 'a'];
 	    int j = 0;
 	    
-	    if (user_input[0] == 'z') j = cangjie_char_idx.length;
-	    else j = cangjie_char_idx[user_input[0] - 'a' + 1];
+	    if (user_input[0] == 'z') j = cangjie_hk_char_idx.length;
+	    else j = cangjie_hk_char_idx[user_input[0] - 'a' + 1];
 
 	    totalMatch = 0;
 	    for (int c = i; c < j; c++) {
