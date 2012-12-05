@@ -39,6 +39,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 	@Override
 	public View onCreateInputView() {
+	        mInputMethodState = CANGJIE;
+
 		LayoutInflater inflater = getLayoutInflater(); 
 
 		mKeyboard = (SoftKeyboardView) inflater.inflate(R.layout.keyboard,
@@ -144,13 +146,19 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
     
 	@Override
 	public View onCreateCandidatesView() {
-		LayoutInflater inflater = getLayoutInflater(); 
+		LayoutInflater inflater = getLayoutInflater();
+
+	        mInputMethodState = CANGJIE;
 
 		mCandidate = (CandidateView) inflater.inflate(R.layout.candidate,
 							  null);
+
 		mSelect    = (CandidateSelect) mCandidate.findViewById(R.id.match_view);
+
 		mSelect.setCandidateListener(this);
 
+		updateInputMethod(mInputMethodState);
+		
 		return mCandidate;
 	}
 
@@ -351,23 +359,32 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 	    return actionKey;
         }
-    
-        public void toggleInputMethod() {
+
+        private void updateInputMethod(int inputMethod) {
 	    Keyboard.Key methodKey = searchKey(-300);
 
 	    if (methodKey == null)
 		return;
 
+	    if (inputMethod == CANGJIE) {
+		methodKey.label = getString(R.string.cangjie);
+		clearAllInput();
+	    } else {
+		methodKey.label = getString(R.string.quick);
+		clearAllInput();
+	    }
+	}
+    
+        public void toggleInputMethod() {
+
 	    Log.i("Cangjie", "Input State " + mInputMethodState);
 	    
 	    if (mInputMethodState == CANGJIE) {
 		mInputMethodState = QUICK;
-		methodKey.label = getString(R.string.quick);
-		clearAllInput();
+		updateInputMethod(mInputMethodState);
 	    } else {
 		mInputMethodState = CANGJIE;
-		methodKey.label = getString(R.string.cangjie);
-		clearAllInput();
+		updateInputMethod(mInputMethodState);
 	    }
 
 	    mKeyboard.updateKeyboard();
