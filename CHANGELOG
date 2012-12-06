@@ -1,0 +1,21 @@
+v0.6 ChangeLog:
+- Add Support for Long Press to Change the Input Method ( Thanks for User Commit )
+- Add Auto Send Function , Default is On
+- Rearrange the Keyboard and Added the Chinese Question Mark.
+
+v0.5 ChangeLog:
+- Add Support for Hong Kong Characters, Please enable it in the "Language & input" Preference
+- Renew the Cangjie Table from Source of Ubuntu ibus-table-cangjie 1.3.4-1
+
+v0.4 ChangLog:
+- Support Quick Cangjie Input Method
+
+v0.3 ChangeLog:
+- Fix FC when inputs more than 5 cangjie words
+- Change the Numeric Key to Chinese Comma.
+
+v0.2 ChangeLog:
+- Add Numeric Key
+- Reduce the Height of Key
+- Implement Android Action Key like Search / Done / Next / Previous, etc.
+

@@ -1,0 +1,20 @@
+v0.6 ChangeLog:
+- 長按空白鍵轉換系統輸入法 ( 多謝用家修改 )
+- 支持自動送字 ( 預設開啟 )
+- 修改鍵盤排列 及 增加 "？" 鍵
+
+v0.5 ChangeLog:
+- 支持香港字功能, 請於"語言和輸入"的"Another Cangjie Input Method"的設定去啟動
+- 更新倉頡字表, 使用 Ubuntu ibus-table-cangjie 1.4.3-1 字表
+
+v0.4 ChangLog:
+- 新增速成功能 (類似 Windows 的速成表)
+
+v0.3 ChangeLog:
+- 修正當輸入五個倉頡碼時候 FC 問題
+- 修改 "123" 數字鍵為 "，”
+
+v0.2 ChangeLog:
+- 增加 "數字" 鍵
+- 把按鍵高度調低
+- 按系統需要, "Enter"鍵變成 "搜尋"/"完成"等等
