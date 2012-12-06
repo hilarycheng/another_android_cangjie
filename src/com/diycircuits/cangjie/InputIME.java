@@ -16,6 +16,7 @@ import android.preference.PreferenceManager;
 import android.content.SharedPreferences;
 import android.widget.*;
 import android.graphics.*;
+import android.util.Log;
 
 public class InputIME extends InputMethodService implements KeyboardView.OnKeyboardActionListener, CandidateSelect.CandidateListener {
 
@@ -63,7 +64,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		loadCangjieTable();
 		loadCangjieHKTable();
 		loadQuickTable();
-		
+
 		for (int count = 0; count < 5; count++)
 		    user_input[count] = 0;
 		
@@ -271,7 +272,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		} else {
 		    if (primaryKey == -300) {
 			toggleInputMethod();
-		    } else if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 65292 || primaryKey == 12290 || (primaryKey >= '0' && primaryKey <= '9')) {
+		    } else if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 65311 ||
+			       primaryKey == 65292 || primaryKey == 12290 || (primaryKey >= '0' && primaryKey <= '9')) {
 			if (primaryKey == 10 && ((imeOptions & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == 0)) {
 			    if (((imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_DONE)     ||
 				((imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_GO)       ||
