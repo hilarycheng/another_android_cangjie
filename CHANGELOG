@@ -2,6 +2,7 @@ v0.6 ChangeLog:
 - Add Support for Long Press to Change the Input Method ( Thanks for User Commit )
 - Add Auto Send Function , Default is On
 - Rearrange the Keyboard and Added the Chinese Question Mark.
+- Fix the Font Height of the Character Selection
 
 v0.5 ChangeLog:
 - Add Support for Hong Kong Characters, Please enable it in the "Language & input" Preference
