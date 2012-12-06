@@ -3,11 +3,14 @@ package com.diycircuits.cangjie;
 import android.content.Context;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
+import android.inputmethodservice.Keyboard.Key;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 public class SoftKeyboardView extends KeyboardView {
 
@@ -32,6 +35,17 @@ public class SoftKeyboardView extends KeyboardView {
 
         public void updateKeyboard() {
 	    setKeyboard(mKeyboard);
+        }
+
+
+        public boolean onLongPress(Key popupKey) {
+        	if (popupKey.codes[0] == ' ') {
+    			InputMethodManager im = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+    			im.showInputMethodPicker();
+        		
+        		return true;
+        	}
+            return super.onLongPress(popupKey);
         }
 
 }

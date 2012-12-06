@@ -80,7 +80,7 @@
                 android:iconPreview="@drawable/period_popup_icon" />
         <Key android:codes="32" android:keyIcon="@drawable/space_icon" 
                 android:iconPreview="@drawable/space_popup_icon" 
-                android:keyWidth="30%p" android:isRepeatable="true"/>
+                android:keyWidth="30%p"/>
         <Key android:codes="-5" android:keyIcon="@drawable/delete_icon"
                 android:iconPreview="@drawable/delete_popup_icon"
                 android:keyWidth="15%p" android:isRepeatable="true"/>
