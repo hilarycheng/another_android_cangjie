@@ -7,4 +7,6 @@
     <string name="quick">速</string>
     <string name="prefs_hongkongchar_key">prefs_hongkongchar_key</string>
     <string name="prefs_hongkongchar_title">啟用香港字（只限倉頡）</string>
+    <string name="prefs_autosend_key">prefs_autosend_key</string>
+    <string name="prefs_autosend_title">自動送字</string>
 </resources>

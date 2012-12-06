@@ -5,6 +5,13 @@
     <CheckBoxPreference
         android:key="@string/prefs_hongkongchar_key"
         android:title="@string/prefs_hongkongchar_title"
+	android:defaultValue="false"
+        android:persistent="true"/>
+
+    <CheckBoxPreference
+        android:key="@string/prefs_autosend_key"
+        android:title="@string/prefs_autosend_title"
+	android:defaultValue="true"
         android:persistent="true"/>
 
 </PreferenceScreen>

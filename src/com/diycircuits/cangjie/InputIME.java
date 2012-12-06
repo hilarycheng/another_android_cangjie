@@ -220,6 +220,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	}
 
         private void clearAllInput() {
+	    totalMatch = 0;
 	    commit.setLength(0);
 	    getCurrentInputConnection().setComposingText("", 1);
 	    sb.setLength(0);
@@ -274,6 +275,18 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			toggleInputMethod();
 		    } else if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 65311 ||
 			       primaryKey == 65292 || primaryKey == 12290 || (primaryKey >= '0' && primaryKey <= '9')) {
+
+			if (isAutoSendEnabled()) {
+			    if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 65311 ||
+				primaryKey == 65292 || primaryKey == 12290) {
+				if (totalMatch > 0) {
+				    characterSelected((char) matchChar[0]);
+				    clearAllInput();
+				    if (primaryKey == ' ') return;
+				}
+			    }
+			}
+
 			if (primaryKey == 10 && ((imeOptions & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == 0)) {
 			    if (((imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_DONE)     ||
 				((imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_GO)       ||
@@ -297,9 +310,28 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		}
 	}
 
+        private void setupHongKongCharEnabled() {
+	    String hkKey = getString(R.string.prefs_hongkongchar_key);
+	    boolean enabled = preferences.getBoolean(hkKey, false);
+	    preferences.edit().putBoolean(hkKey, enabled).commit();
+	}
+    
+        private void setupAutoSendEnabled() {
+	    String autosend = getString(R.string.prefs_autosend_key);
+	    boolean enabled = preferences.getBoolean(autosend, true);
+	    preferences.edit().putBoolean(autosend, enabled).commit();
+	}
+
         private boolean isHongKongCharEnabled() {
 	    String hkKey = getString(R.string.prefs_hongkongchar_key);
 	    boolean enabled = preferences.getBoolean(hkKey, false);
+
+	    return enabled;
+	}
+    
+        private boolean isAutoSendEnabled() {
+	    String autosend = getString(R.string.prefs_autosend_key);
+	    boolean enabled = preferences.getBoolean(autosend, true);
 
 	    return enabled;
 	}
