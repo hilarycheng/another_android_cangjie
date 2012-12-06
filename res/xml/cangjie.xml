@@ -63,13 +63,16 @@
     </Row>
     
     <Row>
-        <Key android:codes="-300" android:keyLabel="倉" />
-        <Key android:codes="120" android:keyLabel="難" android:horizontalGap="10%p"  />
-        <Key android:codes="99" android:keyLabel="金"/>
-        <Key android:codes="118" android:keyLabel="女"/>
-        <Key android:codes="98" android:keyLabel="月"/>
-        <Key android:codes="110" android:keyLabel="弓"/>
-        <Key android:codes="109" android:keyLabel="一"/>
+        <Key android:codes="-300" android:keyLabel="倉" android:keyEdgeFlags="left"/>
+        <Key android:codes="120" android:keyLabel="難" android:horizontalGap="10%p" />
+        <Key android:codes="99" android:keyLabel="金" />
+        <Key android:codes="118" android:keyLabel="女" />
+        <Key android:codes="98" android:keyLabel="月" />
+        <Key android:codes="110" android:keyLabel="弓" />
+        <Key android:codes="109" android:keyLabel="一" />
+        <Key android:codes="-5" android:keyIcon="@drawable/delete_icon"
+                android:iconPreview="@drawable/delete_popup_icon"
+                android:keyWidth="20%p" android:isRepeatable="true" android:keyEdgeFlags="right" />
     </Row>
     
     <Row android:rowEdgeFlags="bottom" android:keyHeight="@dimen/key_height_bottom_row" >
@@ -81,11 +84,9 @@
         <Key android:codes="32" android:keyIcon="@drawable/space_icon" 
                 android:iconPreview="@drawable/space_popup_icon" 
                 android:keyWidth="30%p"/>
-        <Key android:codes="-5" android:keyIcon="@drawable/delete_icon"
-                android:iconPreview="@drawable/delete_popup_icon"
-                android:keyWidth="15%p" android:isRepeatable="true"/>
+        <Key android:codes="65311" android:keyLabel="？" android:keyWidth="13%p"/>
         <Key android:codes="10" android:keyIcon="@drawable/enter_icon"
                 android:iconPreview="@drawable/enter_popup_icon" 
-                android:keyWidth="15%p" android:keyEdgeFlags="right"/>
+                android:keyWidth="20%p" android:keyEdgeFlags="right" />
     </Row>
 </Keyboard>
