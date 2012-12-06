@@ -19,6 +19,12 @@ public class CandidateSelect extends View {
     private int charOffset = 0;
     private int spacing = 10;
     private float charWidth = 0;
+    private int topOffset = 0;
+    private Context context = null;
+    
+    private final static int SPACING            = 4;
+    private final static int STARTING_FONT_SIZE = 12;
+    private final static int ENDING_FONT_SIZE   = 128;
 
     private CandidateListener listener = null;
     
@@ -29,6 +35,8 @@ public class CandidateSelect extends View {
     public CandidateSelect(Context context, AttributeSet attrs) {
 	super(context, attrs);
 
+	this.context = context;
+	
 	paint = new Paint();
 	paint.setColor(Color.BLACK);
 	paint.setAntiAlias(true);
@@ -46,6 +54,23 @@ public class CandidateSelect extends View {
 
 	width  = w;
 	height = h;
+
+	Rect rect = new Rect();
+	for (int fontsize = STARTING_FONT_SIZE; fontsize < ENDING_FONT_SIZE; fontsize += 2) {
+	    paint.setTextSize(fontsize);
+
+	    Paint.FontMetrics metrics = paint.getFontMetrics();
+	    int totalHeight = (int) (metrics.bottom - metrics.top);
+
+	    if (totalHeight > height) {
+		paint.setTextSize(fontsize - 2);
+		paint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
+
+		topOffset = (int) Math.abs(rect.top) + (int) (Math.abs(rect.bottom) / 2);
+		break;
+	    }
+	}
+
     }
 
     @Override
@@ -63,18 +88,9 @@ public class CandidateSelect extends View {
 	    int _width = total > textWidth.length ? textWidth.length : total;
 	    int measured = paint.getTextWidths(match, 0, _width, textWidth);
 
-	    // if (textWidth[0] > 0 && textWidth[0] > charWidth)
-	    // 	charWidth = textWidth[0];
-	    
-	    // Log.i("Cangjie", "Meausred " + measured + " " + textWidth[0] + " " + charWidth);
-	    // for (int count = 0; count < _width; count++) {
-	    // 	textWidth[count] = charWidth;
-	    // }
-	    
 	    int start = offset, index = charOffset;
 	    while (start < width && index < total) {
-		canvas.drawText(match, index, 1, start, 56, paint);
-		// start = start + (int) textWidth[index] + spacing;
+		canvas.drawText(match, index, 1, start, topOffset, paint);
 		start = start + (int) textWidth[index] + spacing;
 		index++;
 	    }

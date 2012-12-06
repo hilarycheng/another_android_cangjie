@@ -17,7 +17,7 @@
     <com.diycircuits.cangjie.CandidateSelect
         android:id="@+id/match_view"
         android:layout_width="fill_parent"
-        android:layout_height="42sp"
+        android:layout_height="38sp"
         android:layout_weight="1"
         />
     
