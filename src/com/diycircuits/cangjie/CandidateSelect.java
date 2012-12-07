@@ -147,6 +147,7 @@ public class CandidateSelect extends View {
     public void updateMatch(char[] _match, int _total) {
 	match = _match;
 	total = _total;
+        charOffset = 0;
 	offset = 10;
 	invalidate();
     }

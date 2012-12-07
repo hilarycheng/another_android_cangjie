@@ -183,6 +183,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		    if (str == null)
 			break;
 		    index = str.indexOf('\t');
+		    if (index < 0) index = str.indexOf(' ');
 		    if (index > 0) {
 			str.getChars(0, index, quick[count], 0);
 			str.getChars(index + 1, index + 2, quick[count], 2);
@@ -214,12 +215,11 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    getCurrentInputConnection().beginBatchEdit();
 	    getCurrentInputConnection().commitText(commit.toString(), 1);
 	    getCurrentInputConnection().endBatchEdit();
-	    sb.setLength(0);
-	    for (int cc = 0; cc < user_input.length; cc++) user_input[cc] = 0;
-	    mSelect.updateMatch(null, 0);
+            clearAllInput();
 	}
 
         private void clearAllInput() {
+	    commit.setLength(0);
 	    totalMatch = 0;
 	    commit.setLength(0);
 	    getCurrentInputConnection().setComposingText("", 1);
@@ -354,7 +354,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    int i = cangjie_hk_char_idx[user_input[0] - 'a'];
 	    int j = 0;
 	    
-	    if (user_input[0] == 'z') j = cangjie_hk_char_idx.length;
+	    if (user_input[0] == 'z') j = cangjie_hk.length;
 	    else j = cangjie_hk_char_idx[user_input[0] - 'a' + 1];
 
 	    totalMatch = 0;
@@ -385,7 +385,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    int i = cangjie_char_idx[user_input[0] - 'a'];
 	    int j = 0;
 	    
-	    if (user_input[0] == 'z') j = cangjie_char_idx.length;
+	    if (user_input[0] == 'z') j = cangjie.length;
 	    else j = cangjie_char_idx[user_input[0] - 'a' + 1];
 
 	    totalMatch = 0;
@@ -416,7 +416,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    int i = quick_char_idx[user_input[0] - 'a'];
 	    int j = 0;
 	    
-	    if (user_input[0] == 'z') j = quick_char_idx.length;
+	    if (user_input[0] == 'y') j = quick.length;
 	    else j = quick_char_idx[user_input[0] - 'a' + 1];
 
 	    totalMatch = 0;
