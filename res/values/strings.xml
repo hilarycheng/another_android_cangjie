@@ -1,13 +1,16 @@
 <resources>
-    <string name="app_name">Another Cangjie Input Method</string>
-    <string name="cangjie_input_label">Cangjie Input Method</string>
-    <string name="label_english">英</string>
-    <string name="chinese_comma">，</string>
-    <string name="chinese_question">！</string>
-    <string name="cangjie">倉</string>
-    <string name="quick">速</string>
-    <string name="prefs_hongkongchar_key">prefs_hongkongchar_key</string>
-    <string name="prefs_hongkongchar_title">啟用香港字（只限倉頡）</string>
-    <string name="prefs_autosend_key">prefs_autosend_key</string>
-    <string name="prefs_autosend_title">自動送字</string>
+  <string name="app_name">Another Cangjie Input Method</string>
+  <string name="cangjie_input_label">Cangjie Input Method</string>
+  <string name="label_english">英</string>
+  <string name="chinese_comma">，</string>
+  <string name="chinese_question">！</string>
+  <string name="cangjie">倉</string>
+  <string name="quick">速</string>
+  <string name="prefs_hongkongchar_key">prefs_hongkongchar_key</string>
+  <string name="prefs_hongkongchar_title">啟用香港字（只限倉頡）</string>
+  <string name="prefs_autosend_key">prefs_autosend_key</string>
+  <string name="prefs_autosend_title">自動送字</string>
+  <string name="prefs_inputmethod_title">預設輸入法</string>
+  <string name="prefs_inputmethod_summary">每次開啟時，會選擇預設輸入法</string>
+  <string name="prefs_inputmethod_key">prefs_inputmethod_key</string>
 </resources>

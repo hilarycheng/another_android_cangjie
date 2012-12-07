@@ -14,4 +14,12 @@
 	android:defaultValue="true"
         android:persistent="true"/>
 
+    <ListPreference
+	android:title="@string/prefs_inputmethod_title"
+	android:summary="@string/prefs_inputmethod_summary"
+	android:key="@string/prefs_inputmethod_key"
+	android:defaultValue="0"
+	android:entries="@array/listArray"
+	android:entryValues="@array/listValues" />
+
 </PreferenceScreen>

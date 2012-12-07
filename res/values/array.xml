@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="listArray">
+    <item>倉頡</item>
+    <item>速成</item>
+  </string-array>
+  <string-array name="listValues">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+</resources>

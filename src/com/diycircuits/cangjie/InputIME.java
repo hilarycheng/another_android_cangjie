@@ -47,17 +47,16 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 	@Override
 	public View onCreateInputView() {
-	        mInputMethodState = CANGJIE;
 
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+		mInputMethodState = getPreferredInputMethod();
 
 		LayoutInflater inflater = getLayoutInflater(); 
 
 		mKeyboard = (SoftKeyboardView) inflater.inflate(R.layout.keyboard,
 				null);
 
-		Log.i("Cangjie", " Mark " + (int) getString(R.string.chinese_question).charAt(0));
-		
 		mKeyboard.setOnKeyboardActionListener(this);
 		setCandidatesViewShown(true);
 
@@ -234,7 +233,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	public View onCreateCandidatesView() {
 		LayoutInflater inflater = getLayoutInflater();
 
-	        mInputMethodState = CANGJIE;
+		mInputMethodState = getPreferredInputMethod();
 
 		mCandidate = (CandidateView) inflater.inflate(R.layout.candidate,
 							  null);
@@ -242,6 +241,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		mSelect    = (CandidateSelect) mCandidate.findViewById(R.id.match_view);
 
 		mSelect.setCandidateListener(this);
+
+		updateInputMethod(mInputMethodState);
 
 		return mCandidate;
 	}
@@ -314,18 +315,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		}
 	}
 
-        private void setupHongKongCharEnabled() {
-	    String hkKey = getString(R.string.prefs_hongkongchar_key);
-	    boolean enabled = preferences.getBoolean(hkKey, false);
-	    preferences.edit().putBoolean(hkKey, enabled).commit();
-	}
-    
-        private void setupAutoSendEnabled() {
-	    String autosend = getString(R.string.prefs_autosend_key);
-	    boolean enabled = preferences.getBoolean(autosend, true);
-	    preferences.edit().putBoolean(autosend, enabled).commit();
-	}
-
         private boolean isHongKongCharEnabled() {
 	    String hkKey = getString(R.string.prefs_hongkongchar_key);
 	    boolean enabled = preferences.getBoolean(hkKey, false);
@@ -338,6 +327,20 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    boolean enabled = preferences.getBoolean(autosend, true);
 
 	    return enabled;
+	}
+    
+        private int getPreferredInputMethod() {
+	    String autosend = getString(R.string.prefs_inputmethod_key);
+	    String imstring = preferences.getString(autosend, "0");
+	    int im = 0;
+	    
+	    try {
+		im = Integer.parseInt(imstring);
+	    } catch(NumberFormatException nfe) {
+		im = 0;
+	    }
+
+	    return im;
 	}
     
         private boolean match() {
