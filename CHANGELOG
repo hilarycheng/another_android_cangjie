@@ -1,3 +1,11 @@
+v0.7 ChangeLog:
+- Update the Keyboard Layout , "難" Key will not aligned to left.
+- Added "！” Key
+- Quick / Cangjie can be selected in the settings to set as default input method inside this app.
+- Popup Key Color is fixed.
+- Fix the Quick Input Method for the Key "卜"
+- Fix the Words Selection , Sometimes it will not show any words to selection
+
 v0.6 ChangeLog:
 - Add Support for Long Press to Change the Input Method ( Thanks for User Commit )
 - Add Auto Send Function , Default is On
