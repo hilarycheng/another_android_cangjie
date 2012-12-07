@@ -55,6 +55,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 		mKeyboard = (SoftKeyboardView) inflater.inflate(R.layout.keyboard,
 				null);
+
+		Log.i("Cangjie", " Mark " + (int) getString(R.string.chinese_question).charAt(0));
 		
 		mKeyboard.setOnKeyboardActionListener(this);
 		setCandidatesViewShown(true);
@@ -273,12 +275,14 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		} else {
 		    if (primaryKey == -300) {
 			toggleInputMethod();
-		    } else if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 65311 ||
-			       primaryKey == 65292 || primaryKey == 12290 || (primaryKey >= '0' && primaryKey <= '9')) {
+		    } else if (primaryKey == ' ' || primaryKey == 10 ||
+			       primaryKey == 65311 || primaryKey == 65292 ||
+			       primaryKey == 12290 || primaryKey == 65281 ||
+			       (primaryKey >= '0' && primaryKey <= '9')) {
 
 			if (isAutoSendEnabled()) {
 			    if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 65311 ||
-				primaryKey == 65292 || primaryKey == 12290) {
+				primaryKey == 65292 || primaryKey == 12290 || primaryKey == 65281) {
 				if (totalMatch > 0) {
 				    characterSelected((char) matchChar[0]);
 				    clearAllInput();
