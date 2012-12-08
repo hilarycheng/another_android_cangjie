@@ -248,17 +248,18 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	}
 
 	@Override
-	public void onKey(int primaryKey, int[] keyCode) {
+	public void onKey(int _primaryKey, int[] keyCode) {
+	        int primaryKey = (int) Math.abs(_primaryKey);
 	        int keyLen = 5;
 		if (mInputMethodState == CANGJIE)
 		    keyLen = 5;
 		if (mInputMethodState == QUICK)
 		    keyLen = 2;
-		if (primaryKey == -200) {
+		if (primaryKey == 200) {
 			IBinder token = getWindow().getWindow().getAttributes().token;
 			InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 			im.switchToNextInputMethod(token, false);
-		} else if (primaryKey == -5) {
+		} else if (primaryKey == 5) {
 		    if (sb.length() > 1 && sb.length() <= keyLen) {
 			user_input[sb.length() - 1] = 0;
 			sb.setLength(sb.length() - 1);
@@ -274,7 +275,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			mSelect.updateMatch(null, 0);
 		    }
 		} else {
-		    if (primaryKey == -300) {
+		    if (primaryKey == 300) {
 			toggleInputMethod();
 		    } else if (primaryKey == ' ' || primaryKey == 10 ||
 			       primaryKey == 65311 || primaryKey == 65292 ||

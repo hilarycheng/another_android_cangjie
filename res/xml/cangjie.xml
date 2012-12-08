@@ -2,7 +2,7 @@
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
     android:keyWidth="10%p"
     android:horizontalGap="0px"
-    android:verticalGap="0px"
+    android:verticalGap="0.7%p"
     android:keyHeight="@dimen/key_height"
     >
 
@@ -45,8 +45,8 @@
     </Row>
     
     <Row>
-        <Key android:codes="65281" android:keyLabel="！" android:keyEdgeFlags="left" />
-        <Key android:codes="65311" android:keyLabel="？" />
+        <Key android:codes="-65281" android:keyLabel="！" android:keyEdgeFlags="left" />
+        <Key android:codes="-65311" android:keyLabel="？" />
         <Key android:codes="120" android:keyLabel="難" />
         <Key android:codes="99" android:keyLabel="金" />
         <Key android:codes="118" android:keyLabel="女" />
@@ -61,14 +61,14 @@
     <Row android:rowEdgeFlags="bottom" android:keyHeight="@dimen/key_height_bottom_row" >
         <Key android:codes="-200" android:keyLabel="@string/label_english" android:keyWidth="14%p" />
         <Key android:codes="-300" android:keyLabel="倉" />
-        <Key android:codes="65292" android:keyLabel="，" android:keyWidth="13%p"/>
+        <Key android:codes="-65292" android:keyLabel="，" android:keyWidth="13%p"/>
         <Key android:codes="32" android:keyIcon="@drawable/space_icon" 
                 android:iconPreview="@drawable/space_popup_icon" 
                 android:keyWidth="30%p"/>
-        <Key android:codes="12290" android:keyWidth="13%p"
+        <Key android:codes="-12290" android:keyWidth="13%p"
                 android:keyIcon="@drawable/period_icon"
                 android:iconPreview="@drawable/period_popup_icon" />
-        <Key android:codes="10" android:keyIcon="@drawable/enter_icon"
+        <Key android:codes="-10" android:keyIcon="@drawable/enter_icon"
                 android:iconPreview="@drawable/enter_popup_icon" 
                 android:keyWidth="20%p" android:keyEdgeFlags="right" />
     </Row>
