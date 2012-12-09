@@ -17,6 +17,8 @@ import android.content.SharedPreferences;
 import android.widget.*;
 import android.graphics.*;
 import android.util.Log;
+import android.view.inputmethod.*;
+import android.content.pm.PackageManager;
 
 public class InputIME extends InputMethodService implements KeyboardView.OnKeyboardActionListener, CandidateSelect.CandidateListener {
 
@@ -258,7 +260,16 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		if (primaryKey == 200) {
 			IBinder token = getWindow().getWindow().getAttributes().token;
 			InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-			im.switchToNextInputMethod(token, false);
+			String id = getSwitchedInputMethod();
+			if (id == null || id.length() == 0)
+			    im.switchToNextInputMethod(token, false);
+			else {
+			    try {
+				im.setInputMethod(token, id);
+			    } catch (java.lang.IllegalArgumentException ex) {
+				Toast.makeText(this, R.string.please_select_next_inputmethod_again, Toast.LENGTH_LONG).show();
+			    }
+			}
 		} else if (primaryKey == 5) {
 		    if (sb.length() > 1 && sb.length() <= keyLen) {
 			user_input[sb.length() - 1] = 0;
@@ -342,6 +353,13 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    }
 
 	    return im;
+	}
+    
+        private String getSwitchedInputMethod() {
+	    String key = getString(R.string.prefs_next_inputmethod_key);
+	    String imstring = preferences.getString(key, "");
+
+	    return imstring;
 	}
     
         private boolean match() {

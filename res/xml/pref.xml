@@ -22,4 +22,9 @@
 	android:entries="@array/listArray"
 	android:entryValues="@array/listValues" />
 
+    <ListPreference
+	android:title="@string/prefs_next_inputmethod_title"
+	android:summary="@string/prefs_next_inputmethod_summary"
+	android:key="@string/prefs_next_inputmethod_key" />
+
 </PreferenceScreen>

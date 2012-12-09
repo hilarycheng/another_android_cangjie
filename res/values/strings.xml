@@ -13,4 +13,9 @@
   <string name="prefs_inputmethod_title">預設輸入法</string>
   <string name="prefs_inputmethod_summary">每次開啟時，會選擇預設輸入法</string>
   <string name="prefs_inputmethod_key">prefs_inputmethod_key</string>
+  <string name="prefs_next_inputmethod_title">切換到所選擇輸入法</string>
+  <string name="prefs_next_inputmethod_summary">由這輸入法切換到所選擇輸入法</string>
+  <string name="prefs_next_inputmethod_key">prefs_next_inputmethod_key</string>
+  <string name="no_next_inputmethod">只切換到下一個輸入法</string>
+  <string name="please_select_next_inputmethod_again">請重新選擇"切換輸入法"</string>
 </resources>
