@@ -59,15 +59,12 @@
     </Row>
     
     <Row android:rowEdgeFlags="bottom" android:keyHeight="@dimen/key_height_bottom_row" >
-        <Key android:codes="-200" android:keyLabel="@string/label_english" android:keyWidth="14%p" />
+        <Key android:codes="-200"  android:keyIcon="@drawable/sym_keyboard_language_switch"
+                android:iconPreview="@drawable/sym_keyboard_language_switch" android:keyWidth="14%p" />
         <Key android:codes="-300" android:keyLabel="倉" />
-        <Key android:codes="-65292" android:keyLabel="，" android:keyWidth="13%p"/>
-        <Key android:codes="32" android:keyIcon="@drawable/space_icon" 
-                android:iconPreview="@drawable/space_popup_icon" 
-                android:keyWidth="30%p"/>
-        <Key android:codes="-12290" android:keyWidth="13%p"
-                android:keyIcon="@drawable/period_icon"
-                android:iconPreview="@drawable/period_popup_icon" />
+        <Key android:codes="-65292" android:keyLabel="，" android:keyWidth="10%p"/>
+        <Key android:codes="32"	 android:keyLabel=" " android:keyWidth="36%p"/>
+        <Key android:codes="-12290" android:keyLabel="。" android:keyWidth="10%p"/>
         <Key android:codes="-10" android:keyIcon="@drawable/enter_icon"
                 android:iconPreview="@drawable/enter_popup_icon" 
                 android:keyWidth="20%p" android:keyEdgeFlags="right" />

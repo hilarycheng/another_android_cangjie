@@ -40,7 +40,7 @@ public class CandidateSelect extends View {
 	paint = new Paint();
 	paint.setColor(Color.BLACK);
 	paint.setAntiAlias(true);
-	paint.setTextSize(64);
+	paint.setTextSize(50);
 	paint.setStrokeWidth(0);
     }
 
@@ -63,10 +63,10 @@ public class CandidateSelect extends View {
 	    int totalHeight = (int) (metrics.bottom - metrics.top);
 
 	    if (totalHeight > height) {
-		paint.setTextSize(fontsize - 2);
+		paint.setTextSize(fontsize - 7);
 		paint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
 
-		topOffset = (int) Math.abs(rect.top) + (int) (Math.abs(rect.bottom) / 2);
+		topOffset = (int) Math.abs(rect.top) + (int) (Math.abs(rect.bottom) + 9 );
 		break;
 	    }
 	}
@@ -80,9 +80,9 @@ public class CandidateSelect extends View {
 	    return;
 	}
 
-	paint.setColor(Color.DKGRAY);
-	canvas.drawRect(0, 0, width, height - 10, paint);
-	paint.setColor(Color.WHITE);
+	paint.setColor(Color.BLACK);
+	canvas.drawRect(0, 0, width, height - 0, paint);
+	paint.setColor(0xff33B5E5);
 	
 	if (match != null) {
 	    int _width = total > textWidth.length ? textWidth.length : total;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-        <dimen name="key_height">46dip</dimen>
-        <dimen name="key_height_bottom_row">46dip</dimen>
+        <dimen name="key_height">42dip</dimen>
+        <dimen name="key_height_bottom_row">42dip</dimen>
 </resources>
