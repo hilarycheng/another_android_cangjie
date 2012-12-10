@@ -63,7 +63,7 @@ public class CandidateSelect extends View {
 	    int totalHeight = (int) (metrics.bottom - metrics.top);
 
 	    if (totalHeight > height) {
-		paint.setTextSize(fontsize - 7);
+		paint.setTextSize(fontsize - 8);
 		paint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
 
 		topOffset = (int) Math.abs(rect.top) + (int) (Math.abs(rect.bottom) + 9 );
@@ -80,7 +80,7 @@ public class CandidateSelect extends View {
 	    return;
 	}
 
-	paint.setColor(Color.BLACK);
+	paint.setColor(0xff282828);
 	canvas.drawRect(0, 0, width, height - 0, paint);
 	paint.setColor(0xff33B5E5);
 	
@@ -148,7 +148,7 @@ public class CandidateSelect extends View {
 	match = _match;
 	total = _total;
         charOffset = 0;
-	offset = 10;
+	offset = 2;
 	invalidate();
     }
 
