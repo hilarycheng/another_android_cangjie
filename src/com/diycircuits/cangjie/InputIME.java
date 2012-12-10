@@ -261,12 +261,17 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			IBinder token = getWindow().getWindow().getAttributes().token;
 			InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 			String id = getSwitchedInputMethod();
-			if (id == null || id.length() == 0)
+			Log.i("Cangjie", "onKey " + id + " 0 ");
+			if (id == null || id.length() == 0) {
+			Log.i("Cangjie", "onKey " + id + " 1 ");
 			    im.switchToNextInputMethod(token, false);
-			else {
+			} else {
+			Log.i("Cangjie", "onKey " + id + " 2 ");
 			    try {
+			Log.i("Cangjie", "onKey " + id + " 3 ");
 				im.setInputMethod(token, id);
 			    } catch (java.lang.IllegalArgumentException ex) {
+			Log.i("Cangjie", "onKey " + id + " 4 ");
 				Toast.makeText(this, R.string.please_select_next_inputmethod_again, Toast.LENGTH_LONG).show();
 			    }
 			}
@@ -359,6 +364,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    String key = getString(R.string.prefs_next_inputmethod_key);
 	    String imstring = preferences.getString(key, "");
 
+	    Log.i("Cangjie", "Get SwitchedInputMethod " + imstring + " " + key);
+	    
 	    return imstring;
 	}
     
