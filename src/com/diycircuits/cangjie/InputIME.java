@@ -40,12 +40,14 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private int[] quick_char_idx = new int[26];
         private char[] user_input = new char[5];
         private int totalMatch = 0;
+        private int[] matchCharIdx = new int[21529];
         private char matchChar[] = new char[21529];
         private StringBuffer commit = new StringBuffer();
         private int imeOptions = 0;
         private int mInputMethodState = CANGJIE;
         private Paint mPaint = null;
         private SharedPreferences preferences;
+        private MostUsed mUsed = new MostUsed();
 
 	@Override
 	public View onCreateInputView() {
@@ -68,8 +70,12 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		loadCangjieHKTable();
 		loadQuickTable();
 
-		for (int count = 0; count < 5; count++)
+		for (int count = 0; count < 5; count++) {
 		    user_input[count] = 0;
+		}
+		for (int count = 0; count < matchCharIdx.length; count++) {
+		    matchCharIdx[count] = 0;
+		}
 		
 		return mKeyboard;
 	}
@@ -211,7 +217,16 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    }
         }
     
-        public void characterSelected(char c) {
+        public void characterSelected(char c, int idx) {
+	    if (idx >= 0) {
+		int total = 0, count = 0;
+		while (count < 5) {
+		    if (cangjie[matchCharIdx[idx]][count] == 0)
+			break;
+		    count++;
+		}
+		mUsed.addChar(cangjie[matchCharIdx[idx]], count, c);
+	    }
 	    commit.setLength(0);
 	    commit.append(c);
 	    getCurrentInputConnection().setComposingText("", 1);
@@ -227,7 +242,9 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    commit.setLength(0);
 	    getCurrentInputConnection().setComposingText("", 1);
 	    sb.setLength(0);
-	    for (int cc = 0; cc < user_input.length; cc++) user_input[cc] = 0;
+	    for (int cc = 0; cc < user_input.length; cc++) {
+		user_input[cc] = 0;
+	    }
 	    mSelect.updateMatch(null, 0);
         }
     
@@ -297,7 +314,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			    if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 65311 ||
 				primaryKey == 65292 || primaryKey == 12290 || primaryKey == 65281) {
 				if (totalMatch > 0) {
-				    characterSelected((char) matchChar[0]);
+				    characterSelected((char) matchChar[0], 0);
 				    clearAllInput();
 				    if (primaryKey == ' ') return;
 				}
@@ -313,10 +330,10 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 				((imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_SEND)) {
 				getCurrentInputConnection().performEditorAction(imeOptions);
 			    } else {
-				characterSelected((char) primaryKey);
+				characterSelected((char) primaryKey, -1);
 			    }
 			} else {
-			    characterSelected((char) primaryKey);
+			    characterSelected((char) primaryKey, -1);
 			}
 		    } else if (sb.length() < keyLen && primaryKey >= (int) 'a' && primaryKey <= (int) 'z') {
 			user_input[sb.length()] = (char) primaryKey;
@@ -387,6 +404,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    for (int c = i; c < j; c++) {
 		if (sb.length() == 1) {
 		    matchChar[totalMatch] = cangjie_hk[c][5];
+		    matchCharIdx[totalMatch] = c;
 		    totalMatch++;
 		} else {
 		    int l = 1;
@@ -397,6 +415,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		    }
 		    if (l == 5 || user_input[l] == 0) {
 		        matchChar[totalMatch] = cangjie_hk[c][5];
+			matchCharIdx[totalMatch] = c;
 			totalMatch++;
 		    }
 		}
@@ -418,6 +437,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    for (int c = i; c < j; c++) {
 		if (sb.length() == 1) {
 		    matchChar[totalMatch] = cangjie[c][5];
+		    matchCharIdx[totalMatch] = c;
 		    totalMatch++;
 		} else {
 		    int l = 1;
@@ -428,6 +448,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		    }
 		    if (l == 5 || user_input[l] == 0) {
 		        matchChar[totalMatch] = cangjie[c][5];
+			matchCharIdx[totalMatch] = c;
 			totalMatch++;
 		    }
 		}
@@ -449,6 +470,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    for (int c = i; c < j; c++) {
 		if (sb.length() == 1) {
 		    matchChar[totalMatch] = quick[c][2];
+		    matchCharIdx[totalMatch] = c;
 		    totalMatch++;
 		} else {
 		    int l = 1;
@@ -459,6 +481,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		    }
 		    if (l == 5 || user_input[l] == 0) {
 		        matchChar[totalMatch] = quick[c][2];
+			matchCharIdx[totalMatch] = c;
 			totalMatch++;
 		    }
 		}
