@@ -29,7 +29,7 @@ public class CandidateSelect extends View {
     private CandidateListener listener = null;
     
     public static interface CandidateListener {
-	void characterSelected(char c);
+	void characterSelected(char c, int idx);
     }
     
     public CandidateSelect(Context context, AttributeSet attrs) {
@@ -105,12 +105,14 @@ public class CandidateSelect extends View {
 	int select = x - offset;
 	int left = offset;
 	char c = 0;
+	int idx = -1;
 
 	for (int count = charOffset; count < textWidth.length - 1; count++) {
 	    if (count >= total) continue;
 	    if (select > left && select < left + textWidth[count]) {
 		c = match[count];
 		Log.i("Cangjie", "Matched " + c);
+		idx = count;
 		break;
 	    }
 	    left = left + (int) textWidth[count] + spacing;
@@ -121,7 +123,7 @@ public class CandidateSelect extends View {
 	case MotionEvent.ACTION_MOVE:
 	    break;
 	case MotionEvent.ACTION_UP:
-	    if (listener != null && c != 0) listener.characterSelected(c);
+	    if (listener != null && c != 0) listener.characterSelected(c, idx);
 	    break;
 	}
 
