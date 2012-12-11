@@ -43,6 +43,7 @@ void Java_com_diycircuits_cangjie_TableLoader_searchQuick(JNIEnv* env, jobject t
   int loop  = 0;
   int i = 0;
   int j = 0;
+  int found = 0;
 
   for (count = 0; count < sizeof(quick_index) / sizeof(jint); count++) {
     quick_index[count] = -1;
@@ -53,11 +54,17 @@ void Java_com_diycircuits_cangjie_TableLoader_searchQuick(JNIEnv* env, jobject t
       if (quick[count][0] == key0) {
 	quick_index[loop] = count;
 	loop++;
+	found = 1;
+      } else if (found) {
+	break;
       }
     } else {
       if (quick[count][0] == key0 && quick[count][1] == key1) {
 	quick_index[loop] = count;
 	loop++;
+	found = 1;
+      } else if (found) {
+	break;
       }
     }
   }
