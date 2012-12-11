@@ -7,6 +7,7 @@
 
 #include "quick.h"
 int mTotalMatch = 0;
+int mSaved = 0;
 char value[] = "你";
 
 jchar Java_com_diycircuits_cangjie_TableLoader_getChar(JNIEnv* env, jobject thiz)
@@ -73,7 +74,7 @@ void Java_com_diycircuits_cangjie_TableLoader_searchQuick(JNIEnv* env, jobject t
     for (i = 0; i < loop - 1; i++) {
       for (j = i + 1; j < loop; j++) {
 	if (quick[quick_index[i]][3] == 0 && quick[quick_index[j]][3] == 0)
-	    break;
+	  break;
 	if (quick[quick_index[i]][3] < quick[quick_index[j]][3]) {
 	  int temp = quick_index[i];
 	  quick_index[i] = quick_index[j];
@@ -130,6 +131,7 @@ jint Java_com_diycircuits_cangjie_TableLoader_updateFrequencyQuick(JNIEnv* env, 
   for (count = 0; count < total; count++) {
     if (quick[count][2] == ch) {
       quick[count][3]++;
+      mSaved = 1;
       return quick[count][3];
     }
   }
@@ -137,6 +139,7 @@ jint Java_com_diycircuits_cangjie_TableLoader_updateFrequencyQuick(JNIEnv* env, 
   return -1;
 }
 			
-/* void Java_com_diycircuits_cangjie_TableLoader_updateQuickIndex(JNIEnv* env, jobject thiz, jobjectArray array, jcharArray input, jintArray index) */
-/* { */
-/* } */
+void Java_com_diycircuits_cangjie_TableLoader_saveMatch(JNIEnv* env, jobject thiz)
+{
+  LOGE("Save Match");
+}

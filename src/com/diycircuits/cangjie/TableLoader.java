@@ -8,6 +8,7 @@ public class TableLoader {
     public native void searchQuick(char index0, char index1);
     public native int totalMatch();
     public native char getMatchChar(int index);
+    public native void saveMatch();
 
     static {
 	System.loadLibrary("chinese_table");

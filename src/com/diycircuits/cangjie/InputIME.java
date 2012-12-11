@@ -552,6 +552,27 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    }
 	}
 
+        @Override
+	public void onFinishInput() {
+	    super.onFinishInput();
+	    Log.i("Cangjie", "on Finished Input");
+	    if (mTable != null) mTable.saveMatch();
+	}
+
+        @Override
+	public void onFinishInputView(boolean input) {
+	    super.onFinishInputView(input);
+	    Log.i("Cangjie", "on Finished InputView");
+	    if (mTable != null) mTable.saveMatch();
+	}
+
+        @Override
+	public void onDestroy() {
+	    super.onDestroy();
+	    Log.i("Cangjie", "on Destroy");
+	    if (mTable != null) mTable.saveMatch();
+	}
+    
         private Keyboard.Key searchKey(int code) {
 	    if (mKeyboard == null || mKeyboard.getKeyboard() == null)
 		return null;
