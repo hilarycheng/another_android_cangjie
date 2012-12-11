@@ -111,7 +111,7 @@ public class CandidateSelect extends View {
 	    if (count >= total) continue;
 	    if (select > left && select < left + textWidth[count]) {
 		c = match[count];
-		Log.i("Cangjie", "Matched " + c);
+		// Log.i("Cangjie", "Matched " + c);
 		idx = count;
 		break;
 	    }

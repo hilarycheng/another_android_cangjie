@@ -34,8 +34,10 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private char[] single  = new char[26];
         private char[][] cangjie = new char[13167][6];
         private char[][] cangjie_hk = new char[17578][6];
+    
         private char[][] quick = new char[21529][4];
         private int[] quick_idx = new int[21529];
+
         private int[] cangjie_char_idx = new int[26];
         private int[] cangjie_hk_char_idx = new int[26];
         private int[] quick_char_idx = new int[26];
@@ -77,7 +79,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		loadCangjieKey();
 		loadCangjieTable();
 		loadCangjieHKTable();
-		loadQuickTable();
+		// loadQuickTable();
 
 		for (int count = 0; count < 5; count++) {
 		    user_input[count] = 0;
@@ -230,8 +232,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
     
         public void characterSelected(char c, int idx) {
 	    if (idx >= 0) {
-		int i = mTable.updateFrequencyQuick(quick, c);
-		if (i >= 0) Log.i("Cangjie", "Frequency " + (int) quick[i][3]);
+		int i = mTable.updateFrequencyQuick(c);
+		// Log.i("Cangjie", "Cangjie " + c + " " + i);
 	    }
 	    commit.setLength(0);
 	    commit.append(c);
@@ -319,7 +321,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			if (isAutoSendEnabled()) {
 			    if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 65311 ||
 				primaryKey == 65292 || primaryKey == 12290 || primaryKey == 65281) {
-				if (totalMatch > 0) {
+				if (totalMatch > 0 || mTable.totalMatch() > 0) {
 				    characterSelected((char) matchChar[0], 0);
 				    clearAllInput();
 				    if (primaryKey == ' ') return;
@@ -466,34 +468,38 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	}
 
         private boolean matchQuick() {
-	    int i = quick_char_idx[user_input[0] - 'a'];
-	    int j = 0;
+	    mTable.searchQuick(user_input[0], user_input[1]);
+	    // int i = quick_char_idx[user_input[0] - 'a'];
+	    // int j = 0;
 	    
-	    if (user_input[0] == 'y') j = quick.length;
-	    else j = quick_char_idx[user_input[0] - 'a' + 1];
+	    // if (user_input[0] == 'y') j = quick.length;
+	    // else j = quick_char_idx[user_input[0] - 'a' + 1];
 
-	    totalMatch = 0;
-	    for (int c = i; c < j; c++) {
-		if (sb.length() == 1) {
-		    matchChar[totalMatch] = quick[c][2];
-		    matchCharIdx[totalMatch] = c;
-		    totalMatch++;
-		} else {
-		    int l = 1;
-		    for (int k = 1; k < 2; k++) {
-			if (user_input[k] == quick[c][k] && user_input[k] != 0) {
-			    l++;
-			}
-		    }
-		    if (l == 5 || user_input[l] == 0) {
-		        matchChar[totalMatch] = quick[c][2];
-			matchCharIdx[totalMatch] = c;
-			totalMatch++;
-		    }
-		}
+	    // totalMatch = 0;
+	    // for (int c = i; c < j; c++) {
+	    // 	if (sb.length() == 1) {
+	    // 	    matchChar[totalMatch] = quick[c][2];
+	    // 	    matchCharIdx[totalMatch] = c;
+	    // 	    totalMatch++;
+	    // 	} else {
+	    // 	    int l = 1;
+	    // 	    for (int k = 1; k < 2; k++) {
+	    // 		if (user_input[k] == quick[c][k] && user_input[k] != 0) {
+	    // 		    l++;
+	    // 		}
+	    // 	    }
+	    // 	    if (l == 5 || user_input[l] == 0) {
+	    // 	        matchChar[totalMatch] = quick[c][2];
+	    // 		matchCharIdx[totalMatch] = c;
+	    // 		totalMatch++;
+	    // 	    }
+	    // 	}
+	    // }
+
+	    for (int count = 0; count < mTable.totalMatch(); count++) {
+		matchChar[count] = mTable.getMatchChar(count);
 	    }
-
-	    mSelect.updateMatch(matchChar, totalMatch);
+	    mSelect.updateMatch(matchChar, mTable.totalMatch());
 
 	    return true;
 	}
