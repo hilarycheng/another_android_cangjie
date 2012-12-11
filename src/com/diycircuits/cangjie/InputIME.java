@@ -34,7 +34,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private char[] single  = new char[26];
         private char[][] cangjie = new char[13167][6];
         private char[][] cangjie_hk = new char[17578][6];
-        private char[][] quick = new char[21529][3];
+        private char[][] quick = new char[21529][4];
+        private int[] quick_idx = new int[21529];
         private int[] cangjie_char_idx = new int[26];
         private int[] cangjie_hk_char_idx = new int[26];
         private int[] quick_char_idx = new int[26];
@@ -48,6 +49,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private Paint mPaint = null;
         private SharedPreferences preferences;
         private MostUsed mUsed = new MostUsed();
+        private TableLoader mTable = null;
 
 	@Override
 	public View onCreateInputView() {
@@ -61,6 +63,13 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		mKeyboard = (SoftKeyboardView) inflater.inflate(R.layout.keyboard,
 				null);
 
+		mTable = new TableLoader();
+		char[] array = new char[5];
+		mTable.getChar();
+		mTable.passCharArray(array);
+		array = null;
+		Log.i("Cangjie", "You : " + (int) getString(R.string.you).charAt(0));
+		
 		mKeyboard.setOnKeyboardActionListener(this);
 		setCandidatesViewShown(true);
 
@@ -202,10 +211,12 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			}
 			if (Character.isLetter(quick[count][2])) {
 			    count++;
+			    quick[count][3] = 0;
 			} else {
 			    quick[count][0] = 0;
 			    quick[count][1] = 0;
 			    quick[count][2] = 0;
+			    quick[count][3] = 0;
 			}
 		    }
 		} while (str != null && count < quick.length);
@@ -219,13 +230,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
     
         public void characterSelected(char c, int idx) {
 	    if (idx >= 0) {
-		int total = 0, count = 0;
-		while (count < 5) {
-		    if (cangjie[matchCharIdx[idx]][count] == 0)
-			break;
-		    count++;
-		}
-		mUsed.addChar(cangjie[matchCharIdx[idx]], count, c);
+		int i = mTable.updateFrequencyQuick(quick, c);
+		if (i >= 0) Log.i("Cangjie", "Frequency " + (int) quick[i][3]);
 	    }
 	    commit.setLength(0);
 	    commit.append(c);
