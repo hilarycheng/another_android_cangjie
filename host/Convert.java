@@ -11,7 +11,7 @@ public class Convert {
 	    String str = null;
 	    int index = 0;
 	    int total = 0;
-	    System.out.println("const jchar quick[][4] = {");
+	    System.out.println("const jchar quick[][3] = {");
 	    do {
 		str = reader.readLine();
 		if (str == null)
@@ -24,12 +24,13 @@ public class Convert {
 			System.out.print((int) str.charAt(0) + ", 0, ");
 		    else
 			System.out.print((int) str.charAt(0) + ", " + (int) str.charAt(1) + ", ");
-		    System.out.println((int) str.charAt(index + 1) + ", 0 }, ");
+		    System.out.println((int) str.charAt(index + 1) + " }, ");
 		    total++;
 		}
 	    } while (str != null);
 	    System.out.println("};");
 	    System.out.println("jint quick_index[" + total + "];");
+	    System.out.println("jint quick_frequency[" + total + "];");
 	    reader.close();
 	    input.close();
 	    fis.close();
