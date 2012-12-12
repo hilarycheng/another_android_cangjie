@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.inputmethod.*;
 import android.content.pm.PackageManager;
 import android.content.pm.ApplicationInfo;
+import android.media.AudioManager;
 
 public class InputIME extends InputMethodService implements KeyboardView.OnKeyboardActionListener, CandidateSelect.CandidateListener {
 
@@ -54,6 +55,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private SharedPreferences preferences;
         private MostUsed mUsed = new MostUsed();
         private TableLoader mTable = null;
+        private AudioManager am = null; 
 
 	@Override
 	public View onCreateInputView() {
@@ -99,7 +101,9 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 		mTable.initialize();
 		if (getAndClearOftenUsed()) mTable.clearAllFrequency();
-		
+
+		am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
 		return mKeyboard;
 	}
 
@@ -288,6 +292,15 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	public void onKey(int _primaryKey, int[] keyCode) {
 	        int primaryKey = (int) Math.abs(_primaryKey);
 	        int keyLen = 5;
+
+		if (preferences.getBoolean("vibrate_on", false)) {
+		    VibratorUtils.getInstance(this).vibrate(preferences.getInt("pref_vibration_duration_settings", 5));
+		}
+		if (preferences.getBoolean("sound_on", false)) {
+		    float f = (float) preferences.getInt("pref_keypress_sound_volume", 50) / (float) 100.0;
+		    am.playSoundEffect(AudioManager.FX_KEYPRESS_STANDARD, f);
+		}
+
 		if (mInputMethodState == CANGJIE)
 		    keyLen = 5;
 		if (mInputMethodState == QUICK)
