@@ -22,4 +22,9 @@
   <string name="prefs_clear_often_used_key">prefs_clear_often_used_key</string>
   <string name="prefs_clear_often_used_title">清洗常用字記錄</string>
   <string name="prefs_clear_often_used_summary">如果常用字有問題，請按這個選項，下次鍵盤開啟時，將會重設．</string>
+  <string name="vibrate_on_keypress">按鍵震動</string>
+  <string name="prefs_keypress_vibration_duration_settings">按鍵震動</string>
+  <string name="sound_on_keypress">按鍵音量</string>
+  <string name="prefs_keypress_sound_volume_settings">按鍵音量</string>
+  <string name="settings_ms">ms</string>
 </resources>
