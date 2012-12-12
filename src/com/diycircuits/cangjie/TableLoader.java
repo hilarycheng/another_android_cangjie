@@ -11,6 +11,7 @@ public class TableLoader {
     public native int totalMatch();
     public native char getMatchChar(int index);
     public native void saveMatch();
+    public native void clearAllFrequency();
 
     static {
 	System.loadLibrary("chinese_table");

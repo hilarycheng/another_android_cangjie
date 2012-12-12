@@ -184,3 +184,15 @@ void Java_com_diycircuits_cangjie_TableLoader_saveMatch(JNIEnv* env, jobject thi
     fclose(file);
   }
 }
+
+void Java_com_diycircuits_cangjie_TableLoader_clearAllFrequency(JNIEnv *env, jobject thiz)
+{
+  int count = 0;
+  
+  for (count = 0; count < sizeof(quick_frequency) / sizeof(jint); count++) {
+    quick_frequency[count] = 0;
+  }
+
+  remove(quick_data);
+}
+
