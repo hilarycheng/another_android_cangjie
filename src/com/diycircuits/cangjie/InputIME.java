@@ -14,6 +14,7 @@ import android.inputmethodservice.Keyboard;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.widget.*;
 import android.graphics.*;
 import android.util.Log;
@@ -97,6 +98,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		}
 
 		mTable.initialize();
+		if (getAndClearOftenUsed()) mTable.clearAllFrequency();
 		
 		return mKeyboard;
 	}
@@ -374,6 +376,18 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    return enabled;
 	}
     
+        private boolean getAndClearOftenUsed() {
+	    String often = getString(R.string.prefs_clear_often_used_key);
+	    boolean enabled = preferences.getBoolean(often, false);
+	    if (enabled) {
+		Editor editor = preferences.edit();
+		editor.putBoolean(often, false);
+		editor.commit();
+	    }
+
+	    return enabled;
+	}
+
         private int getPreferredInputMethod() {
 	    String autosend = getString(R.string.prefs_inputmethod_key);
 	    String imstring = preferences.getString(autosend, "0");
@@ -542,6 +556,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 	@Override
         public void onStartInputView (EditorInfo info, boolean restarting) {
+	    if (getAndClearOftenUsed()) mTable.clearAllFrequency();
 	    sb.setLength(0);
 	    getCurrentInputConnection().setComposingText("", 1);
 

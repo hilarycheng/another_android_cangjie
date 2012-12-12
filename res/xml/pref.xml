@@ -27,4 +27,11 @@
 	android:summary="@string/prefs_next_inputmethod_summary"
 	android:key="@string/prefs_next_inputmethod_key" />
 
+    <CheckBoxPreference
+        android:key="@string/prefs_clear_often_used_key"
+        android:title="@string/prefs_clear_often_used_title"
+        android:summary="@string/prefs_clear_often_used_summary"
+	android:defaultValue="false"
+        android:persistent="true"/>
+
 </PreferenceScreen>
