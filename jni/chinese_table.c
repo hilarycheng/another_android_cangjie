@@ -30,6 +30,11 @@ void Java_com_diycircuits_cangjie_TableLoader_initialize(JNIEnv* env, jobject th
 {
   int clear = 0;
   int count = 0;
+ 
+  for (count = 0; count < sizeof(quick_index) / sizeof(jint); count++) {
+    quick_index[count] = -1;
+  }
+
   FILE *file = fopen(quick_data, "r");
   if (file != NULL) {
     int read = fread(quick_frequency, 1, sizeof(quick_frequency), file);
@@ -76,7 +81,7 @@ jchar Java_com_diycircuits_cangjie_TableLoader_passCharArray(JNIEnv* env, jobjec
 
 void Java_com_diycircuits_cangjie_TableLoader_searchQuick(JNIEnv* env, jobject thiz, jchar key0, jchar key1)
 {
-  int total = sizeof(quick) / (sizeof(jchar) * 4);
+  int total = sizeof(quick) / (sizeof(jchar) * 3);
   int count = 0;
   int loop  = 0;
   int i = 0;
@@ -89,20 +94,22 @@ void Java_com_diycircuits_cangjie_TableLoader_searchQuick(JNIEnv* env, jobject t
 
   for (count = 0; count < total; count++) {
     if (key1 == 0) {
+      /* LOGE("Match %d %d, %d %d ", quick[count][0], key0, count, total); */
       if (quick[count][0] == key0) {
 	quick_index[loop] = count;
 	loop++;
 	found = 1;
       } else if (found) {
-	break;
+      	break;
       }
     } else {
+      /* LOGE("Match %d %d %d %d ", quick[count][0], key0, quick[count][1], key1); */
       if (quick[count][0] == key0 && quick[count][1] == key1) {
 	quick_index[loop] = count;
 	loop++;
 	found = 1;
       } else if (found) {
-	break;
+      	break;
       }
     }
   }
@@ -135,7 +142,7 @@ jint Java_com_diycircuits_cangjie_TableLoader_totalMatch(JNIEnv* env, jobject th
  
 jchar Java_com_diycircuits_cangjie_TableLoader_getMatchChar(JNIEnv* env, jobject thiz, jint index)
 {
-  int total = sizeof(quick) / (sizeof(jchar) * 4);
+  int total = sizeof(quick) / (sizeof(jchar) * 3);
 
   if (index >= total) return 0;
   if (quick_index[index] < 0) return 0;
@@ -162,7 +169,7 @@ jint Java_com_diycircuits_cangjie_TableLoader_updateFrequencyQuick(JNIEnv* env, 
   /*   (*env)->DeleteLocalRef(env, jc); */
   /* } */
 
-  int total = sizeof(quick) / (sizeof(jchar) * 4);
+  int total = sizeof(quick) / (sizeof(jchar) * 3);
   int count = 0;
 
   for (count = 0; count < total; count++) {
