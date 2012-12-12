@@ -213,8 +213,8 @@ public class ImePreferenceActivity extends PreferenceActivity {
          
 		@Override
 		public void onStopTrackingTouch(SeekBar arg0) {
-		    // final int tempMs = arg0.getProgress();
-		    // VibratorUtils.getInstance(context).vibrate(tempMs);
+		    final int tempMs = arg0.getProgress();
+		    VibratorUtils.getInstance(context).vibrate(tempMs);
 		}
 	    });
         sb.setProgress(currentMs);
