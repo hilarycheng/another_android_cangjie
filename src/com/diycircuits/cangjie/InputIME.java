@@ -19,6 +19,7 @@ import android.graphics.*;
 import android.util.Log;
 import android.view.inputmethod.*;
 import android.content.pm.PackageManager;
+import android.content.pm.ApplicationInfo;
 
 public class InputIME extends InputMethodService implements KeyboardView.OnKeyboardActionListener, CandidateSelect.CandidateListener {
 
@@ -56,6 +57,9 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	@Override
 	public View onCreateInputView() {
 
+	        ApplicationInfo appInfo = getApplicationInfo();
+		Log.i("Cangjie", "App Info " + appInfo.dataDir);
+	    
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
 		mInputMethodState = getPreferredInputMethod();
@@ -66,11 +70,11 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 				null);
 
 		mTable = new TableLoader();
-		char[] array = new char[5];
-		mTable.getChar();
-		mTable.passCharArray(array);
-		array = null;
-		Log.i("Cangjie", "You : " + (int) getString(R.string.you).charAt(0));
+		// char[] array = new char[5];
+		// mTable.getChar();
+		// mTable.passCharArray(array);
+		// array = null;
+		// Log.i("Cangjie", "You : " + (int) getString(R.string.you).charAt(0));
 		
 		mKeyboard.setOnKeyboardActionListener(this);
 		setCandidatesViewShown(true);
@@ -87,6 +91,12 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		for (int count = 0; count < matchCharIdx.length; count++) {
 		    matchCharIdx[count] = 0;
 		}
+		try {
+		    mTable.setPath(appInfo.dataDir.getBytes("UTF-8"));
+		} catch (UnsupportedEncodingException ex) {
+		}
+
+		mTable.initialize();
 		
 		return mKeyboard;
 	}
@@ -231,10 +241,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         }
     
         public void characterSelected(char c, int idx) {
-	    if (idx >= 0) {
-		int i = mTable.updateFrequencyQuick(c);
-		// Log.i("Cangjie", "Cangjie " + c + " " + i);
-	    }
+	    if (idx >= 0) mTable.updateFrequencyQuick(c);
+
 	    commit.setLength(0);
 	    commit.append(c);
 	    getCurrentInputConnection().setComposingText("", 1);
@@ -555,21 +563,21 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         @Override
 	public void onFinishInput() {
 	    super.onFinishInput();
-	    Log.i("Cangjie", "on Finished Input");
+	    // Log.i("Cangjie", "on Finished Input");
 	    if (mTable != null) mTable.saveMatch();
 	}
 
         @Override
 	public void onFinishInputView(boolean input) {
 	    super.onFinishInputView(input);
-	    Log.i("Cangjie", "on Finished InputView");
+	    // Log.i("Cangjie", "on Finished InputView");
 	    if (mTable != null) mTable.saveMatch();
 	}
 
         @Override
 	public void onDestroy() {
 	    super.onDestroy();
-	    Log.i("Cangjie", "on Destroy");
+	    // Log.i("Cangjie", "on Destroy");
 	    if (mTable != null) mTable.saveMatch();
 	}
     
@@ -619,5 +627,13 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 	    mKeyboard.updateKeyboard();
         }
-    
+
+	@Override
+	public void onDisplayCompletions(CompletionInfo[] completions) {
+           Log.i("Cangjie", " on Display Completions ");
+           if (completions == null) return;
+           for (int count = 0; count < completions.length; count++) {
+             Log.i("Cangjie", " on Display Completions " + completions[count].getText().toString());
+           }
+   	} 
 }
