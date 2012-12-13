@@ -12,6 +12,7 @@ public class TableLoader {
     public native char getMatchChar(int index);
     public native void saveMatch();
     public native void clearAllFrequency();
+    public native void reset();
 
     static {
 	System.loadLibrary("chinese_table");

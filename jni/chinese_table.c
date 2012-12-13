@@ -45,13 +45,18 @@ void Java_com_diycircuits_cangjie_TableLoader_initialize(JNIEnv* env, jobject th
     clear = 1;
   }
    
-  /* if (clear != 0) { */
+  if (clear != 0) {
     for (count = 0; count < sizeof(quick_frequency) / sizeof(jint); count++) {
       quick_frequency[count] = 0;
     }
-  /* } */
+  }
 }
 
+void Java_com_diycircuits_cangjie_TableLoader_reset(JNIEnv* env, jobject thiz)
+{
+  mTotalMatch = 0;
+}
+ 
 jchar Java_com_diycircuits_cangjie_TableLoader_getChar(JNIEnv* env, jobject thiz)
 {
   int count = 0;
@@ -92,7 +97,6 @@ void Java_com_diycircuits_cangjie_TableLoader_searchQuick(JNIEnv* env, jobject t
     quick_index[count] = 0;
   }
 
-  LOGE("Match0 %d %d, %d %d, %d %d ", quick[count][0], quick[count][1], key0, key1, count, total);
   for (count = 0; count < total; count++) {
     if (key1 == 0) {
       if (quick[count][0] == key0) {
@@ -167,20 +171,38 @@ jint Java_com_diycircuits_cangjie_TableLoader_updateFrequencyQuick(JNIEnv* env, 
 
   int total = sizeof(quick) / (sizeof(jchar) * 3);
   int count = 0;
+  int max = 0;
+  int index = 0;
 
   for (count = 0; count < total; count++) {
+    if (quick_frequency[count] > max) max = quick_frequency[count];
+  }
+ 
+  for (count = 0; count < total; count++) {
     if (quick[count][2] == ch) {
-      quick_frequency[count]++;
-      mSaved = 1;
-      return quick_frequency[count];
+      if (quick_frequency[count] < max || max == 0) {
+	quick_frequency[count]++;
+	mSaved = 1;
+	return quick_frequency[count];
+      }
     }
   }
 
-  return -1;
+  for (count = 0; count < total; count++) {
+    if (quick_frequency[count] == max && count != index) {
+      quick_frequency[index]++;
+      mSaved = 1;
+      return quick_frequency[index];
+    }
+  }
+  
+  return quick_frequency[index];
 }
 			
 void Java_com_diycircuits_cangjie_TableLoader_saveMatch(JNIEnv* env, jobject thiz)
 {
+  if (mSaved == 0) return;
+  mSaved = 0;
   FILE *file = fopen(quick_data, "w");
   if (file != NULL) {
     fwrite(quick_frequency, 1, sizeof(quick_frequency), file);

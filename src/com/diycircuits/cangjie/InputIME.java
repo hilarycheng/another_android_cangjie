@@ -248,7 +248,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
     
         public void characterSelected(char c, int idx) {
 	    if (idx >= 0) mTable.updateFrequencyQuick(c);
-
+	    mTable.reset();
 	    commit.setLength(0);
 	    commit.append(c);
 	    getCurrentInputConnection().setComposingText("", 1);
