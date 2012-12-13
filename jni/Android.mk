@@ -17,7 +17,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE    := chinese_table
-LOCAL_SRC_FILES := chinese_table.c quick_method.c
+LOCAL_SRC_FILES := chinese_table.c input_method.c quick_method.c
 
 LOCAL_LDLIBS    := -lm -llog -landroid
 

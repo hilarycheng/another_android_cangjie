@@ -1,4 +1,4 @@
 #include "input_method.h"
 
-struct input_method quick_functions;
+struct _input_method quick_functions;
 

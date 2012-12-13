@@ -6,12 +6,12 @@
 #define  LOG_TAG    "Cangjie"
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
-#include "quick.h"
+#include "input_method.h"
 
 typedef enum {
-  CANGJIE    = 0,
-  CANGJIE_HK = 1,
-  QUICK      = 2
+  QUICK      = 0,
+  CANGJIE    = 1,
+  CANGJIE_HK = 2,
 } INPUT_METHOD;
 
 int mTotalMatch = 0;
@@ -35,49 +35,55 @@ void Java_com_diycircuits_cangjie_TableLoader_setPath(JNIEnv *env, jobject thiz,
   strncpy(data_path, buf, len);
   quick_data[0] = 0;
   strncat(quick_data, data_path, sizeof(quick_data));
-  strncat(quick_data, "/quick.dat", sizeof(quick_data));
+  /* strncat(quick_data, "/quick.dat", sizeof(quick_data)); */
+
+  LOGE("Input : %d ", QUICK);
+  LOGE("Input : %d %p", QUICK, input_method[QUICK]);
+  input_method[QUICK]->init(quick_data);  
 
   (*env)->ReleaseByteArrayElements(env, path, buf, 0);
 }
 
 void Java_com_diycircuits_cangjie_TableLoader_initialize(JNIEnv* env, jobject thiz)
 {
-  int clear = 0;
-  int count = 0;
+  /* input_method[QUICK]->init(quick_data); */
+  /* int clear = 0; */
+  /* int count = 0; */
  
-  for (count = 0; count < sizeof(quick_index) / sizeof(jint); count++) {
-    quick_index[count] = -1;
-  }
+  /* for (count = 0; count < sizeof(quick_index) / sizeof(jint); count++) { */
+  /*   quick_index[count] = -1; */
+  /* } */
 
-  FILE *file = fopen(quick_data, "r");
-  if (file != NULL) {
-    int read = fread(quick_frequency, 1, sizeof(quick_frequency), file);
-    fclose(file);
-    if (read != sizeof(quick_frequency))
-      clear = 1;
-  } else {
-    clear = 1;
-  }
+  /* FILE *file = fopen(quick_data, "r"); */
+  /* if (file != NULL) { */
+  /*   int read = fread(quick_frequency, 1, sizeof(quick_frequency), file); */
+  /*   fclose(file); */
+  /*   if (read != sizeof(quick_frequency)) */
+  /*     clear = 1; */
+  /* } else { */
+  /*   clear = 1; */
+  /* } */
    
-  if (clear != 0) {
-    for (count = 0; count < sizeof(quick_frequency) / sizeof(jint); count++) {
-      quick_frequency[count] = 0;
-    }
-  }
+  /* if (clear != 0) { */
+  /*   for (count = 0; count < sizeof(quick_frequency) / sizeof(jint); count++) { */
+  /*     quick_frequency[count] = 0; */
+  /*   } */
+  /* } */
 }
 
 void Java_com_diycircuits_cangjie_TableLoader_reset(JNIEnv* env, jobject thiz)
 {
-  mTotalMatch = 0;
+  // mTotalMatch = 0;
+  input_method[QUICK]->reset();
 }
  
 jchar Java_com_diycircuits_cangjie_TableLoader_getChar(JNIEnv* env, jobject thiz)
 {
-  int count = 0;
+  /* int count = 0; */
 
-  for (count = 0; count < sizeof(quick_index) / sizeof(jint); count++) {
-    quick_index[count] = -1;
-  }
+  /* for (count = 0; count < sizeof(quick_index) / sizeof(jint); count++) { */
+  /*   quick_index[count] = -1; */
+  /* } */
 
   /* LOGE("Char Quick : %d", sizeof(quick) / (sizeof(jchar) * 4)); */
   /* LOGE("Char Length : %d", sizeof(jchar)); */
@@ -100,6 +106,8 @@ jchar Java_com_diycircuits_cangjie_TableLoader_passCharArray(JNIEnv* env, jobjec
 
 void Java_com_diycircuits_cangjie_TableLoader_searchQuick(JNIEnv* env, jobject thiz, jchar key0, jchar key1)
 {
+  input_method[QUICK]->searchWord(key0, key1);
+  /*
   int total = sizeof(quick) / (sizeof(jchar) * 3);
   int count = 0;
   int loop  = 0;
@@ -147,21 +155,25 @@ void Java_com_diycircuits_cangjie_TableLoader_searchQuick(JNIEnv* env, jobject t
   }
 
   mTotalMatch = loop;
+  */
 }
  
 jint Java_com_diycircuits_cangjie_TableLoader_totalMatch(JNIEnv* env, jobject thiz)
 {
-  return mTotalMatch;
+  return input_method[QUICK]->totalMatch();
+  /* return mTotalMatch; */
 }
  
 jchar Java_com_diycircuits_cangjie_TableLoader_getMatchChar(JNIEnv* env, jobject thiz, jint index)
 {
-  int total = sizeof(quick) / (sizeof(jchar) * 3);
+  /* int total = sizeof(quick) / (sizeof(jchar) * 3); */
 
-  if (index >= total) return 0;
-  if (quick_index[index] < 0) return 0;
+  /* if (index >= total) return 0; */
+  /* if (quick_index[index] < 0) return 0; */
 
-  return quick[quick_index[index]][2];
+  /* return quick[quick_index[index]][2]; */
+  /* return 0; */
+  return input_method[QUICK]->getMatchChar(index);
 }
  
 jint Java_com_diycircuits_cangjie_TableLoader_updateFrequencyQuick(JNIEnv* env, jobject thiz, jchar ch)
@@ -182,8 +194,8 @@ jint Java_com_diycircuits_cangjie_TableLoader_updateFrequencyQuick(JNIEnv* env, 
   /*   (*env)->ReleaseCharArrayElements(env, jc, item, JNI_ABORT); */
   /*   (*env)->DeleteLocalRef(env, jc); */
   /* } */
-
-  int total = sizeof(quick) / (sizeof(jchar) * 3);
+  /*
+    int total = sizeof(quick) / (sizeof(jchar) * 3);
   int count = 0;
   int max = 0;
   int index = 0;
@@ -211,27 +223,32 @@ jint Java_com_diycircuits_cangjie_TableLoader_updateFrequencyQuick(JNIEnv* env, 
   }
   
   return quick_frequency[index];
+  */
+  /* return 0; */
+  return input_method[QUICK]->updateFrequency(ch);
 }
 			
 void Java_com_diycircuits_cangjie_TableLoader_saveMatch(JNIEnv* env, jobject thiz)
 {
-  if (mSaved == 0) return;
-  mSaved = 0;
-  FILE *file = fopen(quick_data, "w");
-  if (file != NULL) {
-    fwrite(quick_frequency, 1, sizeof(quick_frequency), file);
-    fclose(file);
-  }
+  /* if (mSaved == 0) return; */
+  /* mSaved = 0; */
+  /* FILE *file = fopen(quick_data, "w"); */
+  /* if (file != NULL) { */
+  /*   fwrite(quick_frequency, 1, sizeof(quick_frequency), file); */
+  /*   fclose(file); */
+  /* } */
+  input_method[QUICK]->saveMatch();
 }
 
 void Java_com_diycircuits_cangjie_TableLoader_clearAllFrequency(JNIEnv *env, jobject thiz)
 {
-  int count = 0;
+  /* int count = 0; */
   
-  for (count = 0; count < sizeof(quick_frequency) / sizeof(jint); count++) {
-    quick_frequency[count] = 0;
-  }
+  /* for (count = 0; count < sizeof(quick_frequency) / sizeof(jint); count++) { */
+  /*   quick_frequency[count] = 0; */
+  /* } */
 
-  remove(quick_data);
+  /* remove(quick_data); */
+  input_method[QUICK]->clearFrequency();
 }
 
