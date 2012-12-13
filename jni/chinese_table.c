@@ -45,11 +45,11 @@ void Java_com_diycircuits_cangjie_TableLoader_initialize(JNIEnv* env, jobject th
     clear = 1;
   }
    
-  if (clear != 0) {
+  /* if (clear != 0) { */
     for (count = 0; count < sizeof(quick_frequency) / sizeof(jint); count++) {
       quick_frequency[count] = 0;
     }
-  }
+  /* } */
 }
 
 jchar Java_com_diycircuits_cangjie_TableLoader_getChar(JNIEnv* env, jobject thiz)
@@ -89,12 +89,12 @@ void Java_com_diycircuits_cangjie_TableLoader_searchQuick(JNIEnv* env, jobject t
   int found = 0;
 
   for (count = 0; count < sizeof(quick_index) / sizeof(jint); count++) {
-    quick_index[count] = -1;
+    quick_index[count] = 0;
   }
 
+  LOGE("Match0 %d %d, %d %d, %d %d ", quick[count][0], quick[count][1], key0, key1, count, total);
   for (count = 0; count < total; count++) {
     if (key1 == 0) {
-      /* LOGE("Match %d %d, %d %d ", quick[count][0], key0, count, total); */
       if (quick[count][0] == key0) {
 	quick_index[loop] = count;
 	loop++;
@@ -103,7 +103,6 @@ void Java_com_diycircuits_cangjie_TableLoader_searchQuick(JNIEnv* env, jobject t
       	break;
       }
     } else {
-      /* LOGE("Match %d %d %d %d ", quick[count][0], key0, quick[count][1], key1); */
       if (quick[count][0] == key0 && quick[count][1] == key1) {
 	quick_index[loop] = count;
 	loop++;
@@ -115,22 +114,19 @@ void Java_com_diycircuits_cangjie_TableLoader_searchQuick(JNIEnv* env, jobject t
   }
 
   if (loop > 1) {
-    for (i = 0; i < loop - 1; i++) {
-      for (j = i + 1; j < loop; j++) {
-	/* if (quick_frequency[quick_index[i]] == 0 && quick_frequency[quick_index[j]] == 0) */
-	/*   break; */
-	if (quick_frequency[quick_index[i]] < quick_frequency[quick_index[j]]) {
+    int swap = 1;
+    while (swap) {
+      swap = 0;
+      for (i = 0; i < loop - 1; i++) {
+	if (quick_frequency[quick_index[i]] < quick_frequency[quick_index[i + 1]]) {
 	  int temp = quick_index[i];
-	  quick_index[i] = quick_index[j];
-	  quick_index[j] = temp;
+	  quick_index[i] = quick_index[i + 1];
+	  quick_index[i + 1] = temp;
+	  swap = 1;
 	}
       }
     }
   }
-
-  /* for (i = 0; i < loop; i++) { */
-  /*   LOGE("Loop : %d %d %d %d %d", loop, i, j, quick_index[i], quick[quick_index[i]][3]); */
-  /* } */
 
   mTotalMatch = loop;
 }
