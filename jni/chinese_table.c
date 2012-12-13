@@ -7,11 +7,25 @@
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
 #include "quick.h"
+
+typedef enum {
+  CANGJIE    = 0,
+  CANGJIE_HK = 1,
+  QUICK      = 2
+} INPUT_METHOD;
+
 int mTotalMatch = 0;
 int mSaved = 0;
 char data_path[1024] = "0";
 char quick_data[1024] = "0";
-char value[] = "你";
+char cangjie_data[1024] = "0";
+char cangjie_hk_data[1024] = "0";
+INPUT_METHOD mInputMethod = CANGJIE;
+
+void Java_com_diycircuits_cangjie_TableLoader_setInputMethod(JNIEnv *env, jobject thiz, jint inputMethod)
+{
+  mInputMethod = inputMethod;
+}
 
 void Java_com_diycircuits_cangjie_TableLoader_setPath(JNIEnv *env, jobject thiz, jbyteArray path)
 {
