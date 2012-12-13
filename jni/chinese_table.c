@@ -78,7 +78,7 @@ jchar Java_com_diycircuits_cangjie_TableLoader_passCharArray(JNIEnv* env, jobjec
 
 void Java_com_diycircuits_cangjie_TableLoader_searchQuick(JNIEnv* env, jobject thiz, jchar key0, jchar key1)
 {
-  input_method[QUICK]->searchWord(key0, key1);
+  input_method[QUICK]->searchWord(key0, key1, 0, 0, 0);
 }
  
 jint Java_com_diycircuits_cangjie_TableLoader_totalMatch(JNIEnv* env, jobject thiz)

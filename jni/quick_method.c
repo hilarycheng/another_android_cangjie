@@ -3,20 +3,20 @@
 #include "quick_method.h"
 #include "quick.h"
 
-void init_quick_method(char *path)
+void quick_init(char *path)
 {
   int clear = 0;
   int count = 0;
 
-  quick_functions.mSaved = 0;
-  strncpy(quick_functions.mPath,         path, sizeof(quick_functions.mPath));
-  strncat(quick_functions.mPath, "/quick.dat", sizeof(quick_functions.mPath));
+  quick_func.mSaved = 0;
+  strncpy(quick_func.mPath,         path, sizeof(quick_func.mPath));
+  strncat(quick_func.mPath, "/quick.dat", sizeof(quick_func.mPath));
 
   for (count = 0; count < sizeof(quick_index) / sizeof(jint); count++) {
     quick_index[count] = -1;
   }
 
-  FILE *file = fopen(quick_functions.mPath, "r");
+  FILE *file = fopen(quick_func.mPath, "r");
   if (file != 0) {
     int read = fread(quick_frequency, 1, sizeof(quick_frequency), file);
     fclose(file);
@@ -38,7 +38,7 @@ int quick_maxKey(void)
   return 2;
 }
 
-void quick_searchWord(jchar key0, jchar key1)
+void quick_searchWord(jchar key0, jchar key1, jchar key2, jchar key3, jchar key4)
 {
   int total = sizeof(quick) / (sizeof(jchar) * 3);
   int count = 0;
@@ -86,12 +86,12 @@ void quick_searchWord(jchar key0, jchar key1)
     }
   }
 
-  quick_functions.mTotalMatch = loop;
+  quick_func.mTotalMatch = loop;
 }
 
 int quick_totalMatch(void)
 {
-  return quick_functions.mTotalMatch;
+  return quick_func.mTotalMatch;
 }
 
 int quick_updateFrequency(jchar ch)
@@ -109,7 +109,7 @@ int quick_updateFrequency(jchar ch)
     if (quick[count][2] == ch) {
       if (quick_frequency[count] < max || max == 0) {
 	quick_frequency[count]++;
-	quick_functions.mSaved = 1;
+	quick_func.mSaved = 1;
 	return quick_frequency[count];
       }
     }
@@ -118,7 +118,7 @@ int quick_updateFrequency(jchar ch)
   for (count = 0; count < total; count++) {
     if (quick_frequency[count] == max && count != index) {
       quick_frequency[index]++;
-      quick_functions.mSaved = 1;
+      quick_func.mSaved = 1;
       return quick_frequency[index];
     }
   }
@@ -134,7 +134,7 @@ void quick_clearFrequency(void)
     quick_frequency[count] = 0;
   }
 
-  remove(quick_functions.mPath);
+  remove(quick_func.mPath);
 }
 
 jchar quick_getMatchChar(int index)
@@ -149,23 +149,23 @@ jchar quick_getMatchChar(int index)
 
 void quick_reset(void)
 {
-  quick_functions.mTotalMatch = 0;
+  quick_func.mTotalMatch = 0;
 }
 
 void quick_saveMatch(void)
 {
-  if (quick_functions.mSaved == 0) return;
-  quick_functions.mSaved = 0;
-  FILE *file = fopen(quick_functions.mPath, "w");
+  if (quick_func.mSaved == 0) return;
+  quick_func.mSaved = 0;
+  FILE *file = fopen(quick_func.mPath, "w");
   if (file != NULL) {
     fwrite(quick_frequency, 1, sizeof(quick_frequency), file);
     fclose(file);
   }
 }
 
-struct _input_method quick_functions =
+struct _input_method quick_func =
 {
-  .init            = init_quick_method,
+  .init            = quick_init,
   .maxKey          = quick_maxKey,
   .searchWord      = quick_searchWord,
   .totalMatch      = quick_totalMatch,

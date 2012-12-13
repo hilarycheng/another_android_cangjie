@@ -146,9 +146,14 @@ public class Convert {
     }
     
     public static void main(String args[]) {
-	Convert.convertQuick();
-	Convert.convertCangjie();
-	Convert.convertCangjieHK();
+	// System.out.println(args.length);
+	if (args.length != 1) return;
+	if (args[0].compareTo("0") == 0)
+	    Convert.convertQuick();
+	if (args[0].compareTo("1") == 0)
+	    Convert.convertCangjie();
+	if (args[0].compareTo("2") == 0)
+	    Convert.convertCangjieHK();
     }
 
 }
