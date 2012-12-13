@@ -1,3 +1,7 @@
+v0.7.3.2 ChangeLog:
+- Fix the Quick Method Input Method Ordering Problem
+- Fix the Duplicate Word was inputted when pressing Enter.
+
 v0.7.3.1 ChangeLog:
 - Fix the Quick Method Input Method Bug
 
