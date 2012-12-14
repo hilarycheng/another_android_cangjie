@@ -3,7 +3,15 @@
 
 #ifndef X86
 #include <jni.h>
+#else
+#include <common.h>
 #endif
+
+typedef enum {
+  QUICK = 0,
+  CANGJIE = 1,
+  CANGJIE_HK = 2
+} INPUT_METHOD;
 
 struct _input_method {
   void  (*init)(char *path);
@@ -20,6 +28,6 @@ struct _input_method {
   int   mSaved;
 };
 
-struct _input_method *input_method[3];
+extern struct _input_method *input_method[3];
 
 #endif
