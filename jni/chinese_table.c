@@ -8,11 +8,11 @@
 
 #include "input_method.h"
 
-typedef enum {
-  QUICK      = 0,
-  CANGJIE    = 1,
-  CANGJIE_HK = 2,
-} INPUT_METHOD;
+/* typedef enum { */
+/*   QUICK      = 0, */
+/*   CANGJIE    = 1, */
+/*   CANGJIE_HK = 2, */
+/* } INPUT_METHOD; */
 
 int mTotalMatch = 0;
 int mSaved = 0;
