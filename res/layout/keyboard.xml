@@ -1,75 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-<com.diycircuits.cangjie.KeyboardContainer
-    xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content" >
-
-  <ViewFlipper
-    android:id="@+id/alpha_floatable"
-    android:layout_alignParentBottom="true"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
-
-   <com.diycircuits.cangjie.SoftKeyboardView
-     android:id="@+id/alpha_view1"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"/>
-   <com.diycircuits.cangjie.SoftKeyboardView
-     android:id="@+id/alpha_view2"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"/>
-     
-  </ViewFlipper>
-
-</com.diycircuits.cangjie.KeyboardContainer>
--->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/suggestions_container"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-<com.diycircuits.cangjie.CandidateView
-    android:id="@+id/candidateView"
+    android:id="@+id/suggestions_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"  >
+    android:orientation="vertical" >
 
+    <com.diycircuits.cangjie.CandidateView
+        android:id="@+id/candidateView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
-    <ImageButton
-        android:id="@+id/arrow_left"
-        android:layout_width="33dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/ab_solid_dark_holo"
-        android:clickable="true"
-        android:src="@drawable/arrow_left" />
+        <ImageButton
+            android:id="@+id/arrow_left"
+            android:layout_width="33dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ab_solid_dark_holo"
+            android:clickable="true"
+            android:src="@drawable/arrow_left" />
 
-    <com.diycircuits.cangjie.CandidateSelect
-        android:id="@+id/match_view"
-        android:layout_width="224dp"
-        android:layout_height="40sp"
-        android:layout_marginTop="5dp"
-        android:layout_weight="0.53" />
+        <com.diycircuits.cangjie.CandidateSelect
+            android:id="@+id/match_view"
+            android:layout_width="224dp"
+            android:layout_height="40sp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0.53" />
 
-    <ImageButton
-        android:id="@+id/arrow_right"
-        android:layout_width="33dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/ab_solid_dark_holo"
-        android:clickable="true"
-        android:src="@drawable/arrow_right" />
+        <ImageButton
+            android:id="@+id/arrow_right"
+            android:layout_width="33dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ab_solid_dark_holo"
+            android:clickable="true"
+            android:src="@drawable/arrow_right" />
+    </com.diycircuits.cangjie.CandidateView>
 
-</com.diycircuits.cangjie.CandidateView> 
-<com.diycircuits.cangjie.SoftKeyboardView
-    android:id="@+id/mainKeyboard"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:background="@drawable/keyboard_background_holo"
-    android:keyBackground="@drawable/btn_keyboard_key_ics"
-    android:keyPreviewLayout="@layout/preview" />
+    <com.diycircuits.cangjie.SoftKeyboardView
+        android:id="@+id/mainKeyboard"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/keyboard_background_holo"
+        android:keyBackground="@drawable/btn_keyboard_key_ics"
+        android:keyPreviewLayout="@layout/preview" />
 
 </LinearLayout>

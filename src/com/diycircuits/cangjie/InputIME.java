@@ -70,8 +70,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		LayoutInflater inflater = getLayoutInflater(); 
 
 		View view = inflater.inflate(R.layout.keyboard, null);
-		// mKeyboard = (SoftKeyboardView) inflater.inflate(R.layout.keyboard,
-		// 		null);
+
 		mKeyboard = (SoftKeyboardView) view.findViewById(R.id.mainKeyboard);
 
 		mTable = new TableLoader();
@@ -108,21 +107,16 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 	 	mInputMethodState = getPreferredInputMethod();
 
-		// mCandidate = (CandidateView) inflater.inflate(R.layout.candidate,
-		// 					  null);
-		// mCandidate = (CandidateView) mCandidate.findViewById(R.id.candidateView);
 		mCandidate = (CandidateView) view.findViewById(R.id.candidateView);
 
-		// mSelect    = (CandidateSelect) mCandidate.findViewById(R.id.match_view);
 		mSelect    = (CandidateSelect) view.findViewById(R.id.match_view);
 
 		mSelect.setCandidateListener(this);
 
 		updateInputMethod(mInputMethodState);
 
-		// setCandidatesViewShown(false);
+		setCandidatesViewShown(false);
 
-		// return mKeyboard;
 		return view;
 	}
 
@@ -289,39 +283,10 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    mSelect.updateMatch(null, 0);
         }
     
-	// @Override
-	// public View onCreateCandidatesView() {
-	// 	LayoutInflater inflater = getLayoutInflater();
-
-	// 	mInputMethodState = getPreferredInputMethod();
-
-	// 	mCandidate = (CandidateView) inflater.inflate(R.layout.candidate,
-	// 						  null);
-	// 	mCandidate.initView();
-
-	// 	mSelect    = (CandidateSelect) mCandidate.findViewById(R.id.match_view);
-
-	// 	mSelect.setCandidateListener(this);
-
-	// 	updateInputMethod(mInputMethodState);
-
-	// 	setCandidatesViewShown(false);
-
-	// 	return mCandidate;
-	// }
-
 	@Override
 	public void onKey(int _primaryKey, int[] keyCode) {
 	        int primaryKey = (int) Math.abs(_primaryKey);
 	        int keyLen = 5;
-
-		if (preferences.getBoolean("vibrate_on", false)) {
-		    VibratorUtils.getInstance(this).vibrate(preferences.getInt("pref_vibration_duration_settings", 5));
-		}
-		if (preferences.getBoolean("sound_on", false)) {
-		    float f = (float) preferences.getInt("pref_keypress_sound_volume", 50) / (float) 100.0;
-		    am.playSoundEffect(AudioManager.FX_KEYPRESS_STANDARD, f);
-		}
 
 		if (mInputMethodState == CANGJIE)
 		    keyLen = 5;
@@ -526,32 +491,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
         private boolean matchQuick() {
 	    mTable.searchQuick(user_input[0], user_input[1]);
-	    // int i = quick_char_idx[user_input[0] - 'a'];
-	    // int j = 0;
-	    
-	    // if (user_input[0] == 'y') j = quick.length;
-	    // else j = quick_char_idx[user_input[0] - 'a' + 1];
-
-	    // totalMatch = 0;
-	    // for (int c = i; c < j; c++) {
-	    // 	if (sb.length() == 1) {
-	    // 	    matchChar[totalMatch] = quick[c][2];
-	    // 	    matchCharIdx[totalMatch] = c;
-	    // 	    totalMatch++;
-	    // 	} else {
-	    // 	    int l = 1;
-	    // 	    for (int k = 1; k < 2; k++) {
-	    // 		if (user_input[k] == quick[c][k] && user_input[k] != 0) {
-	    // 		    l++;
-	    // 		}
-	    // 	    }
-	    // 	    if (l == 5 || user_input[l] == 0) {
-	    // 	        matchChar[totalMatch] = quick[c][2];
-	    // 		matchCharIdx[totalMatch] = c;
-	    // 		totalMatch++;
-	    // 	    }
-	    // 	}
-	    // }
 
 	    for (int count = 0; count < mTable.totalMatch(); count++) {
 		matchChar[count] = mTable.getMatchChar(count);
@@ -563,6 +502,13 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 	@Override
 	public void onPress(int arg0) {
+	    if (preferences.getBoolean("vibrate_on", false)) {
+		VibratorUtils.getInstance(this).vibrate(preferences.getInt("pref_vibration_duration_settings", 5));
+	    }
+	    if (preferences.getBoolean("sound_on", false)) {
+		float f = (float) preferences.getInt("pref_keypress_sound_volume", 50) / (float) 100.0;
+		am.playSoundEffect(AudioManager.FX_KEYPRESS_STANDARD, f);
+	    }
 	}
 
 	@Override
@@ -614,21 +560,18 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         @Override
 	public void onFinishInput() {
 	    super.onFinishInput();
-	    // Log.i("Cangjie", "on Finished Input");
 	    if (mTable != null) mTable.saveMatch();
 	}
 
         @Override
 	public void onFinishInputView(boolean input) {
 	    super.onFinishInputView(input);
-	    // Log.i("Cangjie", "on Finished InputView");
 	    if (mTable != null) mTable.saveMatch();
 	}
 
         @Override
 	public void onDestroy() {
 	    super.onDestroy();
-	    // Log.i("Cangjie", "on Destroy");
 	    if (mTable != null) mTable.saveMatch();
 	}
     
