@@ -69,8 +69,10 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 		LayoutInflater inflater = getLayoutInflater(); 
 
-		mKeyboard = (SoftKeyboardView) inflater.inflate(R.layout.keyboard,
-				null);
+		View view = inflater.inflate(R.layout.keyboard, null);
+		// mKeyboard = (SoftKeyboardView) inflater.inflate(R.layout.keyboard,
+		// 		null);
+		mKeyboard = (SoftKeyboardView) view.findViewById(R.id.mainKeyboard);
 
 		mTable = new TableLoader();
 		// char[] array = new char[5];
@@ -104,7 +106,24 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 		am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
-		return mKeyboard;
+	 	mInputMethodState = getPreferredInputMethod();
+
+		// mCandidate = (CandidateView) inflater.inflate(R.layout.candidate,
+		// 					  null);
+		// mCandidate = (CandidateView) mCandidate.findViewById(R.id.candidateView);
+		mCandidate = (CandidateView) view.findViewById(R.id.candidateView);
+
+		// mSelect    = (CandidateSelect) mCandidate.findViewById(R.id.match_view);
+		mSelect    = (CandidateSelect) view.findViewById(R.id.match_view);
+
+		mSelect.setCandidateListener(this);
+
+		updateInputMethod(mInputMethodState);
+
+		// setCandidatesViewShown(false);
+
+		// return mKeyboard;
+		return view;
 	}
 
         private void loadCangjieKey() {
@@ -270,23 +289,26 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    mSelect.updateMatch(null, 0);
         }
     
-	@Override
-	public View onCreateCandidatesView() {
-		LayoutInflater inflater = getLayoutInflater();
+	// @Override
+	// public View onCreateCandidatesView() {
+	// 	LayoutInflater inflater = getLayoutInflater();
 
-		mInputMethodState = getPreferredInputMethod();
+	// 	mInputMethodState = getPreferredInputMethod();
 
-		mCandidate = (CandidateView) inflater.inflate(R.layout.candidate,
-							  null);
+	// 	mCandidate = (CandidateView) inflater.inflate(R.layout.candidate,
+	// 						  null);
+	// 	mCandidate.initView();
 
-		mSelect    = (CandidateSelect) mCandidate.findViewById(R.id.match_view);
+	// 	mSelect    = (CandidateSelect) mCandidate.findViewById(R.id.match_view);
 
-		mSelect.setCandidateListener(this);
+	// 	mSelect.setCandidateListener(this);
 
-		updateInputMethod(mInputMethodState);
+	// 	updateInputMethod(mInputMethodState);
 
-		return mCandidate;
-	}
+	// 	setCandidatesViewShown(false);
+
+	// 	return mCandidate;
+	// }
 
 	@Override
 	public void onKey(int _primaryKey, int[] keyCode) {
@@ -573,6 +595,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    sb.setLength(0);
 	    getCurrentInputConnection().setComposingText("", 1);
 
+	    setCandidatesViewShown(true);
 
 	    imeOptions = info.imeOptions;
 	    
