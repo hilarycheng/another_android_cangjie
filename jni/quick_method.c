@@ -46,6 +46,7 @@ void quick_searchWord(jchar key0, jchar key1, jchar key2, jchar key3, jchar key4
   int i = 0;
   int j = 0;
   int found = 0;
+  int offset = 0;
 
   for (count = 0; count < sizeof(quick_index) / sizeof(jint); count++) {
     quick_index[count] = 0;
@@ -54,6 +55,7 @@ void quick_searchWord(jchar key0, jchar key1, jchar key2, jchar key3, jchar key4
   for (count = 0; count < total; count++) {
     if (key1 == 0) {
       if (quick[count][0] == key0) {
+	if (key1 == 0 && quick[count][1] == 0) offset++;
 	quick_index[loop] = count;
 	loop++;
 	found = 1;
@@ -75,7 +77,7 @@ void quick_searchWord(jchar key0, jchar key1, jchar key2, jchar key3, jchar key4
     int swap = 1;
     while (swap) {
       swap = 0;
-      for (i = 0; i < loop - 1; i++) {
+      for (i = offset; i < loop - 1; i++) {
 	if (quick_frequency[quick_index[i]] < quick_frequency[quick_index[i + 1]]) {
 	  int temp = quick_index[i];
 	  quick_index[i] = quick_index[i + 1];
