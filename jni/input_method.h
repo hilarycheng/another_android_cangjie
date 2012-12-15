@@ -24,6 +24,7 @@ struct _input_method {
   jchar (*getMatchChar)(int index);
   void  (*saveMatch)(void);
   char  mPath[1024];
+  char  mBuffer[8];
   int   mTotalMatch;
   int   mSaved;
 };

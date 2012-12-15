@@ -61,7 +61,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	public View onCreateInputView() {
 
 	        ApplicationInfo appInfo = getApplicationInfo();
-		Log.i("Cangjie", "App Info " + appInfo.dataDir);
+		// Log.i("Cangjie", "App Info " + appInfo.dataDir);
 	    
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
