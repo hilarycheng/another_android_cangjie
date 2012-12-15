@@ -1,12 +1,13 @@
-
+import java.awt.*;
 import java.io.*;
 
 public class Convert {
 
     public static void convertQuick() {
 	try {
+	    Font font = new Font("Droid Sans Fallback", 16, Font.PLAIN);
 	    int totalQuickColumn = 3;
-	    FileInputStream fis = new FileInputStream("../../res/raw/quick");
+	    FileInputStream fis = new FileInputStream("quick3.txt");
 	    InputStreamReader input = new InputStreamReader(fis, "UTF-8");
 	    BufferedReader reader = new BufferedReader(input);
 	    String str = null;
@@ -21,13 +22,24 @@ public class Convert {
 		index = str.indexOf('\t');
 		if (index < 0) index = str.indexOf(' ');
 		if (index > 0) {
-		    System.out.print("\t { ");
-		    if ((int) str.charAt(1) == 9 || str.charAt(1) == ' ') 
-			System.out.print((int) str.charAt(0) + ", 0, ");
-		    else
-			System.out.print((int) str.charAt(0) + ", " + (int) str.charAt(1) + ", ");
-		    System.out.println((int) str.charAt(index + 1) + " }, ");
-		    total++;
+		    int type = Character.getType(str.charAt(index + 1));
+		    // if (Character.isLetter(str.charAt(index + 1)) ||
+		    // 	type == Character.START_PUNCTUATION || type == Character.END_PUNCTUATION ||
+		    // 	type == Character.OTHER_PUNCTUATION || type == Character.MATH_SYMBOL ||
+		    // 	type == Character.DASH_PUNCTUATION  || type == Character.CONNECTOR_PUNCTUATION ||
+		    // 	type == Character.OTHER_SYMBOL      || type == Character.INITIAL_QUOTE_PUNCTUATION ||
+		    // 	type == Character.FINAL_QUOTE_PUNCTUATION || type == Character.SPACE_SEPARATOR) {
+			if (font.canDisplay(str.charAt(index + 1))) {
+			    System.out.print("\t { ");
+			    if ((int) str.charAt(1) == 9 || str.charAt(1) == ' ')  {
+				System.out.print("'" + str.charAt(0) + "',   0, ");
+			    } else {
+				System.out.print("'" + str.charAt(0) + "', '" + str.charAt(1) + "', ");
+			    }
+			    System.out.println((int) str.charAt(index + 1) + " }, ");
+			    total++;
+			}
+		    // }
 		}
 	    } while (str != null);
 	    System.out.println("};");
