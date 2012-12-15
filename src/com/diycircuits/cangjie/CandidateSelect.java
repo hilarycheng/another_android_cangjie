@@ -17,7 +17,7 @@ public class CandidateSelect extends View {
     private float[] textWidth = new float[21529];
     private int offset = 10;
     private int charOffset = 0;
-    private int spacing = 10;
+    private int spacing = 17;
     private float charWidth = 0;
     private int topOffset = 0;
     private Context context = null;
