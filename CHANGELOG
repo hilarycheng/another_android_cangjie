@@ -1,3 +1,8 @@
+v0.7.3.3 ChangeLog:
+- Fix the Selection Bar OverSize problem. The head of apps will not disappear.
+- Trigger the Vibration and Key Sound at KeyPress rather than Character is entered.
+- (Quick Input Method) Move Single Cangjie Character to the Front when One Cangjie Code is Entered
+
 v0.7.3.2 ChangeLog:
 - Fix the Quick Method Input Method Ordering Problem
 - Fix the Duplicate Word was inputted when pressing Enter.
