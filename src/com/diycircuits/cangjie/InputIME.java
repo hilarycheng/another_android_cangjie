@@ -108,6 +108,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	 	mInputMethodState = getPreferredInputMethod();
 
 		mCandidate = (CandidateView) view.findViewById(R.id.candidateView);
+		mKeyboard.setCandidateView(mCandidate);
+		mCandidate.setParent(view.findViewById(R.id.mainView));
 
 		mSelect    = (CandidateSelect) view.findViewById(R.id.match_view);
 
@@ -525,10 +527,12 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 	@Override
 	public void swipeLeft() {
+	    Log.i("Cangjie", "Swipe Left");
 	}
 
 	@Override
 	public void swipeRight() {
+	    Log.i("Cangjie", "Swipe Right");
 	}
 
 	@Override

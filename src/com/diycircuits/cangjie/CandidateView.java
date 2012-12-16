@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.*;
 import android.graphics.*;
+import android.view.LayoutInflater;
 import android.util.Log;
 
 public class CandidateView extends LinearLayout {
@@ -13,15 +14,30 @@ public class CandidateView extends LinearLayout {
     private int height = 0;
     private char match[] = null;
     private int total = 0;
-    private ImageButton mLeftArrow;
-    private ImageButton mRightArrow;
-    private CandidateSelect mSelect;
+    private ImageButton mLeftArrow = null;
+    private ImageButton mRightArrow = null;
+    private CandidateSelect mSelect = null;
+    private PopupWindow mPopup = null;
+    private Context mContext = null;
+    private CandidateView mCandidate = this;
+    private int mWidth = 0;
+    private int mHeight = 0;
+    private View mParent = null;
 
     public CandidateView(Context context, AttributeSet attrs) {
 	super(context, attrs);
-
+	mContext = context;
     }
 
+    public void setParent(View view) {
+	this.mParent = view;
+    }
+    
+    public void setDimension(int w, int h) {
+	mWidth = w;
+	mHeight = h;
+    }
+    
     @Override
     protected void onFinishInflate() {
 	super.onFinishInflate();
@@ -41,7 +57,10 @@ public class CandidateView extends LinearLayout {
 	if (mRightArrow != null) {
 	    mRightArrow.setOnClickListener(new View.OnClickListener() {
 		    public void onClick(View v) {
-			mSelect.showNextPage();
+			// mSelect.showNextPage();
+			synchronized(mSelect) {
+			    mSelect.showCandidatePopup(mParent, mWidth, mHeight);
+			}
 		    }
 		});
 	}

@@ -17,6 +17,8 @@ public class SoftKeyboardView extends KeyboardView {
 	private int mKeyboardWidth = 0;
 	private int mKeyboardHeight = 0;
         private Keyboard mKeyboard = null;
+        private Context mContext = null;
+        private CandidateView cv = null;
 	
 	@SuppressWarnings("deprecation")
 	public SoftKeyboardView(Context context, AttributeSet attrs) {
@@ -25,7 +27,8 @@ public class SoftKeyboardView extends KeyboardView {
 		Display d = wm.getDefaultDisplay();
 		mKeyboardWidth = d.getWidth();
 		mKeyboardHeight = d.getHeight() / 2;
-		
+
+		mContext = context;
 		setKeyboard(mKeyboard = new SoftKeyboard(context, R.xml.cangjie));
 	}
 
@@ -37,7 +40,20 @@ public class SoftKeyboardView extends KeyboardView {
 		mKeyboardWidth = d.getWidth();
 		mKeyboardHeight = d.getHeight() / 2;
 		
+		mContext = context;
 		setKeyboard(mKeyboard = new SoftKeyboard(context, R.xml.cangjie));
+	}
+
+        public void setCandidateView(CandidateView cv) {
+	    this.cv = cv;
+	}
+    
+        @Override
+	public void onSizeChanged(int w, int h, int oldw, int oldh) {
+	    super.onSizeChanged(w, h, oldw, oldh);
+	    // CandidateView cv = (CandidateView) findViewById(R.id.candidateView);
+	    Log.i("Cangjie" , " CV " + cv + " " + w + " " + h + " " + oldw + " " + oldh);
+	    if (cv != null) cv.setDimension(w, h);
 	}
 
         public Keyboard getKeyboard() {

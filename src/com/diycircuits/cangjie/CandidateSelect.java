@@ -3,7 +3,7 @@ package com.diycircuits.cangjie;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.*;
-import android.widget.LinearLayout;
+import android.widget.*;
 import android.graphics.*;
 import android.util.Log;
 
@@ -21,7 +21,8 @@ public class CandidateSelect extends View {
     private float charWidth = 0;
     private int topOffset = 0;
     private Context context = null;
-    
+    private PopupWindow mPopup = null;
+
     private final static int SPACING            = 4;
     private final static int STARTING_FONT_SIZE = 12;
     private final static int ENDING_FONT_SIZE   = 128;
@@ -36,7 +37,7 @@ public class CandidateSelect extends View {
 	super(context, attrs);
 
 	this.context = context;
-	
+
 	paint = new Paint();
 	paint.setColor(Color.BLACK);
 	paint.setAntiAlias(true);
@@ -46,6 +47,27 @@ public class CandidateSelect extends View {
 
     public void setCandidateListener(CandidateListener listen) {
 	listener = listen;
+    }
+
+    public void showCandidatePopup(View mParent, int w, int h) {
+	if (total == 0) return;
+	if (mPopup == null) {
+	    mPopup = new PopupWindow(context);
+	    LayoutInflater inflate = (LayoutInflater)
+		context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	    View view = inflate.inflate(R.layout.popup, null);
+	    CandidateExpandedView cv = (CandidateExpandedView) view.findViewById(R.id.candidateExpanded);
+	    cv.setMatch(match, total);
+	    cv.setDimension(w, h);
+	    mPopup.setContentView(view);
+	} else {
+	    CandidateExpandedView cv = (CandidateExpandedView) mPopup.getContentView().findViewById(R.id.candidateExpanded);
+	    cv.setMatch(match, total);
+	}
+	Log.i("Cangjie", "Candidiate Show " + width + " " + height);
+	mPopup.setWidth(w);
+	mPopup.setHeight(h);
+	mPopup.showAsDropDown(mParent, 0, -h);
     }
     
     @Override
