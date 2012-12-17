@@ -20,6 +20,7 @@ public class CandidateSelect extends View {
     private int spacing = 17;
     private float charWidth = 0;
     private int topOffset = 0;
+    private int mFontSize = 0;
     private Context context = null;
     private PopupWindow mPopup = null;
 
@@ -38,6 +39,7 @@ public class CandidateSelect extends View {
 
 	this.context = context;
 
+	mFontSize = 50;
 	paint = new Paint();
 	paint.setColor(Color.BLACK);
 	paint.setAntiAlias(true);
@@ -57,8 +59,9 @@ public class CandidateSelect extends View {
 		context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	    View view = inflate.inflate(R.layout.popup, null);
 	    CandidateExpandedView cv = (CandidateExpandedView) view.findViewById(R.id.candidateExpanded);
-	    cv.setMatch(match, total);
 	    cv.setDimension(w, h);
+	    cv.setFontSize(mFontSize, topOffset, getHeight());
+	    cv.setMatch(match, total);
 	    mPopup.setContentView(view);
 	} else {
 	    CandidateExpandedView cv = (CandidateExpandedView) mPopup.getContentView().findViewById(R.id.candidateExpanded);
@@ -69,7 +72,11 @@ public class CandidateSelect extends View {
 	mPopup.setHeight(h);
 	mPopup.showAsDropDown(mParent, 0, -h);
     }
-    
+
+    public int fontSize() {
+	return mFontSize;
+    }
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 	super.onSizeChanged(w, h, oldw, oldh);
@@ -85,7 +92,8 @@ public class CandidateSelect extends View {
 	    int totalHeight = (int) (metrics.bottom - metrics.top);
 
 	    if (totalHeight > height) {
-		paint.setTextSize(fontsize - 8);
+		mFontSize = fontsize - 8;
+		paint.setTextSize(mFontSize);
 		paint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
 
 		topOffset = (int) Math.abs(rect.top) + (int) (Math.abs(rect.bottom) + 9 );
