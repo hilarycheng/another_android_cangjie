@@ -1,6 +1,7 @@
 package com.diycircuits.cangjie;
 
 import android.content.Context;
+import android.app.Activity;
 import android.util.AttributeSet;
 import android.view.*;
 import android.widget.*;
@@ -51,6 +52,58 @@ public class CandidateSelect extends View {
 	listener = listen;
     }
 
+    private class CandidateItem {
+    }
+    
+    public class CandidateAdapter extends ArrayAdapter<CandidateItem> {
+
+	private Context context   = null;
+	private char[]  match     = null;
+	private int     total     = 0;
+	private int     layoutRes = 0;
+	private int     fontSize  = 0;
+	private int     topOffset = 0;
+
+	public CandidateAdapter(Context context, int layoutRes, CandidateItem[] row, char[] match, int total, int fs, int to) {
+	    super(context, layoutRes, row);
+	    this.context   = context;
+	    this.match     = match;
+	    this.layoutRes = layoutRes;
+	    this.match     = match;
+	    this.total     = total;
+	    this.fontSize  = fs;
+	    this.topOffset = to;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+	    View row = convertView;
+	    CandidateHolder holder = null;
+
+	    if (row == null) {
+		LayoutInflater inflater = (LayoutInflater)
+		    context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		row = inflater.inflate(layoutRes, parent, false);
+
+		holder = new CandidateHolder();
+		holder.row = (CandidateRow) row.findViewById(R.id.candidateRow);
+		row.setTag(holder);
+	    } else {
+		holder = (CandidateHolder) row.getTag();
+	    }
+
+	    holder.row.setFontSize(fontSize, topOffset);
+	    holder.row.setMatch(match, position * 10, 10);
+
+	    return row;
+	}
+
+	class CandidateHolder {
+	    CandidateRow row;
+	}
+	
+    }
+
     public void showCandidatePopup(View mParent, int w, int h) {
 	if (total == 0) return;
 	if (mPopup == null) {
@@ -58,18 +111,19 @@ public class CandidateSelect extends View {
 	    LayoutInflater inflate = (LayoutInflater)
 		context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	    View view = inflate.inflate(R.layout.popup, null);
-	    CandidateExpandedView cv = (CandidateExpandedView) view.findViewById(R.id.candidateExpanded);
-	    cv.setDimension(w, h);
-	    cv.setFontSize(mFontSize, topOffset, getHeight());
-	    cv.setMatch(match, total);
+
+	    CandidateItem[] row = new CandidateItem[10];
+	    CandidateAdapter adapter = new CandidateAdapter(context, R.layout.candidate, row, match, total, mFontSize, topOffset);
+	    
+	    ScrollView sv = (ScrollView) view.findViewById(R.id.sv);
+	    sv.setFillViewport(true);
+	    ListView lv = (ListView) view.findViewById(R.id.candidateExpanded);
+	    lv.setAdapter(adapter);
 	    mPopup.setContentView(view);
-	} else {
-	    CandidateExpandedView cv = (CandidateExpandedView) mPopup.getContentView().findViewById(R.id.candidateExpanded);
-	    cv.setMatch(match, total);
 	}
 	Log.i("Cangjie", "Candidiate Show " + width + " " + height);
 	mPopup.setWidth(w);
-	mPopup.setHeight(h);
+	mPopup.setHeight(300);
 	mPopup.showAsDropDown(mParent, 0, -h);
     }
 

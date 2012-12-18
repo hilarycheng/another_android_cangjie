@@ -7,8 +7,9 @@ import android.widget.*;
 import android.graphics.*;
 import android.view.LayoutInflater;
 import android.util.Log;
+import android.view.ViewTreeObserver.OnTouchModeChangeListener;
 
-public class CandidateExpandedView extends ViewGroup {
+public class CandidateExpandedView extends ViewGroup implements ViewTreeObserver.OnTouchModeChangeListener {
 
     private char[] match = null;
     private int totalMatch = 0;
@@ -23,6 +24,7 @@ public class CandidateExpandedView extends ViewGroup {
     private Rect mRect = new Rect();
     private Rect mRectFull = new Rect();
     private Context mContext = null;
+    private int mMotionY = 0;
     
     public CandidateExpandedView(Context context, AttributeSet attrs) {
 	super(context, attrs);
@@ -86,6 +88,30 @@ public class CandidateExpandedView extends ViewGroup {
     }
 
     @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+        final ViewTreeObserver treeObserver = getViewTreeObserver();
+        if (treeObserver != null) {
+            treeObserver.addOnTouchModeChangeListener(this);
+        }
+    }
+
+    public void onTouchModeChanged(boolean isInTouchMode) {
+	Log.i("Cangjie", " On Touch Mode Changed " + isInTouchMode);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+
+        final ViewTreeObserver treeObserver = getViewTreeObserver();
+        if (treeObserver != null) {
+            treeObserver.removeOnTouchModeChangeListener(this);
+        }
+    }
+
+    @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 	super.onSizeChanged(w, h, oldw, oldh);
 	Log.i("Cangjie", "Candidate Expanded View SizeChanged " + w + " " + h + " " + oldw + " " + oldh);
@@ -121,9 +147,48 @@ public class CandidateExpandedView extends ViewGroup {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-	Log.i("Cangjie", "Candidate Expanded View on Touch");
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+	int y = (int) event.getY();
+	int deltaY;
+	
+	switch (event.getAction()) {
+	case MotionEvent.ACTION_UP:
+	    Log.i("Cangjie", "Candidate Expanded View on IAction Up");
+	    break;
+	case MotionEvent.ACTION_DOWN:
+	    Log.i("Cangjie", "Candidate Expanded View on IAction Down");
+	    mMotionY = y;
+	    break;
+	case MotionEvent.ACTION_MOVE:
+	    deltaY = y - mMotionY;
+	    Log.i("Cangjie", "Candidate Expanded View on IAction Move : " + deltaY);
+	    
+	    break;
+	}
+
 	return false;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+	int y = (int) event.getY();
+	int deltaY;
+	
+	switch (event.getAction()) {
+	case MotionEvent.ACTION_UP:
+	    Log.i("Cangjie", "Candidate Expanded View on Action Up");
+	    break;
+	case MotionEvent.ACTION_DOWN:
+	    Log.i("Cangjie", "Candidate Expanded View on Action Down");
+	    mMotionY = y;
+	    break;
+	case MotionEvent.ACTION_MOVE:
+	    deltaY = y - mMotionY;
+	    Log.i("Cangjie", "Candidate Expanded View on Action Move : " + deltaY);
+	    
+	    break;
+	}
+	return true;
     }
 
     @Override
