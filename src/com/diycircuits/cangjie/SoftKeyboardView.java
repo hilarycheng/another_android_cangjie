@@ -52,7 +52,6 @@ public class SoftKeyboardView extends KeyboardView {
 	public void onSizeChanged(int w, int h, int oldw, int oldh) {
 	    super.onSizeChanged(w, h, oldw, oldh);
 	    // CandidateView cv = (CandidateView) findViewById(R.id.candidateView);
-	    Log.i("Cangjie" , " CV " + cv + " " + w + " " + h + " " + oldw + " " + oldh);
 	    if (cv != null) cv.setDimension(w, h);
 	}
 

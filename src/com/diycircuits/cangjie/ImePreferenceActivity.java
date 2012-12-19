@@ -78,7 +78,6 @@ public class ImePreferenceActivity extends PreferenceActivity {
 	vibrator_on.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 		@Override
 		public boolean onPreferenceChange(Preference preference, Object newValue) {
-		    Log.i("Cangejie", "New value " + newValue.getClass());
 		    if (newValue != null && newValue instanceof Boolean) {
 			Preference vibrator_on = findPreference("vibrate_on");
 			Preference vibrator_settings = findPreference("pref_vibration_duration_settings");

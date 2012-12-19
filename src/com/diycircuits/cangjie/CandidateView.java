@@ -39,6 +39,14 @@ public class CandidateView extends LinearLayout {
     }
     
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+	super.onSizeChanged(w, h, oldw, oldh);
+
+	mWidth = w;
+	mHeight = h;
+    }
+
+    @Override
     protected void onFinishInflate() {
 	super.onFinishInflate();
 

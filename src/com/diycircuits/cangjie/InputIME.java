@@ -53,7 +53,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private int mInputMethodState = CANGJIE;
         private Paint mPaint = null;
         private SharedPreferences preferences;
-        private MostUsed mUsed = new MostUsed();
         private TableLoader mTable = null;
         private AudioManager am = null; 
 
@@ -527,12 +526,12 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 	@Override
 	public void swipeLeft() {
-	    Log.i("Cangjie", "Swipe Left");
+	    // Log.i("Cangjie", "Swipe Left");
 	}
 
 	@Override
 	public void swipeRight() {
-	    Log.i("Cangjie", "Swipe Right");
+	    // Log.i("Cangjie", "Swipe Right");
 	}
 
 	@Override
@@ -626,12 +625,12 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    mKeyboard.updateKeyboard();
         }
 
-	@Override
-	public void onDisplayCompletions(CompletionInfo[] completions) {
-           Log.i("Cangjie", " on Display Completions ");
-           if (completions == null) return;
-           for (int count = 0; count < completions.length; count++) {
-             Log.i("Cangjie", " on Display Completions " + completions[count].getText().toString());
-           }
-   	} 
+	// @Override
+	// public void onDisplayCompletions(CompletionInfo[] completions) {
+        //    // Log.i("Cangjie", " on Display Completions ");
+        //    if (completions == null) return;
+        //    for (int count = 0; count < completions.length; count++) {
+        //      Log.i("Cangjie", " on Display Completions " + completions[count].getText().toString());
+        //    }
+   	// } 
 }

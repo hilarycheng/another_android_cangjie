@@ -7,9 +7,14 @@ import android.view.*;
 import android.widget.*;
 import android.graphics.*;
 import android.util.Log;
+import android.os.Handler.Callback;
+import android.os.Handler;
+import android.os.Message;
 
-public class CandidateSelect extends View {
+public class CandidateSelect extends View implements Handler.Callback {
 
+    public static final int CHARACTER = 0;
+    
     private int width = 0;
     private int height = 0;
     private char match[] = null;
@@ -24,6 +29,7 @@ public class CandidateSelect extends View {
     private int mFontSize = 0;
     private Context context = null;
     private PopupWindow mPopup = null;
+    private Handler mHandler = null;
 
     private final static int SPACING            = 4;
     private final static int STARTING_FONT_SIZE = 12;
@@ -46,6 +52,8 @@ public class CandidateSelect extends View {
 	paint.setAntiAlias(true);
 	paint.setTextSize(50);
 	paint.setStrokeWidth(0);
+
+	mHandler = new Handler(this);
     }
 
     public void setCandidateListener(CandidateListener listen) {
@@ -57,22 +65,26 @@ public class CandidateSelect extends View {
     
     public class CandidateAdapter extends ArrayAdapter<CandidateItem> {
 
-	private Context context   = null;
-	private char[]  match     = null;
-	private int     total     = 0;
-	private int     layoutRes = 0;
-	private int     fontSize  = 0;
-	private int     topOffset = 0;
+	private Context context    = null;
+	private char[]  match      = null;
+	private int     total      = 0;
+	private int     layoutRes  = 0;
+	private int     fontSize   = 0;
+	private int     topOffset  = 0;
+	private int     leftOffset = 0;
+	private int     columnc    = 0;
 
-	public CandidateAdapter(Context context, int layoutRes, CandidateItem[] row, char[] match, int total, int fs, int to) {
+	public CandidateAdapter(Context context, int layoutRes, CandidateItem[] row, char[] match, int columnc, int total, int fs, int to, int lo) {
 	    super(context, layoutRes, row);
-	    this.context   = context;
-	    this.match     = match;
-	    this.layoutRes = layoutRes;
-	    this.match     = match;
-	    this.total     = total;
-	    this.fontSize  = fs;
-	    this.topOffset = to;
+	    this.context    = context;
+	    this.match      = match;
+	    this.layoutRes  = layoutRes;
+	    this.match      = match;
+	    this.total      = total;
+	    this.fontSize   = fs;
+	    this.topOffset  = to;
+	    this.leftOffset = lo;
+	    this.columnc    = columnc;
 	}
 
 	@Override
@@ -92,8 +104,9 @@ public class CandidateSelect extends View {
 		holder = (CandidateHolder) row.getTag();
 	    }
 
-	    holder.row.setFontSize(fontSize, topOffset);
-	    holder.row.setMatch(match, position * 10, 10);
+	    holder.row.setHandler(mHandler);
+	    holder.row.setFontSize(fontSize, topOffset, leftOffset);
+	    holder.row.setMatch(match, position * columnc, total - (position * columnc) >= columnc ? columnc : (total - (position * columnc)), total);
 
 	    return row;
 	}
@@ -104,6 +117,17 @@ public class CandidateSelect extends View {
 	
     }
 
+    public boolean handleMessage(Message msg) {
+
+	if (msg.what == CHARACTER) {
+	    mPopup.dismiss();
+	    mPopup= null;
+	    if (listener != null && msg.arg1 != 0) listener.characterSelected((char) msg.arg1, msg.arg2);
+	}
+	
+	return true;
+    }
+
     public void showCandidatePopup(View mParent, int w, int h) {
 	if (total == 0) return;
 	if (mPopup == null) {
@@ -112,16 +136,34 @@ public class CandidateSelect extends View {
 		context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	    View view = inflate.inflate(R.layout.popup, null);
 
-	    CandidateItem[] row = new CandidateItem[10];
-	    CandidateAdapter adapter = new CandidateAdapter(context, R.layout.candidate, row, match, total, mFontSize, topOffset);
+	    int measured = paint.getTextWidths(context.getString(R.string.cangjie), 0, 1, textWidth);
+	    int columnc = (w / ((int) textWidth[0] + spacing));
+
+	    int rowc = total / columnc;
+	    if ((total % columnc) > 0) rowc++;
+	    int leftOffset = (columnc * (int) textWidth[0]) +
+		((columnc - 1) * spacing);
+
+	    leftOffset = (w - leftOffset) / 2;
+
+	    CandidateItem[] row = new CandidateItem[rowc];
+	    CandidateAdapter adapter = new CandidateAdapter(context, R.layout.candidate, row, match, columnc, total, mFontSize, topOffset, leftOffset);
 	    
+	    Button mButton = (Button) view.findViewById(R.id.cancelButton);
+	    mButton.setOnClickListener(new View.OnClickListener() {
+		    public void onClick(View v) {
+			mPopup.dismiss();
+			mPopup = null;
+		    }
+		});
+
 	    ScrollView sv = (ScrollView) view.findViewById(R.id.sv);
 	    sv.setFillViewport(true);
 	    ListView lv = (ListView) view.findViewById(R.id.candidateExpanded);
 	    lv.setAdapter(adapter);
 	    mPopup.setContentView(view);
 	}
-	Log.i("Cangjie", "Candidiate Show " + width + " " + height);
+
 	mPopup.setWidth(w);
 	mPopup.setHeight(300);
 	mPopup.showAsDropDown(mParent, 0, -h);
@@ -195,7 +237,6 @@ public class CandidateSelect extends View {
 	    if (count >= total) continue;
 	    if (select > left && select < left + textWidth[count]) {
 		c = match[count];
-		// Log.i("Cangjie", "Matched " + c);
 		idx = count;
 		break;
 	    }

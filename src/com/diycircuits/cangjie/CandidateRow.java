@@ -7,6 +7,8 @@ import android.widget.*;
 import android.graphics.*;
 import android.view.LayoutInflater;
 import android.util.Log;
+import android.os.Handler;
+import android.os.Message;
 
 public class CandidateRow extends View {
 
@@ -17,9 +19,12 @@ public class CandidateRow extends View {
     private int mTotal = 0;
     private int mOffset = 0;
     private int mTopOffset = 0;
+    private int mLeftOffset = 0;
     private int mFontSize = 0;
     private Context context = null;
     private Rect rect = new Rect();
+    private Handler mHandler = null;
+    private int mAllTotal = 0;
     
     public CandidateRow(Context context, AttributeSet attrs) {
 	super(context, attrs);
@@ -33,31 +38,38 @@ public class CandidateRow extends View {
 	mPaint.setStrokeWidth(0);
     }
 
-    public void setFontSize(int fs, int off) {
+    public void setHandler(Handler handler) {
+	mHandler = handler;
+    }
+    
+    public void setFontSize(int fs, int off, int lo) {
 	mFontSize = fs;
 	mTopOffset = off;
+	mLeftOffset = lo;
 	mPaint.setTextSize(mFontSize);
     }
     
-    public void setMatch(char[] match, int offset, int total) {
+    public void setMatch(char[] match, int offset, int total, int alltotal) {
 	mMatch  = match;
 	mOffset = offset;
 	mTotal  = total;
+	mAllTotal = alltotal;
     }
     
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-	Log.i("Cangjie", "CandidateRow onTouch Event " + event.getAction());
-
 	if (event.getAction() == MotionEvent.ACTION_UP) {
 	    int x = (int) event.getX();
 
-	    int pos = x - 25;
+	    int pos = x - mLeftOffset;
 	    mPaint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
-	    pos = pos / (rect.width() + 14);
+	    pos = pos / (rect.width() + 17);
 
-	    Log.i("Cangjie", " Pos " + pos + " Word " + mMatch[mOffset + pos]);
+	    if ((mOffset + pos) < mAllTotal) {
+		Message msg = mHandler.obtainMessage(CandidateSelect.CHARACTER, mMatch[mOffset + pos], mOffset + pos);
+		mHandler.sendMessage(msg);
+	    }
 	}
 	
 	return true;
@@ -68,27 +80,24 @@ public class CandidateRow extends View {
 	int desireWidth = resolveSize(mWidth, widthMeasureSpec);
 	int desiredHeight = resolveSize(mHeight, heightMeasureSpec);
 		 
-	Log.i("Cangjie", "CandidateRow onMeasure " + mWidth + " " + mHeight + " " +
-	      desireWidth + " " + desiredHeight);
-
 	setMeasuredDimension(desireWidth, desiredHeight);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
 	if (canvas == null) return;
-	// Log.i("Cangjie", "CandidateRow onDraw " + getWidth() + " " + getHeight());
+	
 	mPaint.setColor(0xff33B5E5);
 	canvas.drawRect(0, 0, getWidth(), getHeight(), mPaint);
 	mPaint.setColor(0xff282828);
 	canvas.drawRect(0, 0, getWidth(), getHeight() - 1, mPaint);
 	mPaint.setColor(0xff33B5E5);
 	if (mMatch != null) {
-	    int spacing = 25;
+	    int spacing = mLeftOffset;
 	    mPaint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
 	    for (int count = mOffset; count < mOffset + mTotal; count++) {
 		canvas.drawText(mMatch, count, 1, spacing, mTopOffset - 7, mPaint);
-		spacing += 14 + rect.width();
+		spacing += 17 + rect.width();
 	    }
 	}
     }
