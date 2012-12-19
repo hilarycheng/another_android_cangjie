@@ -1,3 +1,6 @@
+v0.7.3.5 ChangLog:
+- Added Character Select Page. It is ease to select a character when lots of character are available.
+
 v0.7.3.4 ChangeLog:
 - Update the Quick Input Method from ibus-tables-chinese. Since the previous tables has missing characters.
   The Frequent Table of Quick Input Method will be reseted once upon this version.
