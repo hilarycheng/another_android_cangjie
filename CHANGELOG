@@ -1,3 +1,10 @@
+v0.7.3.6 ChangLog:
+- Thanks Muthar for Updating Layout
+- Fix the "White" Border at Candidate Selection
+- When Delete was pressed, close "Popup" Page.
+- Adjust Font Drawing to Align Vertical Center.
+- Add Special Handling of Bounty Beside "A" / "L" Cangjie Key
+
 v0.7.3.5 ChangLog:
 - Added Character Select Page. It is ease to select a character when lots of character are available.
 
