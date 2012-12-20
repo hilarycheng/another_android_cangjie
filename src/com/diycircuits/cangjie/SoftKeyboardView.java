@@ -6,9 +6,11 @@ import android.inputmethodservice.KeyboardView;
 import android.inputmethodservice.Keyboard.Key;
 import android.util.AttributeSet;
 import android.util.Log;
+import java.util.List;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
@@ -16,6 +18,8 @@ public class SoftKeyboardView extends KeyboardView {
 
 	private int mKeyboardWidth = 0;
 	private int mKeyboardHeight = 0;
+        private Keyboard.Key mAKeyObj = null;
+        private Keyboard.Key mLKeyObj = null;
         private Keyboard mKeyboard = null;
         private Context mContext = null;
         private CandidateView cv = null;
@@ -55,6 +59,79 @@ public class SoftKeyboardView extends KeyboardView {
 	    if (cv != null) cv.setDimension(w, h);
 	}
 
+        private MotionEvent createMotion(MotionEvent me, int x, int y) {
+	    MotionEvent newm = MotionEvent.obtain(me.getDownTime(),
+						  me.getEventTime(),
+						  me.getAction(),
+						  x, y,
+						  me.getPressure(),
+						  me.getSize(),
+						  me.getMetaState(),
+						  me.getXPrecision(),
+						  me.getYPrecision(),
+						  me.getDeviceId(),
+						  me.getEdgeFlags());
+	    return newm;
+	}
+    
+        @Override
+        public boolean onTouchEvent(MotionEvent me) {
+	    boolean res = super.onTouchEvent(me);
+	    int mAKey = 0;
+	    int mLKey = 0;
+
+	    if (mKeyboard != null) {
+		List<Keyboard.Key> keyList = mKeyboard.getKeys();
+		int[] keys = mKeyboard.getNearestKeys((int) me.getX(), (int) me.getY());
+		if (keys != null) {
+		    boolean inside = false;
+		    for (int count = 0; count < keys.length; count++) {
+			if (keys[count] >= keyList.size()) continue;
+			Keyboard.Key lKey = keyList.get(keys[count]);
+			inside |= lKey.isInside((int) me.getX(), (int) me.getY());
+
+			mAKey = mAKey | ((lKey.codes[0] == 113) ? 0x01 : 0x00) |
+			    ((lKey.codes[0] == 119) ? 0x02 : 0x00) |
+			    ((lKey.codes[0] == 101) ? 0x04 : 0x00) |
+			    ((lKey.codes[0] ==  97) ? 0x08 : 0x00);
+
+			mLKey = mLKey | ((lKey.codes[0] == 105) ? 0x01 : 0x00) |
+			    ((lKey.codes[0] == 111) ? 0x02 : 0x00) |
+			    ((lKey.codes[0] == 112) ? 0x04 : 0x00) |
+			    ((lKey.codes[0] == 108) ? 0x08 : 0x00) |
+			    ((lKey.codes[0] == 107) ? 0x10 : 0x00);
+
+			if (mAKeyObj == null && lKey.codes[0] == 97) 
+			    mAKeyObj = lKey;
+
+			if (mLKeyObj == null && lKey.codes[0] == 108) 
+			    mLKeyObj = lKey;
+		    }
+
+		    if (!inside) {
+			if (mAKey == 0x0F) {
+			    if (me.getAction() == MotionEvent.ACTION_DOWN) {
+				MotionEvent newm = createMotion(me,
+								mAKeyObj.x + (mAKeyObj.width / 2),
+								mAKeyObj.y + (mAKeyObj.height / 2));
+				super.onTouchEvent(newm);
+			    }
+			}
+			if (mLKey == 0x1F) {
+			    if (me.getAction() == MotionEvent.ACTION_DOWN) {
+				MotionEvent newm = createMotion(me,
+								mLKeyObj.x + (mLKeyObj.width / 2),
+								mLKeyObj.y + (mLKeyObj.height / 2));
+				super.onTouchEvent(newm);
+			    }
+			}
+		    }
+		}
+	    }
+	    
+	    return res;
+        }
+    
         public Keyboard getKeyboard() {
 	    return mKeyboard;
 	}
