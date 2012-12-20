@@ -87,9 +87,9 @@ public class CandidateRow extends View {
     protected void onDraw(Canvas canvas) {
 	if (canvas == null) return;
 	
-	mPaint.setColor(0xff33B5E5);
+	mPaint.setColor(0xff444444);
 	canvas.drawRect(0, 0, getWidth(), getHeight(), mPaint);
-	mPaint.setColor(0xff282828);
+	mPaint.setColor(0xff000000);
 	canvas.drawRect(0, 0, getWidth(), getHeight() - 1, mPaint);
 	mPaint.setColor(0xff33B5E5);
 	if (mMatch != null) {

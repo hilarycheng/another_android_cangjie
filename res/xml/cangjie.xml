@@ -45,14 +45,14 @@
     </Row>
     
     <Row>
-        <Key android:codes="-65281" android:keyLabel="！" android:keyEdgeFlags="left" />
-        <Key android:codes="-65311" android:keyLabel="？" />
-        <Key android:codes="120" android:keyLabel="難" />
-        <Key android:codes="99" android:keyLabel="金" />
-        <Key android:codes="118" android:keyLabel="女" />
-        <Key android:codes="98" android:keyLabel="月" />
-        <Key android:codes="110" android:keyLabel="弓" />
-        <Key android:codes="109" android:keyLabel="一" />
+        <Key android:codes="-65281" android:keyLabel="！" android:keyWidth="10%p" android:keyEdgeFlags="left" />
+        <Key android:codes="-65311" android:keyLabel="？" android:keyWidth="10%p"/>
+        <Key android:codes="120" android:keyLabel="難" android:keyWidth="10%p"/>
+        <Key android:codes="99" android:keyLabel="金" android:keyWidth="10%p"/>
+        <Key android:codes="118" android:keyLabel="女" android:keyWidth="10%p"/>
+        <Key android:codes="98" android:keyLabel="月" android:keyWidth="10%p"/>
+        <Key android:codes="110" android:keyLabel="弓" android:keyWidth="10%p"/>
+        <Key android:codes="109" android:keyLabel="一" android:keyWidth="10%p" />
         <Key android:codes="-5" android:keyIcon="@drawable/delete_icon"
                 android:iconPreview="@drawable/delete_popup_icon"
                 android:keyWidth="20%p" android:isRepeatable="true" android:keyEdgeFlags="right" />

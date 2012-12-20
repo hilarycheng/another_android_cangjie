@@ -10,15 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
-
-        <ImageButton
-            android:id="@+id/arrow_left"
-            android:layout_width="33dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/ab_solid_dark_holo"
-            android:clickable="true"
-            android:src="@drawable/arrow_left" />
+        
+        
 
         <com.diycircuits.cangjie.CandidateSelect
             android:id="@+id/match_view"

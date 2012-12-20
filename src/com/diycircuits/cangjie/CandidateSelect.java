@@ -275,7 +275,7 @@ public class CandidateSelect extends View implements Handler.Callback {
 	match = _match;
 	total = _total;
         charOffset = 0;
-	offset = 2;
+	offset = 13;
 	invalidate();
     }
 
