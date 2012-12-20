@@ -307,6 +307,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			    }
 			}
 		} else if (primaryKey == 5) {
+		    if (mSelect != null) mSelect.closePopup();
 		    if (sb.length() > 1 && sb.length() <= keyLen) {
 			user_input[sb.length() - 1] = 0;
 			sb.setLength(sb.length() - 1);

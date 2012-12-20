@@ -3,28 +3,26 @@
     android:id="@+id/mainView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="0dp"
     android:orientation="vertical" >
 
     <com.diycircuits.cangjie.CandidateView
         android:id="@+id/candidateView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+	android:layout_margin="0dp"
         android:orientation="horizontal" >
-        
-        
 
-        <com.diycircuits.cangjie.CandidateSelect
+       <com.diycircuits.cangjie.CandidateSelect
             android:id="@+id/match_view"
             android:layout_width="224dp"
             android:layout_height="40sp"
-            android:layout_marginTop="5dp"
             android:layout_weight="0.53" />
 
         <ImageButton
             android:id="@+id/arrow_right"
             android:layout_width="33dp"
             android:layout_height="40dp"
-            android:layout_marginTop="5dp"
             android:background="@drawable/ab_solid_dark_holo"
             android:clickable="true"
             android:src="@drawable/arrow_right" />

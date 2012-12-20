@@ -79,7 +79,9 @@ public class CandidateRow extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 	int desireWidth = resolveSize(mWidth, widthMeasureSpec);
 	int desiredHeight = resolveSize(mHeight, heightMeasureSpec);
-		 
+
+	mHeight = desiredHeight;
+	
 	setMeasuredDimension(desireWidth, desiredHeight);
     }
 
@@ -95,8 +97,10 @@ public class CandidateRow extends View {
 	if (mMatch != null) {
 	    int spacing = mLeftOffset;
 	    mPaint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
+	    int topOffset = (rect.height() - rect.bottom);
+	    topOffset = topOffset + ((mHeight - rect.height()) / 2);
 	    for (int count = mOffset; count < mOffset + mTotal; count++) {
-		canvas.drawText(mMatch, count, 1, spacing, mTopOffset - 7, mPaint);
+		canvas.drawText(mMatch, count, 1, spacing, topOffset, mPaint);
 		spacing += 17 + rect.width();
 	    }
 	}

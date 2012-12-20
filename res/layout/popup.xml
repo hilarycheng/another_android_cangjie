@@ -3,16 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/btn_keyboard_key_dark_active_holo"
+    android:layout_margin="0dp"
     android:orientation="vertical" >
-
-  <!--
-  <LinearLayout
-      xmlns:android="http://schemas.android.com/apk/res/android"
-      android:orientation="vertical"
-      android:layout_width="fill_parent"
-      android:layout_centerInParent="true"
-      android:layout_height="wrap_content">
-    -->
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,8 +13,6 @@
         android:layout_height="fill_parent"
         android:layout_weight="1"
         android:background="@android:color/black" >
-
-<!--	android:fillViewport="true"> -->
 
       <ListView 
 	  android:id="@+id/candidateExpanded"

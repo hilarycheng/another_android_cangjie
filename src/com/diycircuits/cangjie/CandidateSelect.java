@@ -10,6 +10,8 @@ import android.util.Log;
 import android.os.Handler.Callback;
 import android.os.Handler;
 import android.os.Message;
+import android.view.ViewGroup.LayoutParams;
+import android.view.ViewGroup.MarginLayoutParams;
 
 public class CandidateSelect extends View implements Handler.Callback {
 
@@ -117,11 +119,16 @@ public class CandidateSelect extends View implements Handler.Callback {
 	
     }
 
+    public void closePopup() {
+	if (mPopup == null) return;
+	mPopup.dismiss();
+	mPopup = null;
+    }
+    
     public boolean handleMessage(Message msg) {
 
 	if (msg.what == CHARACTER) {
-	    mPopup.dismiss();
-	    mPopup= null;
+	    closePopup();
 	    if (listener != null && msg.arg1 != 0) listener.characterSelected((char) msg.arg1, msg.arg2);
 	}
 	
@@ -152,8 +159,7 @@ public class CandidateSelect extends View implements Handler.Callback {
 	    Button mButton = (Button) view.findViewById(R.id.cancelButton);
 	    mButton.setOnClickListener(new View.OnClickListener() {
 		    public void onClick(View v) {
-			mPopup.dismiss();
-			mPopup = null;
+			closePopup();
 		    }
 		});
 
@@ -161,6 +167,7 @@ public class CandidateSelect extends View implements Handler.Callback {
 	    sv.setFillViewport(true);
 	    ListView lv = (ListView) view.findViewById(R.id.candidateExpanded);
 	    lv.setAdapter(adapter);
+
 	    mPopup.setContentView(view);
 	}
 
@@ -192,7 +199,9 @@ public class CandidateSelect extends View implements Handler.Callback {
 		paint.setTextSize(mFontSize);
 		paint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
 
-		topOffset = (int) Math.abs(rect.top) + (int) (Math.abs(rect.bottom) + 9 );
+		topOffset = rect.height() - rect.bottom;
+		topOffset += (h - rect.height()) / 2;
+
 		break;
 	    }
 	}
