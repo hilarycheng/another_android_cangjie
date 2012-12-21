@@ -21,12 +21,14 @@
       
     </ScrollView>
 
-    <Button
+    <com.diycircuits.cangjie.CloseButton
         android:id="@+id/cancelButton"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+	android:adjustViewBounds="true"
         android:background="@drawable/close2"
+	android:scaleType="fitCenter"
         android:minHeight="10dip"
         android:minWidth="10dip" />
   

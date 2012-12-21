@@ -156,7 +156,7 @@ public class CandidateSelect extends View implements Handler.Callback {
 	    CandidateItem[] row = new CandidateItem[rowc];
 	    CandidateAdapter adapter = new CandidateAdapter(context, R.layout.candidate, row, match, columnc, total, mFontSize, topOffset, leftOffset);
 	    
-	    Button mButton = (Button) view.findViewById(R.id.cancelButton);
+	    CloseButton mButton = (CloseButton) view.findViewById(R.id.cancelButton);
 	    mButton.setOnClickListener(new View.OnClickListener() {
 		    public void onClick(View v) {
 			closePopup();
@@ -169,11 +169,14 @@ public class CandidateSelect extends View implements Handler.Callback {
 	    lv.setAdapter(adapter);
 
 	    mPopup.setContentView(view);
+	    mPopup.setWidth(w);
+	    mPopup.setHeight(300);
+	    mPopup.showAsDropDown(mParent, 0, -h);
+	} else {
+	    mPopup.dismiss();
+	    mPopup = null;
 	}
 
-	mPopup.setWidth(w);
-	mPopup.setHeight(300);
-	mPopup.showAsDropDown(mParent, 0, -h);
     }
 
     public int fontSize() {
