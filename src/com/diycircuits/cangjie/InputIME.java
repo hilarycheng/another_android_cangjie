@@ -316,6 +316,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		    } else if (sb.length() == 1) {
 			user_input[0] = 0;
 			sb.setLength(0);
+			clearAllInput();
 			getCurrentInputConnection().setComposingText("", 1);
 			mSelect.updateMatch(null, 0);
 		    } else if (sb.length() == 0) {
@@ -334,8 +335,9 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			    if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 65311 ||
 				primaryKey == 65292 || primaryKey == 12290 || primaryKey == 65281) {
 				if (totalMatch > 0 || mTable.totalMatch() > 0) {
-				    characterSelected((char) matchChar[0], 0);
+				    if (totalMatch > 0) characterSelected((char) matchChar[0], 0);
 				    clearAllInput();
+				    if (mSelect != null) mSelect.closePopup();
 				    if (primaryKey == ' ') return;
 				}
 			    }
