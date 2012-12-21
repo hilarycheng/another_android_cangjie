@@ -76,58 +76,9 @@ public class SoftKeyboardView extends KeyboardView {
     
         @Override
         public boolean onTouchEvent(MotionEvent me) {
-	    // boolean res = super.onTouchEvent(me);
-	    // int mAKey = 0;
-	    // int mLKey = 0;
-
-	    // if (mKeyboard != null) {
-	    // 	List<Keyboard.Key> keyList = mKeyboard.getKeys();
-	    // 	int[] keys = mKeyboard.getNearestKeys((int) me.getX(), (int) me.getY());
-	    // 	if (keys != null) {
-	    // 	    boolean inside = false;
-	    // 	    for (int count = 0; count < keys.length; count++) {
-	    // 		if (keys[count] >= keyList.size()) continue;
-	    // 		Keyboard.Key lKey = keyList.get(keys[count]);
-	    // 		inside |= lKey.isInside((int) me.getX(), (int) me.getY());
-
-	    // 		mAKey = mAKey | ((lKey.codes[0] == 113) ? 0x01 : 0x00) |
-	    // 		    ((lKey.codes[0] == 119) ? 0x02 : 0x00) |
-	    // 		    ((lKey.codes[0] == 101) ? 0x04 : 0x00) |
-	    // 		    ((lKey.codes[0] ==  97) ? 0x08 : 0x00);
-
-	    // 		mLKey = mLKey | ((lKey.codes[0] == 105) ? 0x01 : 0x00) |
-	    // 		    ((lKey.codes[0] == 111) ? 0x02 : 0x00) |
-	    // 		    ((lKey.codes[0] == 112) ? 0x04 : 0x00) |
-	    // 		    ((lKey.codes[0] == 108) ? 0x08 : 0x00) |
-	    // 		    ((lKey.codes[0] == 107) ? 0x10 : 0x00);
-
-	    // 		if (mAKeyObj == null && lKey.codes[0] == 97) 
-	    // 		    mAKeyObj = lKey;
-
-	    // 		if (mLKeyObj == null && lKey.codes[0] == 108) 
-	    // 		    mLKeyObj = lKey;
-	    // 	    }
-
-	    // 	    if (!inside) {
-	    // 		if (mAKey == 0x0F) {
-	    // 		    if (me.getAction() == MotionEvent.ACTION_DOWN) {
-	    // 			MotionEvent newm = createMotion(me,
-	    // 							mAKeyObj.x + (mAKeyObj.width / 2),
-	    // 							mAKeyObj.y + (mAKeyObj.height / 2));
-	    // 			super.onTouchEvent(newm);
-	    // 		    }
-	    // 		}
-	    // 		if (mLKey == 0x1F) {
-	    // 		    if (me.getAction() == MotionEvent.ACTION_DOWN) {
-	    // 			MotionEvent newm = createMotion(me,
-	    // 							mLKeyObj.x + (mLKeyObj.width / 2),
-	    // 							mLKeyObj.y + (mLKeyObj.height / 2));
-	    // 			super.onTouchEvent(newm);
-	    // 		    }
-	    // 		}
-	    // 	    }
-	    // 	}
-	    // }
+	    boolean res = false;
+	    int mAKey = 0;
+	    int mLKey = 0;
 
 	    if (mKeyboard != null) {
 	     	List<Keyboard.Key> keyList = mKeyboard.getKeys();
@@ -135,15 +86,58 @@ public class SoftKeyboardView extends KeyboardView {
 		    Keyboard.Key lKey = keyList.get(count);
 		    boolean inside = lKey.isInside((int) me.getX(), (int) me.getY());
 		    if (inside) {
-			Log.i("Cangjie", "Key " + lKey.codes[0] + " " + me.getAction() + " " + MotionEvent.ACTION_DOWN + " " + MotionEvent.ACTION_UP);
 			MotionEvent newm = createMotion(me, lKey.x + (lKey.width / 2), lKey.y + (lKey.height / 2));
 			return super.onTouchEvent(newm);
 		    }
 		}
+	    	int[] keys = mKeyboard.getNearestKeys((int) me.getX(), (int) me.getY());
+	    	if (keys != null) {
+	    	    boolean inside = false;
+	    	    for (int count = 0; count < keys.length; count++) {
+	    		if (keys[count] >= keyList.size()) continue;
+	    		Keyboard.Key lKey = keyList.get(keys[count]);
+	    		inside |= lKey.isInside((int) me.getX(), (int) me.getY());
+
+	    		mAKey = mAKey | ((lKey.codes[0] == 113) ? 0x01 : 0x00) |
+	    		    ((lKey.codes[0] == 119) ? 0x02 : 0x00) |
+	    		    ((lKey.codes[0] == 101) ? 0x04 : 0x00) |
+	    		    ((lKey.codes[0] ==  97) ? 0x08 : 0x00);
+
+	    		mLKey = mLKey | ((lKey.codes[0] == 105) ? 0x01 : 0x00) |
+	    		    ((lKey.codes[0] == 111) ? 0x02 : 0x00) |
+	    		    ((lKey.codes[0] == 112) ? 0x04 : 0x00) |
+	    		    ((lKey.codes[0] == 108) ? 0x08 : 0x00) |
+	    		    ((lKey.codes[0] == 107) ? 0x10 : 0x00);
+
+	    		if (mAKeyObj == null && lKey.codes[0] == 97) 
+	    		    mAKeyObj = lKey;
+
+	    		if (mLKeyObj == null && lKey.codes[0] == 108) 
+	    		    mLKeyObj = lKey;
+	    	    }
+
+	    	    if (!inside) {
+	    		if (mAKey == 0x0F) {
+	    		    if (me.getAction() == MotionEvent.ACTION_DOWN) {
+	    			MotionEvent newm = createMotion(me,
+	    							mAKeyObj.x + (mAKeyObj.width / 2),
+	    							mAKeyObj.y + (mAKeyObj.height / 2));
+	    			return super.onTouchEvent(newm);
+	    		    }
+	    		}
+	    		if (mLKey == 0x1F) {
+	    		    if (me.getAction() == MotionEvent.ACTION_DOWN) {
+	    			MotionEvent newm = createMotion(me,
+	    							mLKeyObj.x + (mLKeyObj.width / 2),
+	    							mLKeyObj.y + (mLKeyObj.height / 2));
+	    			return super.onTouchEvent(newm);
+	    		    }
+	    		}
+	    	    }
+	    	}
 	    }
 	    
-	    // return res;
-	    return true;
+	    return false;
         }
     
         public Keyboard getKeyboard() {
