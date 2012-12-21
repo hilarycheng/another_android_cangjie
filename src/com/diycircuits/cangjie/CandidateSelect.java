@@ -242,6 +242,7 @@ public class CandidateSelect extends View implements Handler.Callback {
 	char c = 0;
 	int idx = -1;
 
+	offset = 0;
 	for (int count = charOffset; count < textWidth.length - 1; count++) {
 	    if (count >= total) continue;
 	    if (select > left && select < left + textWidth[count]) {
