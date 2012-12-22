@@ -33,6 +33,8 @@ public class SoftKeyboardView extends KeyboardView {
 		mKeyboardWidth = d.getWidth();
 		mKeyboardHeight = d.getHeight() / 2;
 
+		setPadding(0, 0, 0, 0);
+		
 		mContext = context;
 		setKeyboard(mKeyboard = new SoftKeyboard(context, R.xml.cangjie));
 	}
@@ -45,6 +47,8 @@ public class SoftKeyboardView extends KeyboardView {
 		mKeyboardWidth = d.getWidth();
 		mKeyboardHeight = d.getHeight() / 2;
 		
+		setPadding(0, 0, 0, 0);
+
 		mContext = context;
 		setKeyboard(mKeyboard = new SoftKeyboard(context, R.xml.cangjie));
 	}
@@ -74,51 +78,21 @@ public class SoftKeyboardView extends KeyboardView {
 						  me.getEdgeFlags());
 	    return newm;
 	}
-    
+
         @Override
         public boolean onTouchEvent(MotionEvent me) {
 	    boolean res = false;
 	    int mAKey = 0;
 	    int mLKey = 0;
-	    boolean result = false;
-	    final int pointerCount = me.getPointerCount();
-	    final int action = me.getAction();
-	    final long now = me.getEventTime();
-	
-	    if (mKeyboard != null) {
 
+	    if (mKeyboard != null) {
 	     	List<Keyboard.Key> keyList = mKeyboard.getKeys();
 		for (int count = 0; count < keyList.size(); count++) {
 		    Keyboard.Key lKey = keyList.get(count);
 		    boolean inside = lKey.isInside((int) me.getX(), (int) me.getY());
 		    if (inside) {
-			int newx = lKey.x + (lKey.width  / 2);
-			int newy = lKey.y + (lKey.height / 2);
-			if (pointerCount != mOldPointerCount) {
-			    if (pointerCount == 1) {
-				MotionEvent down = MotionEvent.obtain(now, now, MotionEvent.ACTION_DOWN,
-								      newx, newy, me.getMetaState());
-				result = super.onTouchEvent(down);
-				down.recycle();
-				if (action == MotionEvent.ACTION_UP) {
-				    result = super.onTouchEvent(me);
-				}
-			    } else {
-				MotionEvent up = MotionEvent.obtain(now, now, MotionEvent.ACTION_UP,
-								    newx, newy, me.getMetaState());
-				result = super.onTouchEvent(up);
-				up.recycle();
-			    }
-			} else {
-			    if (pointerCount == 1) {
-				result = super.onTouchEvent(me);
-			    } else {
-				result = true;
-			    }
-			}
-			// MotionEvent newm = createMotion(me, lKey.x + (lKey.width / 2), lKey.y + (lKey.height / 2));
-			// return super.onTouchEvent(newm);
-			return result;
+			MotionEvent newm = createMotion(me, lKey.x + (lKey.width / 2), lKey.y + (lKey.height / 2));
+			return super.onTouchEvent(newm);
 		    }
 		}
 	    	int[] keys = mKeyboard.getNearestKeys((int) me.getX(), (int) me.getY());
