@@ -35,6 +35,7 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/keyboard_background_holo"
         android:keyBackground="@drawable/btn_keyboard_key_ics"
+	android:verticalCorrection="0dp"
         android:keyPreviewLayout="@layout/preview" />
 
 </LinearLayout>
