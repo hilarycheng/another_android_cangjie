@@ -23,7 +23,7 @@ public class CandidateSelect extends View implements Handler.Callback {
     private int total = 0;
     private Paint paint = null;
     private float[] textWidth = new float[21529];
-    private int offset = 10;
+    private int offset = 13;
     private int charOffset = 0;
     private int spacing = 17;
     private float charWidth = 0;
@@ -144,14 +144,14 @@ public class CandidateSelect extends View implements Handler.Callback {
 	    View view = inflate.inflate(R.layout.popup, null);
 
 	    int measured = paint.getTextWidths(context.getString(R.string.cangjie), 0, 1, textWidth);
-	    int columnc = (w / ((int) textWidth[0] + spacing));
+	    int columnc = ((w - 13) / ((int) textWidth[0] + spacing));
 
 	    int rowc = total / columnc;
 	    if ((total % columnc) > 0) rowc++;
 	    int leftOffset = (columnc * (int) textWidth[0]) +
 		((columnc - 1) * spacing);
 
-	    leftOffset = (w - leftOffset) / 2;
+	    leftOffset = 13; // (w - leftOffset) / 2;
 
 	    CandidateItem[] row = new CandidateItem[rowc];
 	    CandidateAdapter adapter = new CandidateAdapter(context, R.layout.candidate, row, match, columnc, total, mFontSize, topOffset, leftOffset);
@@ -226,7 +226,7 @@ public class CandidateSelect extends View implements Handler.Callback {
 	    int _width = total > textWidth.length ? textWidth.length : total;
 	    int measured = paint.getTextWidths(match, 0, _width, textWidth);
 
-	    int start = offset, index = charOffset;
+	    int start = offset + (spacing / 2), index = charOffset;
 	    while (start < width && index < total) {
 		canvas.drawText(match, index, 1, start, topOffset, paint);
 		start = start + (int) textWidth[index] + spacing;
@@ -241,14 +241,21 @@ public class CandidateSelect extends View implements Handler.Callback {
 	int x = (int) me.getX();
 	int y = (int) me.getY();
 	int select = x - offset;
-	int left = offset;
+	int left = 0;
 	char c = 0;
 	int idx = -1;
 
-	offset = 0;
-	for (int count = charOffset; count < textWidth.length - 1; count++) {
-	    if (count >= total) continue;
-	    if (select > left && select < left + textWidth[count]) {
+	for (int count = charOffset; count < textWidth.length; count++) {
+	    if (count >= total)
+		return true;
+
+	    if (count == charOffset) {
+		if (select < (left + (int) textWidth[count] + spacing)) {
+		    c = match[count];
+		    idx = count;
+		    break;
+		}
+	    } else if (select > left && select < (left + (int) textWidth[count] + spacing)) {
 		c = match[count];
 		idx = count;
 		break;

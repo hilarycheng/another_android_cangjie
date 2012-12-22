@@ -25,6 +25,7 @@ public class CandidateRow extends View {
     private Rect rect = new Rect();
     private Handler mHandler = null;
     private int mAllTotal = 0;
+    private int cspacing = 17;
     
     public CandidateRow(Context context, AttributeSet attrs) {
 	super(context, attrs);
@@ -64,8 +65,12 @@ public class CandidateRow extends View {
 
 	    int pos = x - mLeftOffset;
 	    mPaint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
-	    pos = pos / (rect.width() + 17);
+	    pos = pos / (rect.width() + cspacing);
 
+	    if (x < mLeftOffset + rect.width() + cspacing) {
+		pos = 0;
+	    }
+	    
 	    if ((mOffset + pos) < mAllTotal) {
 		Message msg = mHandler.obtainMessage(CandidateSelect.CHARACTER, mMatch[mOffset + pos], mOffset + pos);
 		mHandler.sendMessage(msg);
@@ -95,13 +100,13 @@ public class CandidateRow extends View {
 	canvas.drawRect(0, 0, getWidth(), getHeight() - 1, mPaint);
 	mPaint.setColor(0xff33B5E5);
 	if (mMatch != null) {
-	    int spacing = mLeftOffset;
+	    int spacing = mLeftOffset + (cspacing / 2);
 	    mPaint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
 	    int topOffset = (rect.height() - rect.bottom);
 	    topOffset = topOffset + ((mHeight - rect.height()) / 2);
 	    for (int count = mOffset; count < mOffset + mTotal; count++) {
 		canvas.drawText(mMatch, count, 1, spacing, topOffset, mPaint);
-		spacing += 17 + rect.width();
+		spacing += cspacing + rect.width();
 	    }
 	}
     }
