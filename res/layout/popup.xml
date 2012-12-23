@@ -6,20 +6,23 @@
     android:layout_margin="0dp"
     android:orientation="vertical" >
 
-    <ScrollView
+  <!--
+    <com.diycircuits.cangjie.CandidateScroll
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/sv"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
+	android:fillViewport="true"
         android:background="@android:color/black" >
-
+-->
       <ListView 
-	  android:id="@+id/candidateExpanded"
+	  android:id="@+id/sv"
 	  android:layout_width="fill_parent"
-	  android:layout_height="wrap_content" />
+	  android:layout_height="wrap_content" 
+          android:layout_weight="1"/>
       
-    </ScrollView>
+<!--    </com.diycircuits.cangjie.CandidateScroll> -->
 
     <com.diycircuits.cangjie.CloseButton
         android:id="@+id/cancelButton"
@@ -31,5 +34,5 @@
 	android:scaleType="fitCenter"
         android:minHeight="10dip"
         android:minWidth="10dip" />
-  
+    
 </LinearLayout>

@@ -77,7 +77,7 @@ public class CandidateRow extends View {
 	    }
 	}
 	
-	return true;
+	return super.onTouchEvent(event);
     }
 
     @Override

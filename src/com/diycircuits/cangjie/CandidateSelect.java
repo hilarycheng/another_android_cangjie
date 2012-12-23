@@ -158,20 +158,51 @@ public class CandidateSelect extends View implements Handler.Callback {
 	    
 	    CloseButton mButton = (CloseButton) view.findViewById(R.id.cancelButton);
 	    mButton.setOnClickListener(new View.OnClickListener() {
-		    public void onClick(View v) {
-			closePopup();
-		    }
-		});
+	    	    public void onClick(View v) {
+	    		closePopup();
+	    	    }
+	    	});
 
-	    ScrollView sv = (ScrollView) view.findViewById(R.id.sv);
-	    sv.setFillViewport(true);
-	    ListView lv = (ListView) view.findViewById(R.id.candidateExpanded);
+	    Log.i("Cangjie", "Scroll " + view.findViewById(R.id.sv) + " " + rowc);
+	    
+	    // CandidateScroll sv = (CandidateScroll) view.findViewById(R.id.sv);
+	    // sv.setFillViewport(true);
+	    ListView lv = (ListView) view.findViewById(R.id.sv);
 	    lv.setAdapter(adapter);
 
 	    mPopup.setContentView(view);
 	    mPopup.setWidth(w);
-	    mPopup.setHeight(300);
-	    mPopup.showAsDropDown(mParent, 0, -h);
+	    mPopup.setHeight(h);
+	    // mPopup.setFocusable(true);
+	    mPopup.setSoftInputMode(PopupWindow.INPUT_METHOD_NOT_NEEDED);
+	    mPopup.setTouchable(true);
+	    // mPopup.setTouchInterceptor(new View.OnTouchListener() {
+
+	    // 	    // private MotionEvent createMotion(MotionEvent me, int x, int y) {
+	    // 	    // 	final long now = me.getEventTime();
+	    // 	    // 	MotionEvent newm = MotionEvent.obtain(now, now,
+	    // 	    // 					      me.getAction(),
+	    // 	    // 					      x, y,
+	    // 	    // 					      me.getPressure(),
+	    // 	    // 					      me.getSize(),
+	    // 	    // 					      me.getMetaState(),
+	    // 	    // 					      me.getXPrecision(),
+	    // 	    // 					      me.getYPrecision(),
+	    // 	    // 					      me.getDeviceId(),
+	    // 	    // 					      me.getEdgeFlags());
+	    // 	    // 	return newm;
+	    // 	    // }
+
+	    // 	    public boolean onTouch (View v, MotionEvent event) {
+
+	    // 		CandidateScroll sv = (CandidateScroll) v.findViewById(R.id.sv);
+	    // 		sv.dispatchTouchEvent(event);
+	    // 		Log.i("Cangjie", "View On Touch " + v + " " + onFilterTouchEventForSecurity(event));
+
+	    // 		return true;
+	    // 	    }
+	    // 	});
+	    mPopup.showAsDropDown(this, 0, 0);
 	} else {
 	    mPopup.dismiss();
 	    mPopup = null;
