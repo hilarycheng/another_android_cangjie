@@ -32,7 +32,7 @@ public class CloseButton extends View {
 	mPaint.setAntiAlias(true);
 	mPaint.setTextSize(50);
 	mPaint.setStrokeWidth(0);
-	mPaint.setColor(0xff33B5E5);
+	// mPaint.setColor(0xff33B5E5);
 
 	if (mDraw instanceof BitmapDrawable) {
 	    mBitmap = ((BitmapDrawable) mDraw).getBitmap();
@@ -53,6 +53,7 @@ public class CloseButton extends View {
     protected void onDraw(Canvas canvas) {
 	if (canvas == null) return;
 
+	mPaint.setColor(0xff165372);
 	canvas.drawRect(0, 0, getWidth(), mHeight, mPaint);
 	int center = (getWidth() - mDraw.getIntrinsicWidth()) / 2;
 	if (mBitmap != null) canvas.drawBitmap(mBitmap, center, 0, mPaint);
