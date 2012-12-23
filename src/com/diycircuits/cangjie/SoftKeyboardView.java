@@ -18,13 +18,18 @@ public class SoftKeyboardView extends KeyboardView {
 
 	private int mKeyboardWidth = 0;
 	private int mKeyboardHeight = 0;
-        private Keyboard.Key mAKeyObj = null;
-        private Keyboard.Key mLKeyObj = null;
         private Keyboard mKeyboard = null;
         private Context mContext = null;
         private CandidateView cv = null;
         private int mOldPointerCount = 0;
 	
+        private Keyboard.Key mAKey = null;
+        // private Keyboard.Key mQKey = null;
+        // private Keyboard.Key mEKey = null;
+        // private Keyboard.Key mPKey = null;
+        private Keyboard.Key mLKey = null;
+        // private Keyboard.Key mDKey = null;
+
 	@SuppressWarnings("deprecation")
 	public SoftKeyboardView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -51,6 +56,21 @@ public class SoftKeyboardView extends KeyboardView {
 
 		mContext = context;
 		setKeyboard(mKeyboard = new SoftKeyboard(context, R.xml.cangjie));
+	}
+
+        private void scanKeys() {
+	    List<Keyboard.Key> keyList = mKeyboard.getKeys();
+	    for (int count = 0; count < keyList.size(); count++) {
+		Keyboard.Key lKey = keyList.get(count);
+		if (lKey.codes[0] ==     97) { // A Key
+		    mAKey = lKey;
+		    continue;
+		}
+		if (lKey.codes[0] ==    108) { // L Key
+		    mLKey = lKey;
+		    continue;
+		}
+	    }
 	}
 
         public void setCandidateView(CandidateView cv) {
@@ -81,60 +101,89 @@ public class SoftKeyboardView extends KeyboardView {
         @Override
         public boolean onTouchEvent(MotionEvent me) {
 	    boolean res = false;
-	    int mAKey = 0;
-	    int mLKey = 0;
 
-	    if (mKeyboard != null) {
-	     	List<Keyboard.Key> keyList = mKeyboard.getKeys();
-	    	int[] keys = mKeyboard.getNearestKeys((int) me.getX(), (int) me.getY());
-	    	if (keys != null) {
-	    	    boolean inside = false;
-	    	    for (int count = 0; count < keys.length; count++) {
-	    		if (keys[count] >= keyList.size()) continue;
-	    		Keyboard.Key lKey = keyList.get(keys[count]);
-	    		inside |= lKey.isInside((int) me.getX(), (int) me.getY());
+	    if (mKeyboard != null && mAKey == null && mLKey == null) {
+		scanKeys();
+	    }
+	    
+	    if (mKeyboard != null && mAKey != null && mLKey != null) {
 
-	    		mAKey = mAKey | ((lKey.codes[0] == 113) ? 0x01 : 0x00) |
-	    		    ((lKey.codes[0] == 119) ? 0x02 : 0x00) |
-	    		    ((lKey.codes[0] == 101) ? 0x04 : 0x00) |
-	    		    ((lKey.codes[0] ==  97) ? 0x08 : 0x00);
+		if (mAKey.x >= (int) me.getX() &&
+		    mAKey.y <= (int) me.getY() &&
+		    (mAKey.y + mAKey.height) >= (int) me.getY()) {
+		    if (me.getAction() == MotionEvent.ACTION_DOWN) {
+			MotionEvent newm = createMotion(me,
+							mAKey.x + (mAKey.width / 2),
+							mAKey.y + (mAKey.height / 2));
+			res = super.onTouchEvent(newm);
+			newm.recycle();
+			return res;
+		    }
+		}
+		
+		if ((mLKey.x + mLKey.width) <= (int) me.getX() &&
+		    mLKey.y <= (int) me.getY() &&
+		    (mLKey.y + mLKey.height) >= (int) me.getY()) {
+		    if (me.getAction() == MotionEvent.ACTION_DOWN) {
+			MotionEvent newm = createMotion(me,
+							mLKey.x + (mLKey.width / 2),
+							mLKey.y + (mLKey.height / 2));
+			res = super.onTouchEvent(newm);
+			newm.recycle();
+			return res;
+		    }
+		}
 
-	    		mLKey = mLKey | ((lKey.codes[0] == 105) ? 0x01 : 0x00) |
-	    		    ((lKey.codes[0] == 111) ? 0x02 : 0x00) |
-	    		    ((lKey.codes[0] == 112) ? 0x04 : 0x00) |
-	    		    ((lKey.codes[0] == 108) ? 0x08 : 0x00) |
-	    		    ((lKey.codes[0] == 107) ? 0x10 : 0x00);
+	     	// List<Keyboard.Key> keyList = mKeyboard.getKeys();
+	    	// int[] keys = mKeyboard.getNearestKeys((int) me.getX(), (int) me.getY());
+	    	// if (keys != null) {
+	    	//     boolean inside = false;
+	    	//     for (int count = 0; count < keys.length; count++) {
+	    	// 	if (keys[count] >= keyList.size()) continue;
+	    	// 	Keyboard.Key lKey = keyList.get(keys[count]);
+	    	// 	inside |= lKey.isInside((int) me.getX(), (int) me.getY());
 
-	    		if (mAKeyObj == null && lKey.codes[0] == 97) 
-	    		    mAKeyObj = lKey;
+	    	// 	mAKey = mAKey | ((lKey.codes[0] == 113) ? 0x01 : 0x00) |
+	    	// 	    ((lKey.codes[0] == 119) ? 0x02 : 0x00) |
+	    	// 	    ((lKey.codes[0] == 101) ? 0x04 : 0x00) |
+	    	// 	    ((lKey.codes[0] ==  97) ? 0x08 : 0x00);
 
-	    		if (mLKeyObj == null && lKey.codes[0] == 108) 
-	    		    mLKeyObj = lKey;
-	    	    }
+	    	// 	mLKey = mLKey | ((lKey.codes[0] == 105) ? 0x01 : 0x00) |
+	    	// 	    ((lKey.codes[0] == 111) ? 0x02 : 0x00) |
+	    	// 	    ((lKey.codes[0] == 112) ? 0x04 : 0x00) |
+	    	// 	    ((lKey.codes[0] == 108) ? 0x08 : 0x00) |
+	    	// 	    ((lKey.codes[0] == 107) ? 0x10 : 0x00);
 
-	    	    if (!inside) {
-	    		if (mAKey == 0x0F) {
-	    		    if (me.getAction() == MotionEvent.ACTION_DOWN) {
-	    			MotionEvent newm = createMotion(me,
-	    							mAKeyObj.x + (mAKeyObj.width / 2),
-	    							mAKeyObj.y + (mAKeyObj.height / 2));
-	    			res = super.onTouchEvent(newm);
-				newm.recycle();
-				return res;
-	    		    }
-	    		}
-	    		if (mLKey == 0x1F) {
-	    		    if (me.getAction() == MotionEvent.ACTION_DOWN) {
-	    			MotionEvent newm = createMotion(me,
-	    							mLKeyObj.x + (mLKeyObj.width / 2),
-	    							mLKeyObj.y + (mLKeyObj.height / 2));
-	    			res = super.onTouchEvent(newm);
-				newm.recycle();
-				return res;
-	    		    }
-	    		}
-	    	    }
-	    	}
+	    	// 	if (mAKeyObj == null && lKey.codes[0] == 97) 
+	    	// 	    mAKeyObj = lKey;
+
+	    	// 	if (mLKeyObj == null && lKey.codes[0] == 108) 
+	    	// 	    mLKeyObj = lKey;
+	    	//     }
+
+	    	//     if (!inside) {
+	    	// 	if (mAKey == 0x0F) {
+	    	// 	    if (me.getAction() == MotionEvent.ACTION_DOWN) {
+	    	// 		MotionEvent newm = createMotion(me,
+	    	// 						mAKeyObj.x + (mAKeyObj.width / 2),
+	    	// 						mAKeyObj.y + (mAKeyObj.height / 2));
+	    	// 		res = super.onTouchEvent(newm);
+		// 		newm.recycle();
+		// 		return res;
+	    	// 	    }
+	    	// 	}
+	    	// 	if (mLKey == 0x1F) {
+	    	// 	    if (me.getAction() == MotionEvent.ACTION_DOWN) {
+	    	// 		MotionEvent newm = createMotion(me,
+	    	// 						mLKeyObj.x + (mLKeyObj.width / 2),
+	    	// 						mLKeyObj.y + (mLKeyObj.height / 2));
+	    	// 		res = super.onTouchEvent(newm);
+		// 		newm.recycle();
+		// 		return res;
+	    	// 	    }
+	    	// 	}
+	    	//     }
+	    	// }
 	    }
 	    
 	    return super.onTouchEvent(me);
