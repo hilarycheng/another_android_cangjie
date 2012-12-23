@@ -87,14 +87,16 @@ public class SoftKeyboardView extends KeyboardView {
 
 	    if (mKeyboard != null) {
 	     	List<Keyboard.Key> keyList = mKeyboard.getKeys();
-		for (int count = 0; count < keyList.size(); count++) {
-		    Keyboard.Key lKey = keyList.get(count);
-		    boolean inside = lKey.isInside((int) me.getX(), (int) me.getY());
-		    if (inside) {
-			MotionEvent newm = createMotion(me, lKey.x + (lKey.width / 2), lKey.y + (lKey.height / 2));
-			return super.onTouchEvent(newm);
-		    }
-		}
+		// for (int count = 0; count < keyList.size(); count++) {
+		//     Keyboard.Key lKey = keyList.get(count);
+		//     boolean inside = lKey.isInside((int) me.getX(), (int) me.getY());
+		//     if (inside) {
+		// 	MotionEvent newm = createMotion(me, lKey.x + (lKey.width / 2), lKey.y + (lKey.height / 2));
+		// 	res = super.onTouchEvent(newm);
+		// 	newm.recycle();
+		// 	return res;
+		//     }
+		// }
 	    	int[] keys = mKeyboard.getNearestKeys((int) me.getX(), (int) me.getY());
 	    	if (keys != null) {
 	    	    boolean inside = false;
@@ -127,7 +129,9 @@ public class SoftKeyboardView extends KeyboardView {
 	    			MotionEvent newm = createMotion(me,
 	    							mAKeyObj.x + (mAKeyObj.width / 2),
 	    							mAKeyObj.y + (mAKeyObj.height / 2));
-	    			return super.onTouchEvent(newm);
+	    			res = super.onTouchEvent(newm);
+				newm.recycle();
+				return res;
 	    		    }
 	    		}
 	    		if (mLKey == 0x1F) {
@@ -135,14 +139,16 @@ public class SoftKeyboardView extends KeyboardView {
 	    			MotionEvent newm = createMotion(me,
 	    							mLKeyObj.x + (mLKeyObj.width / 2),
 	    							mLKeyObj.y + (mLKeyObj.height / 2));
-	    			return super.onTouchEvent(newm);
+	    			res = super.onTouchEvent(newm);
+				newm.recycle();
+				return res;
 	    		    }
 	    		}
 	    	    }
 	    	}
 	    }
 	    
-	    return false;
+	    return super.onTouchEvent(me);
         }
     
         public Keyboard getKeyboard() {
