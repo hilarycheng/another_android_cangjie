@@ -81,16 +81,10 @@ public class SoftKeyboardView extends KeyboardView {
 
         private MotionEvent createMotion(MotionEvent me, int x, int y) {
 	    final long now = me.getEventTime();
-	    MotionEvent newm = MotionEvent.obtain(now, now,
-						  me.getAction(),
-						  x, y,
-						  me.getPressure(),
-						  me.getSize(),
-						  me.getMetaState(),
-						  me.getXPrecision(),
-						  me.getYPrecision(),
-						  me.getDeviceId(),
-						  me.getEdgeFlags());
+
+	    MotionEvent newm = MotionEvent.obtain(me);
+	    newm.setLocation(x, y);
+
 	    return newm;
 	}
 
@@ -98,6 +92,12 @@ public class SoftKeyboardView extends KeyboardView {
         public boolean onTouchEvent(MotionEvent me) {
 	    boolean res = false;
 
+	    if (me == null)
+		return super.onTouchEvent(me);
+
+	    if (me.getPointerCount() > 1)
+		return super.onTouchEvent(me);
+	    
 	    if (mKeyboard != null && mAKey == null && mLKey == null) {
 		scanKeys();
 	    }

@@ -37,6 +37,8 @@ public class CandidateRow extends View {
 	mPaint.setAntiAlias(true);
 	mPaint.setTextSize(50);
 	mPaint.setStrokeWidth(0);
+
+	setFocusable(false);
     }
 
     public void setHandler(Handler handler) {
@@ -56,14 +58,17 @@ public class CandidateRow extends View {
 	mTotal  = total;
 	mAllTotal = alltotal;
     }
-    
+
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-	if (event.getAction() == MotionEvent.ACTION_UP) {
+	Log.i("Cangjie", "On TOuch " + event.getAction() + " " + event.getX() + " " + event.getY());
+	
+	if (event.getAction() == MotionEvent.ACTION_DOWN) {
 	    int x = (int) event.getX();
-
 	    int pos = x - mLeftOffset;
+
 	    mPaint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
 	    pos = pos / (rect.width() + cspacing);
 
@@ -73,6 +78,9 @@ public class CandidateRow extends View {
 	    
 	    if ((mOffset + pos) < mAllTotal) {
 		Message msg = mHandler.obtainMessage(CandidateSelect.CHARACTER, mMatch[mOffset + pos], mOffset + pos);
+		mHandler.sendMessage(msg);
+	    } else {
+		Message msg = mHandler.obtainMessage(CandidateSelect.CHARACTER, -1, -1);
 		mHandler.sendMessage(msg);
 	    }
 	}

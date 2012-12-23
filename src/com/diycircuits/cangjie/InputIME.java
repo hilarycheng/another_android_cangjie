@@ -282,6 +282,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		user_input[cc] = 0;
 	    }
 	    mSelect.updateMatch(null, 0);
+	    if (mSelect != null) mSelect.closePopup();
         }
     
 	@Override

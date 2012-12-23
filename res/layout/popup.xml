@@ -9,7 +9,8 @@
   <ListView 
       android:id="@+id/sv"
       android:layout_width="fill_parent"
-      android:layout_height="wrap_content" 
+      android:layout_height="wrap_content"
+      android:clickable="true"
       android:layout_weight="1"/>
   
   <com.diycircuits.cangjie.CloseButton
