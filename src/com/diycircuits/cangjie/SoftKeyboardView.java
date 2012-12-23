@@ -24,11 +24,7 @@ public class SoftKeyboardView extends KeyboardView {
         private int mOldPointerCount = 0;
 	
         private Keyboard.Key mAKey = null;
-        // private Keyboard.Key mQKey = null;
-        // private Keyboard.Key mEKey = null;
-        // private Keyboard.Key mPKey = null;
         private Keyboard.Key mLKey = null;
-        // private Keyboard.Key mDKey = null;
 
 	@SuppressWarnings("deprecation")
 	public SoftKeyboardView(Context context, AttributeSet attrs) {
@@ -134,56 +130,6 @@ public class SoftKeyboardView extends KeyboardView {
 		    }
 		}
 
-	     	// List<Keyboard.Key> keyList = mKeyboard.getKeys();
-	    	// int[] keys = mKeyboard.getNearestKeys((int) me.getX(), (int) me.getY());
-	    	// if (keys != null) {
-	    	//     boolean inside = false;
-	    	//     for (int count = 0; count < keys.length; count++) {
-	    	// 	if (keys[count] >= keyList.size()) continue;
-	    	// 	Keyboard.Key lKey = keyList.get(keys[count]);
-	    	// 	inside |= lKey.isInside((int) me.getX(), (int) me.getY());
-
-	    	// 	mAKey = mAKey | ((lKey.codes[0] == 113) ? 0x01 : 0x00) |
-	    	// 	    ((lKey.codes[0] == 119) ? 0x02 : 0x00) |
-	    	// 	    ((lKey.codes[0] == 101) ? 0x04 : 0x00) |
-	    	// 	    ((lKey.codes[0] ==  97) ? 0x08 : 0x00);
-
-	    	// 	mLKey = mLKey | ((lKey.codes[0] == 105) ? 0x01 : 0x00) |
-	    	// 	    ((lKey.codes[0] == 111) ? 0x02 : 0x00) |
-	    	// 	    ((lKey.codes[0] == 112) ? 0x04 : 0x00) |
-	    	// 	    ((lKey.codes[0] == 108) ? 0x08 : 0x00) |
-	    	// 	    ((lKey.codes[0] == 107) ? 0x10 : 0x00);
-
-	    	// 	if (mAKeyObj == null && lKey.codes[0] == 97) 
-	    	// 	    mAKeyObj = lKey;
-
-	    	// 	if (mLKeyObj == null && lKey.codes[0] == 108) 
-	    	// 	    mLKeyObj = lKey;
-	    	//     }
-
-	    	//     if (!inside) {
-	    	// 	if (mAKey == 0x0F) {
-	    	// 	    if (me.getAction() == MotionEvent.ACTION_DOWN) {
-	    	// 		MotionEvent newm = createMotion(me,
-	    	// 						mAKeyObj.x + (mAKeyObj.width / 2),
-	    	// 						mAKeyObj.y + (mAKeyObj.height / 2));
-	    	// 		res = super.onTouchEvent(newm);
-		// 		newm.recycle();
-		// 		return res;
-	    	// 	    }
-	    	// 	}
-	    	// 	if (mLKey == 0x1F) {
-	    	// 	    if (me.getAction() == MotionEvent.ACTION_DOWN) {
-	    	// 		MotionEvent newm = createMotion(me,
-	    	// 						mLKeyObj.x + (mLKeyObj.width / 2),
-	    	// 						mLKeyObj.y + (mLKeyObj.height / 2));
-	    	// 		res = super.onTouchEvent(newm);
-		// 		newm.recycle();
-		// 		return res;
-	    	// 	    }
-	    	// 	}
-	    	//     }
-	    	// }
 	    }
 	    
 	    return super.onTouchEvent(me);
