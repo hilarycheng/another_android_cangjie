@@ -60,7 +60,6 @@ public class SoftKeyboardView extends KeyboardView {
         @Override
 	public void onSizeChanged(int w, int h, int oldw, int oldh) {
 	    super.onSizeChanged(w, h, oldw, oldh);
-	    // CandidateView cv = (CandidateView) findViewById(R.id.candidateView);
 	    if (cv != null) cv.setDimension(w, h);
 	}
 
@@ -87,16 +86,6 @@ public class SoftKeyboardView extends KeyboardView {
 
 	    if (mKeyboard != null) {
 	     	List<Keyboard.Key> keyList = mKeyboard.getKeys();
-		// for (int count = 0; count < keyList.size(); count++) {
-		//     Keyboard.Key lKey = keyList.get(count);
-		//     boolean inside = lKey.isInside((int) me.getX(), (int) me.getY());
-		//     if (inside) {
-		// 	MotionEvent newm = createMotion(me, lKey.x + (lKey.width / 2), lKey.y + (lKey.height / 2));
-		// 	res = super.onTouchEvent(newm);
-		// 	newm.recycle();
-		// 	return res;
-		//     }
-		// }
 	    	int[] keys = mKeyboard.getNearestKeys((int) me.getX(), (int) me.getY());
 	    	if (keys != null) {
 	    	    boolean inside = false;
