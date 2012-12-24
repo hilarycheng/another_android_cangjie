@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	      android:layout_width="fill_parent"
-	      android:layout_height="fill_parent"
-	      android:background="@drawable/btn_keyboard_key_dark_active_holo"
-	      android:layout_margin="0dp"
-	      android:orientation="vertical" >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="0dp"
+    android:orientation="vertical" >
 
-  <ListView 
+  <ListView
       android:id="@+id/sv"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:clickable="true"
-      android:layout_weight="1"/>
+      android:layout_weight="1"
+      android:background="@drawable/keyboard_popup_panel_background_holo"
+      android:clickable="true" />
   
   <com.diycircuits.cangjie.CloseButton
       android:id="@+id/cancelButton"
-      android:layout_width="fill_parent"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_gravity="center_horizontal"
       android:adjustViewBounds="true"
       android:background="@drawable/close2"
-      android:scaleType="fitCenter"
       android:minHeight="10dip"
-      android:minWidth="10dip" />
+      android:minWidth="10dip"
+      android:scaleType="fitCenter" />
   
 </LinearLayout>

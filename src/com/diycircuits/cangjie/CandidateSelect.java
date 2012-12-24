@@ -32,8 +32,6 @@ public class CandidateSelect extends View implements Handler.Callback {
     private Context context = null;
     private PopupWindow mPopup = null;
     private Handler mHandler = null;
-    // private char mLastChar = (char) -1;
-    // private int  mLastPos  = -1;
 
     private final static int SPACING            = 4;
     private final static int STARTING_FONT_SIZE = 12;
@@ -103,8 +101,6 @@ public class CandidateSelect extends View implements Handler.Callback {
 
 		holder = new CandidateHolder();
 		holder.row = (CandidateRow) row.findViewById(R.id.candidateRow);
-		holder.row.setFocusable(false);
-		// holder.row.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
 		row.setTag(holder);
 	    } else {
 		holder = (CandidateHolder) row.getTag();
@@ -134,8 +130,6 @@ public class CandidateSelect extends View implements Handler.Callback {
 	if (msg.what == CHARACTER) {
 	    closePopup();
 	    if (listener != null && msg.arg1 != 0) listener.characterSelected((char) msg.arg1, msg.arg2);
-	    // mLastChar = (char) msg.arg1;
-	    // mLastPos  = msg.arg2;
 	}
 	
 	return true;
@@ -171,21 +165,11 @@ public class CandidateSelect extends View implements Handler.Callback {
 
 	    ListView lv = (ListView) view.findViewById(R.id.sv);
 	    lv.setAdapter(adapter);
-	    // lv.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
-
-	    // lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-	    // 	    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-	    // 		Log.i("Cangjie", "onItemClick " + mLastChar + " " + mLastPos);
-	    // 		closePopup();
-	    // 		if (listener != null && mLastChar >= 0 && mLastPos >= 0) listener.characterSelected(mLastChar, mLastPos);
-	    // 	    }
-	    // 	});
-	    
 	    mPopup.setContentView(view);
 	    mPopup.setWidth(w);
 	    mPopup.setHeight(h);
-	    // mPopup.setSoftInputMode(PopupWindow.INPUT_METHOD_NOT_NEEDED);
-	    // mPopup.setTouchable(true);
+	    mPopup.setSoftInputMode(PopupWindow.INPUT_METHOD_NOT_NEEDED);
+	    mPopup.setTouchable(true);
 
 	    mPopup.showAsDropDown(this, 0, 0);
 	} else {
@@ -237,6 +221,7 @@ public class CandidateSelect extends View implements Handler.Callback {
 	paint.setColor(0xff282828);
 	canvas.drawRect(0, 0, width, height - 0, paint);
 	paint.setColor(0xff33B5E5);
+	//paint.setShadowLayer(1, 0, 0, 0xffdedede); 
 	
 	if (match != null) {
 	    int _width = total > textWidth.length ? textWidth.length : total;

@@ -40,7 +40,6 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
 	mPaint.setAntiAlias(true);
 	mPaint.setTextSize(50);
 	mPaint.setStrokeWidth(0);
-
 	setClickable(true);
 	setOnClickListener(this);
 	setOnTouchListener(this);
@@ -63,7 +62,7 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
 	mTotal  = total;
 	mAllTotal = alltotal;
     }
-
+    
     @Override
     public void onClick(View v) {
 	Log.i("Cangjie", " On Click " + mLastX + " " + mLastY);
@@ -74,7 +73,6 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
 
     	    mPaint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
     	    pos = pos / (rect.width() + cspacing);
-
     	    if (x < mLeftOffset + rect.width() + cspacing) {
     		pos = 0;
     	    }
@@ -82,9 +80,6 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
     	    if ((mOffset + pos) < mAllTotal) {
     		Message msg = mHandler.obtainMessage(CandidateSelect.CHARACTER, mMatch[mOffset + pos], mOffset + pos);
     		mHandler.sendMessage(msg);
-    	    // } else {
-    	    // 	Message msg = mHandler.obtainMessage(CandidateSelect.CHARACTER, -1, -1);
-    	    // 	mHandler.sendMessage(msg);
     	    }
 	}
     }
@@ -117,11 +112,13 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
     protected void onDraw(Canvas canvas) {
 	if (canvas == null) return;
 	
-	mPaint.setColor(0xff444444);
-	canvas.drawRect(0, 0, getWidth(), getHeight(), mPaint);
-	mPaint.setColor(0xff000000);
+	//mPaint.setColor(0xff444444);
+	//canvas.drawRect(0, 0, getWidth(), getHeight(), mPaint);
+	mPaint.setColor(0x00000000);
+	mPaint.setShadowLayer(2, 0, -1, 0xff1f1f1f); 
 	canvas.drawRect(0, 0, getWidth(), getHeight() - 1, mPaint);
-	mPaint.setColor(0xff33B5E5);
+	mPaint.setColor(0xffffffff);
+	mPaint.setShadowLayer(2, 0, 0, 0xff1f1f1f); 
 	if (mMatch != null) {
 	    int spacing = mLeftOffset + (cspacing / 2);
 	    mPaint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
