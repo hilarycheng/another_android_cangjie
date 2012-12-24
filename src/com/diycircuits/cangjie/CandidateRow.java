@@ -3,6 +3,7 @@ package com.diycircuits.cangjie;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.*;
+import android.view.View.OnClickListener;
 import android.widget.*;
 import android.graphics.*;
 import android.view.LayoutInflater;
@@ -10,7 +11,7 @@ import android.util.Log;
 import android.os.Handler;
 import android.os.Message;
 
-public class CandidateRow extends View {
+public class CandidateRow extends View implements View.OnClickListener, View.OnTouchListener {
 
     private int mWidth = 100;
     private int mHeight = 64;
@@ -26,6 +27,8 @@ public class CandidateRow extends View {
     private Handler mHandler = null;
     private int mAllTotal = 0;
     private int cspacing = 17;
+    private int mLastX = -1;
+    private int mLastY = -1;
     
     public CandidateRow(Context context, AttributeSet attrs) {
 	super(context, attrs);
@@ -38,7 +41,9 @@ public class CandidateRow extends View {
 	mPaint.setTextSize(50);
 	mPaint.setStrokeWidth(0);
 
-	setFocusable(false);
+	setClickable(true);
+	setOnClickListener(this);
+	setOnTouchListener(this);
     }
 
     public void setHandler(Handler handler) {
@@ -59,33 +64,43 @@ public class CandidateRow extends View {
 	mAllTotal = alltotal;
     }
 
+    @Override
+    public void onClick(View v) {
+	Log.i("Cangjie", " On Click " + mLastX + " " + mLastY);
+
+	if (mLastX != -1 && mLastY != -1) {
+    	    int x = mLastX;
+    	    int pos = x - mLeftOffset;
+
+    	    mPaint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
+    	    pos = pos / (rect.width() + cspacing);
+
+    	    if (x < mLeftOffset + rect.width() + cspacing) {
+    		pos = 0;
+    	    }
+	    
+    	    if ((mOffset + pos) < mAllTotal) {
+    		Message msg = mHandler.obtainMessage(CandidateSelect.CHARACTER, mMatch[mOffset + pos], mOffset + pos);
+    		mHandler.sendMessage(msg);
+    	    // } else {
+    	    // 	Message msg = mHandler.obtainMessage(CandidateSelect.CHARACTER, -1, -1);
+    	    // 	mHandler.sendMessage(msg);
+    	    }
+	}
+    }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouch(View v, MotionEvent event) {
 
-	Log.i("Cangjie", "On TOuch " + event.getAction() + " " + event.getX() + " " + event.getY());
+    	if (event.getAction() == MotionEvent.ACTION_DOWN) {
+	    mLastX = -1;
+	    mLastY = -1;
+	} else if (event.getAction() == MotionEvent.ACTION_UP) {
+	    mLastX = (int) event.getX();
+	    mLastY = (int) event.getY();
+    	}
 	
-	if (event.getAction() == MotionEvent.ACTION_DOWN) {
-	    int x = (int) event.getX();
-	    int pos = x - mLeftOffset;
-
-	    mPaint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
-	    pos = pos / (rect.width() + cspacing);
-
-	    if (x < mLeftOffset + rect.width() + cspacing) {
-		pos = 0;
-	    }
-	    
-	    if ((mOffset + pos) < mAllTotal) {
-		Message msg = mHandler.obtainMessage(CandidateSelect.CHARACTER, mMatch[mOffset + pos], mOffset + pos);
-		mHandler.sendMessage(msg);
-	    } else {
-		Message msg = mHandler.obtainMessage(CandidateSelect.CHARACTER, -1, -1);
-		mHandler.sendMessage(msg);
-	    }
-	}
-	
-	return super.onTouchEvent(event);
+	return false;
     }
 
     @Override
