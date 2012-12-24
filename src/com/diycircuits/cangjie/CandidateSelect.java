@@ -224,12 +224,13 @@ public class CandidateSelect extends View implements Handler.Callback {
 	
 	if (match != null) {
 	    int _width = total > textWidth.length ? textWidth.length : total;
-	    int measured = paint.getTextWidths(match, 0, _width, textWidth);
+	    int measured = paint.getTextWidths(context.getString(R.string.cangjie), 0, 1, textWidth);
+	    // int measured = paint.getTextWidths(match, 0, _width, textWidth);
 
 	    int start = offset + (spacing / 2), index = charOffset;
 	    while (start < width && index < total) {
 		canvas.drawText(match, index, 1, start, topOffset, paint);
-		start = start + (int) textWidth[index] + spacing;
+		start = start + (int) textWidth[0] + spacing;
 		index++;
 	    }
 	}
