@@ -45,14 +45,18 @@ public class ImePreferenceActivity extends PreferenceActivity {
 	InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 	PackageManager pm = getPackageManager();
 	List<InputMethodInfo> info = im.getEnabledInputMethodList();
-	String[] entries = new String[info.size() + 1];
-	String[] entriesValue = new String[info.size() + 1];
+	String[] entries = new String[info.size()];
+	String[] entriesValue = new String[info.size()];
+	int index = 1;
 	for (int count = 0; count < info.size(); count++) {
 	    String label = info.get(count).loadLabel(pm).toString();
 	    String id = info.get(count).getId();
 
-	    entries[count + 1] = label;
-	    entriesValue[count + 1] = id;
+	    if (id.indexOf("com.diycircuits.cangjie") == -1) {
+		entries[index] = label;
+		entriesValue[index] = id;
+		index++;
+	    }
 	}
 	entries[0] = getString(R.string.no_next_inputmethod);
 	entriesValue[0] = "";
