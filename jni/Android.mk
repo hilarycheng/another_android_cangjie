@@ -16,7 +16,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_ARM_MODE := arm
+# LOCAL_ARM_MODE := arm
 
 LOCAL_MODULE    := chinese_table
 LOCAL_SRC_FILES := chinese_table.c input_method.c quick_method.c cangjie_method.c
