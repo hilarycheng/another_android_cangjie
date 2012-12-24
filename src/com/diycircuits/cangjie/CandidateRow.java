@@ -26,7 +26,7 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
     private Rect rect = new Rect();
     private Handler mHandler = null;
     private int mAllTotal = 0;
-    private int cspacing = 17;
+    private int cspacing = 16;
     private int mLastX = -1;
     private int mLastY = -1;
     

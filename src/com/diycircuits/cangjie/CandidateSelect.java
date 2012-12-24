@@ -25,7 +25,7 @@ public class CandidateSelect extends View implements Handler.Callback {
     private float[] textWidth = new float[21529];
     private int offset = 13;
     private int charOffset = 0;
-    private int spacing = 17;
+    private int spacing = 16;
     private float charWidth = 0;
     private int topOffset = 0;
     private int mFontSize = 0;
@@ -149,10 +149,10 @@ public class CandidateSelect extends View implements Handler.Callback {
 	    int rowc = total / columnc;
 	    if ((total % columnc) > 0) rowc++;
 	    int leftOffset = (columnc * (int) textWidth[0]) +
-		((columnc - 1) * spacing);
+		((columnc - 0) * spacing);
 
-	    leftOffset = 13; // (w - leftOffset) / 2;
-
+	    leftOffset = (w - leftOffset) / 2;
+	    
 	    CandidateItem[] row = new CandidateItem[rowc];
 	    CandidateAdapter adapter = new CandidateAdapter(context, R.layout.candidate, row, match, columnc, total, mFontSize, topOffset, leftOffset);
 	    
