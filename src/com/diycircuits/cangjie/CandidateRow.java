@@ -65,8 +65,6 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
     
     @Override
     public void onClick(View v) {
-	Log.i("Cangjie", " On Click " + mLastX + " " + mLastY);
-
 	if (mLastX != -1 && mLastY != -1) {
     	    int x = mLastX;
     	    int pos = x - mLeftOffset;
