@@ -221,7 +221,6 @@ public class CandidateSelect extends View implements Handler.Callback {
 	paint.setColor(0xff282828);
 	canvas.drawRect(0, 0, width, height - 0, paint);
 	paint.setColor(0xff33B5E5);
-	//paint.setShadowLayer(1, 0, 0, 0xffdedede); 
 	
 	if (match != null) {
 	    int _width = total > textWidth.length ? textWidth.length : total;

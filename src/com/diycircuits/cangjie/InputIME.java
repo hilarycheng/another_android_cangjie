@@ -60,7 +60,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	public View onCreateInputView() {
 
 	        ApplicationInfo appInfo = getApplicationInfo();
-		// Log.i("Cangjie", "App Info " + appInfo.dataDir);
 	    
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -86,7 +85,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		loadCangjieKey();
 		loadCangjieTable();
 		loadCangjieHKTable();
-		// loadQuickTable();
 
 		for (int count = 0; count < 5; count++) {
 		    user_input[count] = 0;
@@ -211,47 +209,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			}
 		    }
 		} while (str != null && count < cangjie_hk.length);
-		    
-		reader.close();
-
-	    } catch (Exception ex) {
-		ex.printStackTrace();
-	    }
-        }
-    
-        private void loadQuickTable() {
-	    try {
-		InputStream is = getResources().openRawResource(R.raw.quick);
-		InputStreamReader input = new InputStreamReader(is, "UTF-8");
-		BufferedReader reader = new BufferedReader(input);
-		String str = null;
-		int count = 0, index = 0;
-		char c = 'a';
-		count = 0;
-		do {
-		    str = reader.readLine();
-		    if (str == null)
-			break;
-		    index = str.indexOf('\t');
-		    if (index < 0) index = str.indexOf(' ');
-		    if (index > 0) {
-			str.getChars(0, index, quick[count], 0);
-			str.getChars(index + 1, index + 2, quick[count], 2);
-			if (quick[count][0] == c) {
-			    quick_char_idx[c - 'a'] = count;
-			    c = (char) (c + 1);
-			}
-			if (Character.isLetter(quick[count][2])) {
-			    count++;
-			    quick[count][3] = 0;
-			} else {
-			    quick[count][0] = 0;
-			    quick[count][1] = 0;
-			    quick[count][2] = 0;
-			    quick[count][3] = 0;
-			}
-		    }
-		} while (str != null && count < quick.length);
 		    
 		reader.close();
 
@@ -530,12 +487,10 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
 	@Override
 	public void swipeLeft() {
-	    // Log.i("Cangjie", "Swipe Left");
 	}
 
 	@Override
 	public void swipeRight() {
-	    // Log.i("Cangjie", "Swipe Right");
 	}
 
 	@Override
@@ -629,12 +584,4 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    mKeyboard.updateKeyboard();
         }
 
-	// @Override
-	// public void onDisplayCompletions(CompletionInfo[] completions) {
-        //    // Log.i("Cangjie", " on Display Completions ");
-        //    if (completions == null) return;
-        //    for (int count = 0; count < completions.length; count++) {
-        //      Log.i("Cangjie", " on Display Completions " + completions[count].getText().toString());
-        //    }
-   	// } 
 }

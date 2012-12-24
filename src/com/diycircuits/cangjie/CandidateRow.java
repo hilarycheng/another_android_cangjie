@@ -110,8 +110,6 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
     protected void onDraw(Canvas canvas) {
 	if (canvas == null) return;
 	
-	//mPaint.setColor(0xff444444);
-	//canvas.drawRect(0, 0, getWidth(), getHeight(), mPaint);
 	mPaint.setColor(0x00000000);
 	mPaint.setShadowLayer(2, 0, -1, 0xff1f1f1f); 
 	canvas.drawRect(0, 0, getWidth(), getHeight() - 1, mPaint);

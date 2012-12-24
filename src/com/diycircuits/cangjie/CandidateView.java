@@ -51,21 +51,11 @@ public class CandidateView extends LinearLayout {
 	super.onFinishInflate();
 
 	mSelect = (CandidateSelect) findViewById(R.id.match_view);
-	/*
-	mLeftArrow = (ImageButton) findViewById(R.id.arrow_left);
-	if (mLeftArrow != null) {
-	    mLeftArrow.setOnClickListener(new View.OnClickListener() {
-		    public void onClick(View v) {
-			mSelect.showPrevPage();
-		    }
-		});
-	}*/
          
 	mRightArrow = (ImageButton) findViewById(R.id.arrow_right);
 	if (mRightArrow != null) {
 	    mRightArrow.setOnClickListener(new View.OnClickListener() {
 		    public void onClick(View v) {
-			// mSelect.showNextPage();
 			synchronized(mSelect) {
 			    mSelect.showCandidatePopup(mParent, mWidth, mHeight);
 			}
