@@ -34,6 +34,9 @@ public class CandidateSelect extends View implements Handler.Callback {
     private Handler mHandler = null;
     private Rect mRect = new Rect();
 
+    private CandidateAdapter mAdapter = null;
+    private View mPopupView = null;
+
     private final static int SPACING            = 4;
     private final static int STARTING_FONT_SIZE = 12;
     private final static int ENDING_FONT_SIZE   = 128;
@@ -141,29 +144,33 @@ public class CandidateSelect extends View implements Handler.Callback {
     public void showCandidatePopup(View mParent, int w, int h) {
 	if (total == 0) return;
 	if (mPopup == null) {
-	    mPopup = new PopupWindow(context);
-	    LayoutInflater inflate = (LayoutInflater)
-		context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	    View view = inflate.inflate(R.layout.popup, null);
-
 	    int columnc = w / ((int) textWidth + spacing);
 
 	    int rowc = total / columnc;
-            if ((total % columnc) > 0) rowc++;
+	    if ((total % columnc) > 0) rowc++;
 
 	    CandidateItem[] row = new CandidateItem[rowc];
-	    CandidateAdapter adapter = new CandidateAdapter(context, R.layout.candidate, row, match, columnc, total, mFontSize, topOffset);
-	    
-	    CloseButton mButton = (CloseButton) view.findViewById(R.id.cancelButton);
-	    mButton.setOnClickListener(new View.OnClickListener() {
-	    	    public void onClick(View v) {
-	    		closePopup();
-	    	    }
-	    	});
+	    mAdapter = new CandidateAdapter(context, R.layout.candidate, row, match, columnc, total, mFontSize, topOffset);
 
-	    ListView lv = (ListView) view.findViewById(R.id.sv);
-	    lv.setAdapter(adapter);
-	    mPopup.setContentView(view);
+	    if (mPopupView == null) {
+		LayoutInflater inflate = (LayoutInflater)
+		    context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		mPopupView = inflate.inflate(R.layout.popup, null);
+
+		CloseButton mButton = (CloseButton) mPopupView.findViewById(R.id.cancelButton);
+		mButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+			    closePopup();
+			}
+		    });
+	    }
+
+	    ListView lv = (ListView) mPopupView.findViewById(R.id.sv);
+	    lv.setAdapter(mAdapter);
+
+	    mPopup = new PopupWindow(context);
+	    
+	    mPopup.setContentView(mPopupView);
 	    mPopup.setWidth(w);
 	    mPopup.setHeight(h);
 	    mPopup.setSoftInputMode(PopupWindow.INPUT_METHOD_NOT_NEEDED);
