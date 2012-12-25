@@ -78,10 +78,9 @@ public class CandidateSelect extends View implements Handler.Callback {
 	private int     layoutRes  = 0;
 	private float   fontSize   = 0.0f;
 	private int     topOffset  = 0;
-	private int     leftOffset = 0;
 	private int     columnc    = 0;
 
-	public CandidateAdapter(Context context, int layoutRes, CandidateItem[] row, char[] match, int columnc, int total, float fs, int to, int lo) {
+	public CandidateAdapter(Context context, int layoutRes, CandidateItem[] row, char[] match, int columnc, int total, float fs, int to) {
 	    super(context, layoutRes, row);
 	    this.context    = context;
 	    this.match      = match;
@@ -90,7 +89,6 @@ public class CandidateSelect extends View implements Handler.Callback {
 	    this.total      = total;
 	    this.fontSize   = fs;
 	    this.topOffset  = to;
-	    this.leftOffset = lo;
 	    this.columnc    = columnc;
 	}
 
@@ -112,7 +110,7 @@ public class CandidateSelect extends View implements Handler.Callback {
 	    }
 
 	    holder.row.setHandler(mHandler);
-	    holder.row.setFontSize(fontSize, topOffset, leftOffset);
+	    holder.row.setFontSize(fontSize, topOffset);
 	    holder.row.setMatch(match, position * columnc, total - (position * columnc) >= columnc ? columnc : (total - (position * columnc)), total);
 
 	    return row;
@@ -148,17 +146,13 @@ public class CandidateSelect extends View implements Handler.Callback {
 		context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	    View view = inflate.inflate(R.layout.popup, null);
 
-	    int columnc = (w - ((int) textWidth * 2)) / ((int) textWidth + spacing);
+	    int columnc = w / ((int) textWidth + spacing);
 
 	    int rowc = total / columnc;
-	    if ((total % columnc) > 0) rowc++;
-	    int leftOffset = (columnc * (int) textWidth) +
-		((columnc - 0) * spacing);
+            if ((total % columnc) > 0) rowc++;
 
-	    leftOffset = (w - leftOffset) / 2;
-	    
 	    CandidateItem[] row = new CandidateItem[rowc];
-	    CandidateAdapter adapter = new CandidateAdapter(context, R.layout.candidate, row, match, columnc, total, mFontSize, topOffset, leftOffset);
+	    CandidateAdapter adapter = new CandidateAdapter(context, R.layout.candidate, row, match, columnc, total, mFontSize, topOffset);
 	    
 	    CloseButton mButton = (CloseButton) view.findViewById(R.id.cancelButton);
 	    mButton.setOnClickListener(new View.OnClickListener() {

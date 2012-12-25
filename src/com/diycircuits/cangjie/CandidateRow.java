@@ -58,10 +58,9 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
 	mHandler = handler;
     }
     
-    public void setFontSize(float fs, int off, int lo) {
+    public void setFontSize(float fs, int off) {
 	mFontSize = fs;
 	mTopOffset = off;
-	mLeftOffset = lo;
 	synchronized(mPaint) {
 	    if (mPaint.getTextSize() != mFontSize) {
 		mPaint.setTextSize(mFontSize);
@@ -124,12 +123,7 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
 	cspacing = mRect.width() / 2;
 	mTextWidth = mRect.width();
 	
-	int columnc = (mWidth - ((int) mTextWidth * 2)) / ((int) mTextWidth + cspacing);
-	if (columnc == 0) return;
-	int rowc = mTotal / columnc;
-
-	if ((mTotal % columnc) > 0) rowc++;
-	mLeftOffset = (columnc * (int) mTextWidth) + ((columnc - 0) * cspacing);
+	mLeftOffset = (mTotal * (int) mTextWidth) + ((mTotal - 0) * cspacing);
 
 	mLeftOffset = (mWidth - mLeftOffset) / 2;
     }
@@ -146,7 +140,7 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
 	mPaint.setColor(0xffffffff);
 	mPaint.setShadowLayer(2, 0, 0, 0xff1f1f1f); 
 	if (mMatch != null) {
-	    int spacing = mLeftOffset - (cspacing / 2);
+	    int spacing = mLeftOffset + (cspacing / 2);
 	    int topOffset = (mRect.height() - mRect.bottom);
 	    topOffset = topOffset + ((mHeight - mRect.height()) / 2);
 	    for (int count = mOffset; count < mOffset + mTotal; count++) {
