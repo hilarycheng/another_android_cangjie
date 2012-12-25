@@ -21,7 +21,7 @@
 
         <ImageButton
             android:id="@+id/arrow_right"
-            android:layout_width="33dp"
+            android:layout_width="48dp"
             android:layout_height="40dp"
             android:background="@drawable/ab_solid_dark_holo"
             android:clickable="true"
