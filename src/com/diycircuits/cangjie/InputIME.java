@@ -59,6 +59,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	@Override
 	public View onCreateInputView() {
 
+	        // enableHardwareAcceleration();
+
 	        ApplicationInfo appInfo = getApplicationInfo();
 	    
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -501,9 +503,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         public void onStartInputView (EditorInfo info, boolean restarting) {
 	    if (getAndClearOftenUsed()) mTable.clearAllFrequency();
 	    sb.setLength(0);
-	    getCurrentInputConnection().setComposingText("", 1);
-
-	    setCandidatesViewShown(true);
 
 	    imeOptions = info.imeOptions;
 	    
