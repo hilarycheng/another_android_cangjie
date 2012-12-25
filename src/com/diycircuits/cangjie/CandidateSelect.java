@@ -251,17 +251,17 @@ public class CandidateSelect extends View implements Handler.Callback {
 		return true;
 
 	    if (count == charOffset) {
-		if (select < (left + (int) textWidth[count] + spacing)) {
+		if (select < (left + (int) textWidth[0] + spacing)) {
 		    c = match[count];
 		    idx = count;
 		    break;
 		}
-	    } else if (select > left && select < (left + (int) textWidth[count] + spacing)) {
+	    } else if (select > left && select < (left + (int) textWidth[0] + spacing)) {
 		c = match[count];
 		idx = count;
 		break;
 	    }
-	    left = left + (int) textWidth[count] + spacing;
+	    left = left + (int) textWidth[0] + spacing;
 	}
 
 	switch (action) {
