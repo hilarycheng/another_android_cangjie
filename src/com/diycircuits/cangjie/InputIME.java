@@ -230,7 +230,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
     
         public void characterSelected(char c, int idx) {
 	    if (idx >= 0) mTable.updateFrequencyQuick(c);
-	    mTable.reset();
 	    commit.setLength(0);
 	    commit.append(c);
 	    getCurrentInputConnection().setComposingText("", 1);
@@ -243,6 +242,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private void clearAllInput() {
 	    commit.setLength(0);
 	    totalMatch = 0;
+	    mTable.reset();
 	    commit.setLength(0);
 	    getCurrentInputConnection().setComposingText("", 1);
 	    sb.setLength(0);
@@ -304,7 +304,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			    if (primaryKey == ' ' || primaryKey == 10 || primaryKey == 65311 ||
 				primaryKey == 65292 || primaryKey == 12290 || primaryKey == 65281) {
 				if (totalMatch > 0 || mTable.totalMatch() > 0) {
-				    if (totalMatch > 0) characterSelected((char) matchChar[0], 0);
+				    characterSelected((char) matchChar[0], 0);
 				    clearAllInput();
 				    if (mSelect != null) mSelect.closePopup();
 				    if (primaryKey == ' ') return;
