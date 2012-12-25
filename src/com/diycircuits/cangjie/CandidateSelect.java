@@ -23,9 +23,10 @@ public class CandidateSelect extends View implements Handler.Callback {
     private int total = 0;
     private Paint paint = null;
     private float textWidth = 0.0f;
-    private int offset = 13;
+    private int offset = 0;
     private int charOffset = 0;
     private int spacing = 16;
+    private int mParentWidth = 0;
     private float charWidth = 0;
     private int topOffset = 0;
     private float mFontSize = 50.0f;
@@ -66,6 +67,15 @@ public class CandidateSelect extends View implements Handler.Callback {
 	mHandler = new Handler(this);
     }
 
+    public void setParentWidth(int w) {
+	mParentWidth = w;
+
+	int columnc = mParentWidth / ((int) textWidth + spacing);
+	offset = columnc * ((int) textWidth + spacing);
+	offset = (mParentWidth - offset) / 2;
+
+    }
+    
     public void setCandidateListener(CandidateListener listen) {
 	listener = listen;
     }
@@ -149,9 +159,6 @@ public class CandidateSelect extends View implements Handler.Callback {
 	    int rowc = total / columnc;
 	    if ((total % columnc) > 0) rowc++;
 
-	    CandidateItem[] row = new CandidateItem[rowc];
-	    mAdapter = new CandidateAdapter(context, R.layout.candidate, row, match, columnc, total, mFontSize, topOffset);
-
 	    if (mPopupView == null) {
 		LayoutInflater inflate = (LayoutInflater)
 		    context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -164,6 +171,9 @@ public class CandidateSelect extends View implements Handler.Callback {
 			}
 		    });
 	    }
+
+	    CandidateItem[] row = new CandidateItem[rowc];
+	    mAdapter = new CandidateAdapter(context, R.layout.candidate, row, match, columnc, total, mFontSize, topOffset);
 
 	    ListView lv = (ListView) mPopupView.findViewById(R.id.sv);
 	    lv.setAdapter(mAdapter);
@@ -295,7 +305,6 @@ public class CandidateSelect extends View implements Handler.Callback {
 	match = _match;
 	total = _total;
         charOffset = 0;
-	offset = 13;
 	invalidate();
     }
 

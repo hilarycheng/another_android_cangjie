@@ -44,6 +44,8 @@ public class CandidateView extends LinearLayout {
 
 	mWidth = w;
 	mHeight = h;
+
+	mSelect.setParentWidth(mWidth);
     }
 
     @Override
