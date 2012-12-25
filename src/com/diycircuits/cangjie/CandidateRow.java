@@ -13,20 +13,21 @@ import android.os.Message;
 
 public class CandidateRow extends View implements View.OnClickListener, View.OnTouchListener {
 
+    private static Paint mPaint = null;
+    private static Rect mRect = new Rect();
+    private static int cspacing = 0;
+    private static int mLeftOffset = 0;
+    private static int mTextWidth = 0;
     private int mWidth = 100;
     private int mHeight = 64;
-    private Paint mPaint = null;
     private char[] mMatch = null;
     private int mTotal = 0;
     private int mOffset = 0;
     private int mTopOffset = 0;
-    private int mLeftOffset = 0;
-    private int mFontSize = 0;
+    private float mFontSize = 50.0f;
     private Context context = null;
-    private Rect rect = new Rect();
     private Handler mHandler = null;
     private int mAllTotal = 0;
-    private int cspacing = 16;
     private int mLastX = -1;
     private int mLastY = -1;
     
@@ -35,25 +36,38 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
 
 	this.context = context;
 
-	mPaint = new Paint();
-	mPaint.setColor(Color.BLACK);
-	mPaint.setAntiAlias(true);
-	mPaint.setTextSize(50);
-	mPaint.setStrokeWidth(0);
+	setupPaint();
+
 	setClickable(true);
 	setOnClickListener(this);
 	setOnTouchListener(this);
+    }
+
+    private synchronized void setupPaint() {
+	if (mPaint == null) {
+	    mPaint = new Paint();
+	    mPaint.setColor(Color.BLACK);
+	    mPaint.setAntiAlias(true);
+	    mPaint.setTextSize(mFontSize);
+	    mPaint.setStrokeWidth(0);
+    	    mPaint.getTextBounds(context.getString(R.string.cangjie), 0, 1, mRect);
+	}
     }
 
     public void setHandler(Handler handler) {
 	mHandler = handler;
     }
     
-    public void setFontSize(int fs, int off, int lo) {
+    public void setFontSize(float fs, int off, int lo) {
 	mFontSize = fs;
 	mTopOffset = off;
 	mLeftOffset = lo;
-	mPaint.setTextSize(mFontSize);
+	synchronized(mPaint) {
+	    if (mPaint.getTextSize() != mFontSize) {
+		mPaint.setTextSize(mFontSize);
+		mPaint.getTextBounds(context.getString(R.string.cangjie), 0, 1, mRect);
+	    }
+	}
     }
     
     public void setMatch(char[] match, int offset, int total, int alltotal) {
@@ -69,9 +83,8 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
     	    int x = mLastX;
     	    int pos = x - mLeftOffset;
 
-    	    mPaint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
-    	    pos = pos / (rect.width() + cspacing);
-    	    if (x < mLeftOffset + rect.width() + cspacing) {
+    	    pos = pos / (mTextWidth + cspacing);
+    	    if (x < mLeftOffset + mTextWidth + cspacing) {
     		pos = 0;
     	    }
 	    
@@ -101,28 +114,44 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
 	int desireWidth = resolveSize(mWidth, widthMeasureSpec);
 	int desiredHeight = resolveSize(mHeight, heightMeasureSpec);
 
+	mWidth  = desireWidth;
 	mHeight = desiredHeight;
-	
+
 	setMeasuredDimension(desireWidth, desiredHeight);
     }
 
+    private void calculateSpacingAndOffset() {
+	cspacing = mRect.width() / 2;
+	mTextWidth = mRect.width();
+	
+	int columnc = (mWidth - ((int) mTextWidth * 2)) / ((int) mTextWidth + cspacing);
+	if (columnc == 0) return;
+	int rowc = mTotal / columnc;
+
+	if ((mTotal % columnc) > 0) rowc++;
+	mLeftOffset = (columnc * (int) mTextWidth) + ((columnc - 0) * cspacing);
+
+	mLeftOffset = (mWidth - mLeftOffset) / 2;
+    }
+    
     @Override
     protected void onDraw(Canvas canvas) {
 	if (canvas == null) return;
 	
+	if (cspacing == 0) calculateSpacingAndOffset();
+
 	mPaint.setColor(0x00000000);
 	mPaint.setShadowLayer(2, 0, -1, 0xff1f1f1f); 
 	canvas.drawRect(0, 0, getWidth(), getHeight() - 1, mPaint);
 	mPaint.setColor(0xffffffff);
 	mPaint.setShadowLayer(2, 0, 0, 0xff1f1f1f); 
 	if (mMatch != null) {
-	    int spacing = mLeftOffset + (cspacing / 2);
-	    mPaint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
-	    int topOffset = (rect.height() - rect.bottom);
-	    topOffset = topOffset + ((mHeight - rect.height()) / 2);
+	    int spacing = mLeftOffset - (cspacing / 2);
+	    int topOffset = (mRect.height() - mRect.bottom);
+	    topOffset = topOffset + ((mHeight - mRect.height()) / 2);
 	    for (int count = mOffset; count < mOffset + mTotal; count++) {
 		canvas.drawText(mMatch, count, 1, spacing, topOffset, mPaint);
-		spacing += cspacing + rect.width();
+		spacing += cspacing + mTextWidth;
 	    }
 	}
     }

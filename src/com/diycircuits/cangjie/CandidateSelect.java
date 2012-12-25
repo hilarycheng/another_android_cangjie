@@ -22,16 +22,17 @@ public class CandidateSelect extends View implements Handler.Callback {
     private char match[] = null;
     private int total = 0;
     private Paint paint = null;
-    private float[] textWidth = new float[21529];
+    private float textWidth = 0.0f;
     private int offset = 13;
     private int charOffset = 0;
     private int spacing = 16;
     private float charWidth = 0;
     private int topOffset = 0;
-    private int mFontSize = 0;
+    private float mFontSize = 50.0f;
     private Context context = null;
     private PopupWindow mPopup = null;
     private Handler mHandler = null;
+    private Rect mRect = new Rect();
 
     private final static int SPACING            = 4;
     private final static int STARTING_FONT_SIZE = 12;
@@ -48,12 +49,16 @@ public class CandidateSelect extends View implements Handler.Callback {
 
 	this.context = context;
 
-	mFontSize = 50;
+	mFontSize = 50.0f;
 	paint = new Paint();
 	paint.setColor(Color.BLACK);
 	paint.setAntiAlias(true);
-	paint.setTextSize(50);
+	paint.setTextSize(mFontSize);
 	paint.setStrokeWidth(0);
+
+	paint.getTextBounds(context.getString(R.string.cangjie), 0, 1, mRect);
+	textWidth = mRect.width();
+	spacing   = (int) textWidth / 2;
 
 	mHandler = new Handler(this);
     }
@@ -71,12 +76,12 @@ public class CandidateSelect extends View implements Handler.Callback {
 	private char[]  match      = null;
 	private int     total      = 0;
 	private int     layoutRes  = 0;
-	private int     fontSize   = 0;
+	private float   fontSize   = 0.0f;
 	private int     topOffset  = 0;
 	private int     leftOffset = 0;
 	private int     columnc    = 0;
 
-	public CandidateAdapter(Context context, int layoutRes, CandidateItem[] row, char[] match, int columnc, int total, int fs, int to, int lo) {
+	public CandidateAdapter(Context context, int layoutRes, CandidateItem[] row, char[] match, int columnc, int total, float fs, int to, int lo) {
 	    super(context, layoutRes, row);
 	    this.context    = context;
 	    this.match      = match;
@@ -143,12 +148,11 @@ public class CandidateSelect extends View implements Handler.Callback {
 		context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	    View view = inflate.inflate(R.layout.popup, null);
 
-	    int measured = paint.getTextWidths(context.getString(R.string.cangjie), 0, 1, textWidth);
-	    int columnc = ((w - 13) / ((int) textWidth[0] + spacing));
+	    int columnc = (w - ((int) textWidth * 2)) / ((int) textWidth + spacing);
 
 	    int rowc = total / columnc;
 	    if ((total % columnc) > 0) rowc++;
-	    int leftOffset = (columnc * (int) textWidth[0]) +
+	    int leftOffset = (columnc * (int) textWidth) +
 		((columnc - 0) * spacing);
 
 	    leftOffset = (w - leftOffset) / 2;
@@ -179,7 +183,7 @@ public class CandidateSelect extends View implements Handler.Callback {
 
     }
 
-    public int fontSize() {
+    public float fontSize() {
 	return mFontSize;
     }
 
@@ -190,7 +194,6 @@ public class CandidateSelect extends View implements Handler.Callback {
 	width  = w;
 	height = h;
 
-	Rect rect = new Rect();
 	for (int fontsize = STARTING_FONT_SIZE; fontsize < ENDING_FONT_SIZE; fontsize += 2) {
 	    paint.setTextSize(fontsize);
 
@@ -198,12 +201,14 @@ public class CandidateSelect extends View implements Handler.Callback {
 	    int totalHeight = (int) (metrics.bottom - metrics.top);
 
 	    if (totalHeight > height) {
-		mFontSize = fontsize - 8;
+		mFontSize = (float) (fontsize - 8);
 		paint.setTextSize(mFontSize);
-		paint.getTextBounds(context.getString(R.string.cangjie), 0, 1, rect);
+		paint.getTextBounds(context.getString(R.string.cangjie), 0, 1, mRect);
+		textWidth = mRect.width();
+		spacing   = (int) textWidth / 2;
 
-		topOffset = rect.height() - rect.bottom;
-		topOffset += (h - rect.height()) / 2;
+		topOffset = mRect.height() - mRect.bottom;
+		topOffset += (h - mRect.height()) / 2;
 
 		break;
 	    }
@@ -223,14 +228,10 @@ public class CandidateSelect extends View implements Handler.Callback {
 	paint.setColor(0xff33B5E5);
 	
 	if (match != null) {
-	    int _width = total > textWidth.length ? textWidth.length : total;
-	    int measured = paint.getTextWidths(context.getString(R.string.cangjie), 0, 1, textWidth);
-	    // int measured = paint.getTextWidths(match, 0, _width, textWidth);
-
 	    int start = offset + (spacing / 2), index = charOffset;
 	    while (start < width && index < total) {
 		canvas.drawText(match, index, 1, start, topOffset, paint);
-		start = start + (int) textWidth[0] + spacing;
+		start = start + (int) textWidth + spacing;
 		index++;
 	    }
 	}
@@ -246,22 +247,19 @@ public class CandidateSelect extends View implements Handler.Callback {
 	char c = 0;
 	int idx = -1;
 
-	for (int count = charOffset; count < textWidth.length; count++) {
-	    if (count >= total)
-		return true;
-
+	for (int count = charOffset; count < total; count++) {
 	    if (count == charOffset) {
-		if (select < (left + (int) textWidth[0] + spacing)) {
+		if (select < (left + (int) textWidth + spacing)) {
 		    c = match[count];
 		    idx = count;
 		    break;
 		}
-	    } else if (select > left && select < (left + (int) textWidth[0] + spacing)) {
+	    } else if (select > left && select < (left + (int) textWidth + spacing)) {
 		c = match[count];
 		idx = count;
 		break;
 	    }
-	    left = left + (int) textWidth[0] + spacing;
+	    left = left + (int) textWidth + spacing;
 	}
 
 	switch (action) {
