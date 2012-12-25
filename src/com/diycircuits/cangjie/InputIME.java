@@ -18,6 +18,7 @@ import android.content.SharedPreferences.Editor;
 import android.widget.*;
 import android.graphics.*;
 import android.util.Log;
+import java.lang.reflect.Method;
 import android.view.inputmethod.*;
 import android.content.pm.PackageManager;
 import android.content.pm.ApplicationInfo;
@@ -27,7 +28,8 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 
         private final static int CANGJIE    = 0;
         private final static int QUICK      = 1;
-    
+
+        private Keyboard.Key mActionKey = null;
 	private SoftKeyboardView mKeyboard = null;
 	private CandidateView mCandidate = null;
 	private CandidateSelect mSelect = null;
@@ -56,10 +58,17 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private TableLoader mTable = null;
         private AudioManager am = null; 
 
+        public InputIME() {
+	    super();
+	    try {
+		Method m = InputMethodService.class.getMethod("enableHardwareAcceleration");
+		m.invoke(this);
+	    } catch (Exception ex) {
+	    }
+        }
+    
 	@Override
 	public View onCreateInputView() {
-
-	        // enableHardwareAcceleration();
 
 	        ApplicationInfo appInfo = getApplicationInfo();
 	    
@@ -505,14 +514,14 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    sb.setLength(0);
 
 	    imeOptions = info.imeOptions;
+
+	    if (mActionKey == null) mActionKey = searchKey(10);
 	    
-	    Keyboard.Key actionKey = searchKey(10);
-	    
-	    if (actionKey != null) {
+	    if (mActionKey != null) {
 		if ((info.imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_SEARCH && ((imeOptions & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == 0)) {
-		    actionKey.icon = getResources().getDrawable(R.drawable.sym_keyboard_search);
+		    mActionKey.icon = getResources().getDrawable(R.drawable.sym_keyboard_search);
 		} else {
-		    actionKey.icon = getResources().getDrawable(R.drawable.enter_icon);
+		    mActionKey.icon = getResources().getDrawable(R.drawable.enter_icon);
 		}
 		mKeyboard.updateKeyboard();
 	    }
