@@ -73,6 +73,7 @@ public class CandidateRow extends View implements View.OnClickListener, View.OnT
 	mMatch  = match;
 	mOffset = offset;
 	mTotal  = total;
+	if (mAllTotal != alltotal) cspacing = 0;
 	mAllTotal = alltotal;
     }
     
