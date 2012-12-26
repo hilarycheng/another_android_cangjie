@@ -244,7 +244,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    totalMatch = 0;
 	    if (mTable != null) mTable.reset();
 	    commit.setLength(0);
-	    getCurrentInputConnection().setComposingText("", 1);
+	    // getCurrentInputConnection().setComposingText("", 1);
 	    sb.setLength(0);
 	    for (int cc = 0; cc < user_input.length; cc++) {
 		user_input[cc] = 0;
@@ -269,7 +269,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 			String id = getSwitchedInputMethod();
 			if (id == null || id.length() == 0)
-			    im.switchToNextInputMethod(token, false);
+			    im.switchToLastInputMethod(token);
 			else {
 			    try {
 				im.setInputMethod(token, id);
