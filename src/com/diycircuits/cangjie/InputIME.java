@@ -531,6 +531,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	public void onFinishInput() {
 	    super.onFinishInput();
 	    if (mTable != null) mTable.saveMatch();
+	    clearAllInput();
 	}
 
         @Override
