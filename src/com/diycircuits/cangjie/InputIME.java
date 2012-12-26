@@ -242,15 +242,17 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private void clearAllInput() {
 	    commit.setLength(0);
 	    totalMatch = 0;
-	    mTable.reset();
+	    if (mTable != null) mTable.reset();
 	    commit.setLength(0);
 	    getCurrentInputConnection().setComposingText("", 1);
 	    sb.setLength(0);
 	    for (int cc = 0; cc < user_input.length; cc++) {
 		user_input[cc] = 0;
 	    }
-	    mSelect.updateMatch(null, 0);
-	    if (mSelect != null) mSelect.closePopup();
+	    if (mSelect != null) {
+		mSelect.updateMatch(null, 0);
+		mSelect.closePopup();
+	    }
         }
     
 	@Override
