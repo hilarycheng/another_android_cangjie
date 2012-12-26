@@ -58,6 +58,10 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private TableLoader mTable = null;
         private AudioManager am = null; 
 
+        private static final int NOT_A_CURSOR_POSITION = -1;
+        private int mLastSelectionStart = NOT_A_CURSOR_POSITION;
+        private int mLastSelectionEnd = NOT_A_CURSOR_POSITION;
+
         public InputIME() {
 	    super();
 	    try {
@@ -291,8 +295,14 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			getCurrentInputConnection().setComposingText("", 1);
 			mSelect.updateMatch(null, 0);
 		    } else if (sb.length() == 0) {
-			getCurrentInputConnection().deleteSurroundingText(1, 0);
-			mSelect.updateMatch(null, 0);
+			if (mLastSelectionStart != mLastSelectionEnd) {
+			    final int lengthToDelete = mLastSelectionEnd - mLastSelectionStart;
+			    getCurrentInputConnection().setSelection(mLastSelectionEnd, mLastSelectionEnd);
+			    getCurrentInputConnection().deleteSurroundingText(lengthToDelete, 0);
+			} else {
+			    getCurrentInputConnection().deleteSurroundingText(1, 0);
+			    mSelect.updateMatch(null, 0);
+			}
 		    }
 		} else {
 		    if (primaryKey == 300) {
@@ -510,17 +520,31 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	public void swipeUp() {
 	}
 
+        @Override
+        public void onUpdateSelection(final int oldSelStart, final int oldSelEnd,
+				      final int newSelStart, final int newSelEnd,
+				      final int composingSpanStart, final int composingSpanEnd) {
+	    super.onUpdateSelection(oldSelStart, oldSelEnd, newSelStart, newSelEnd,
+				    composingSpanStart, composingSpanEnd);
+	    
+	    mLastSelectionStart = newSelStart;
+	    mLastSelectionEnd = newSelEnd;
+	}
+
 	@Override
-        public void onStartInputView (EditorInfo info, boolean restarting) {
+        public void onStartInputView(EditorInfo editorInfo, boolean restarting) {
 	    if (getAndClearOftenUsed()) mTable.clearAllFrequency();
 	    sb.setLength(0);
 
-	    imeOptions = info.imeOptions;
+	    mLastSelectionStart = editorInfo.initialSelStart;
+	    mLastSelectionEnd = editorInfo.initialSelEnd;
+
+	    imeOptions = editorInfo.imeOptions;
 
 	    if (mActionKey == null) mActionKey = searchKey(10);
 	    
 	    if (mActionKey != null) {
-		if ((info.imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_SEARCH && ((imeOptions & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == 0)) {
+		if ((editorInfo.imeOptions & EditorInfo.IME_MASK_ACTION) == EditorInfo.IME_ACTION_SEARCH && ((imeOptions & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == 0)) {
 		    mActionKey.icon = getResources().getDrawable(R.drawable.sym_keyboard_search);
 		} else {
 		    mActionKey.icon = getResources().getDrawable(R.drawable.enter_icon);
