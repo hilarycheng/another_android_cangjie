@@ -11,6 +11,7 @@
 int mTotalMatch = 0;
 int mSaved = 0;
 int mCurrentIm = CANGJIE;
+jboolean mEnableHK = 0;
 char data_path[1024] = "0";
 char quick_data[1024] = "0";
 char cangjie_data[1024] = "0";
@@ -75,6 +76,12 @@ void Java_com_diycircuits_cangjie_TableLoader_setInputMethod(JNIEnv* env, jobjec
 void Java_com_diycircuits_cangjie_TableLoader_searchCangjie(JNIEnv* env, jobject thiz, jchar key0, jchar key1, jchar key2, jchar key3, jchar key4)
 {
   input_method[mCurrentIm]->searchWord(key0, key1, key2, key3, key4);
+}
+
+void Java_com_diycircuits_cangjie_TableLoader_enableHongKongChar(JNIEnv* env, jobject thiz, jboolean hk)
+{
+  mEnableHK = hk;
+  input_method[mCurrentIm]->enableHongKongChar(mEnableHK);
 }
 
 jboolean Java_com_diycircuits_cangjie_TableLoader_tryMatchCangjie(JNIEnv* env, jobject thiz, jchar key0, jchar key1, jchar key2, jchar key3, jchar key4)

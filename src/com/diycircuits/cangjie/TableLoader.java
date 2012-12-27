@@ -10,6 +10,7 @@ public class TableLoader {
     public native char getChar();
     public native char passCharArray(char[] array);
     public native int  updateFrequencyQuick(char ch);
+    public native void enableHongKongChar(boolean hk);
     public native void setInputMethod(int im);
     public native void searchCangjie(char index0, char index1, char index2, char index3, char index4);
     public native boolean tryMatchCangjie(char index0, char index1, char index2, char index3, char index4);

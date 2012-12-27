@@ -314,6 +314,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private boolean tryMatch() {
 	    if (mInputMethodState == CANGJIE) {
 		mTable.setInputMethod(TableLoader.CANGJIE);
+		mTable.enableHongKongChar(isHongKongCharEnabled());
 		return mTable.tryMatchCangjie(user_input[0], user_input[1], user_input[2], user_input[3], user_input[4]);
 	    }
 	    
@@ -332,6 +333,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		// else
 		//     return matchCangjie();
 		mTable.setInputMethod(TableLoader.CANGJIE);
+		mTable.enableHongKongChar(isHongKongCharEnabled());
 		return matchCangjie();
 	    }
 	    

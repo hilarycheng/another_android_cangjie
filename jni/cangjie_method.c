@@ -79,7 +79,7 @@ void cangjie_searchWord(jchar key0, jchar key1, jchar key2, jchar key3, jchar ke
     for (count1 = 1; count1 < 5; count1++) {
       if (src[count1] == 0)
 	break;
-      if (cangjie[count0][count1] == src[count1])
+      if (cangjie[count0][count1] == src[count1] && (cangjie_func.mEnableHK != 0 || cangjie[count0][6] == 0))
 	match = 1;
       else {
 	match = 0;
@@ -139,7 +139,7 @@ jboolean cangjie_tryMatchWord(jchar key0, jchar key1, jchar key2, jchar key3, jc
     for (count1 = 1; count1 < 5; count1++) {
       if (src[count1] == 0)
 	break;
-      if (cangjie[count0][count1] == src[count1])
+      if (cangjie[count0][count1] == src[count1] && (cangjie_func.mEnableHK != 0 || cangjie[count0][6] == 0))
 	match = 1;
       else {
 	match = 0;
@@ -205,12 +205,18 @@ void cangjie_saveMatch(void)
   }
 }
 
+void cangjie_enableHongKongChar(jboolean hk)
+{
+  cangjie_func.mEnableHK = (hk != 0);
+}
+
 struct _input_method cangjie_func =
 {
   .init            = cangjie_init,
   .maxKey          = cangjie_maxKey,
   .searchWord      = cangjie_searchWord,
   .tryMatchWord    = cangjie_tryMatchWord,
+  .enableHongKongChar = cangjie_enableHongKongChar,
   .totalMatch      = cangjie_totalMatch,
   .updateFrequency = cangjie_updateFrequency,
   .clearFrequency  = cangjie_clearFrequency,
