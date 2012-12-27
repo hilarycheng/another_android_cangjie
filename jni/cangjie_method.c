@@ -109,6 +109,53 @@ void cangjie_searchWord(jchar key0, jchar key1, jchar key2, jchar key3, jchar ke
   cangjie_func.mTotalMatch = loop;
 }
 
+jboolean cangjie_tryMatchWord(jchar key0, jchar key1, jchar key2, jchar key3, jchar key4)
+{
+  jchar src[5];
+  int total = sizeof(cangjie) / (sizeof(jchar) * CANGJIE_COLUMN);
+  int count = 0;
+  int loop  = 0;
+  int i = 0;
+  int j = 0;
+  int found = 0;
+  int offset = 0;
+  int match = 0;
+  int count0 = 0, count1 = 0;
+
+  src[0] = key0;
+  src[1] = key1;
+  src[2] = key2;
+  src[3] = key3;
+  src[4] = key4;
+  
+  for (count0 = 0; count0 < total; count0++) {
+    if (cangjie[count0][0] != src[0]) { // First code does not matched, skip it
+      if (found == 1)
+	break;
+      continue;
+    }
+
+    match = 1;
+    for (count1 = 1; count1 < 5; count1++) {
+      if (src[count1] == 0)
+	break;
+      if (cangjie[count0][count1] == src[count1])
+	match = 1;
+      else {
+	match = 0;
+	break;
+      }
+    }
+    if (match != 0) {
+      loop++;
+    }
+
+    found = 1;
+  }
+
+  return (loop > 0) ? 1 : 0;
+}
+
 int cangjie_totalMatch(void)
 {
   return cangjie_func.mTotalMatch;
@@ -163,6 +210,7 @@ struct _input_method cangjie_func =
   .init            = cangjie_init,
   .maxKey          = cangjie_maxKey,
   .searchWord      = cangjie_searchWord,
+  .tryMatchWord    = cangjie_tryMatchWord,
   .totalMatch      = cangjie_totalMatch,
   .updateFrequency = cangjie_updateFrequency,
   .clearFrequency  = cangjie_clearFrequency,

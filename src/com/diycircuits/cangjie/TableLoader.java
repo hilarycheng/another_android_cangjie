@@ -12,6 +12,7 @@ public class TableLoader {
     public native int  updateFrequencyQuick(char ch);
     public native void setInputMethod(int im);
     public native void searchCangjie(char index0, char index1, char index2, char index3, char index4);
+    public native boolean tryMatchCangjie(char index0, char index1, char index2, char index3, char index4);
     public native int totalMatch();
     public native char getMatchChar(int index);
     public native void saveMatch();

@@ -253,9 +253,13 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			}
 		    } else if (sb.length() < keyLen && primaryKey >= (int) 'a' && primaryKey <= (int) 'z') {
 			user_input[sb.length()] = (char) primaryKey;
-			sb.append(single[primaryKey - 'a']);
-			getCurrentInputConnection().setComposingText(sb.toString(), 1);
-			match();
+			if (tryMatch()) {
+			    sb.append(single[primaryKey - 'a']);
+			    getCurrentInputConnection().setComposingText(sb.toString(), 1);
+			    match();
+			} else {
+			    user_input[sb.length()] = 0;
+			}
 		    }
 		}
 	}
@@ -307,6 +311,20 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    return imstring;
 	}
     
+        private boolean tryMatch() {
+	    if (mInputMethodState == CANGJIE) {
+		mTable.setInputMethod(TableLoader.CANGJIE);
+		return mTable.tryMatchCangjie(user_input[0], user_input[1], user_input[2], user_input[3], user_input[4]);
+	    }
+	    
+	    if (mInputMethodState == QUICK) {
+		mTable.setInputMethod(TableLoader.QUICK);
+		return mTable.tryMatchCangjie(user_input[0], user_input[1], user_input[2], user_input[3], user_input[4]);
+	    }
+
+	    return false;
+        }
+        
         private boolean match() {
 	    if (mInputMethodState == CANGJIE) {
 		// if (isHongKongCharEnabled()) 

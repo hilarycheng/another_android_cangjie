@@ -182,11 +182,17 @@ void quick_saveMatch(void)
   }
 }
 
+jboolean quick_tryMatchWord(jchar c0, jchar c1, jchar c2, jchar c3, jchar c4)
+{
+  return 1;
+}
+
 struct _input_method quick_func =
 {
   .init            = quick_init,
   .maxKey          = quick_maxKey,
   .searchWord      = quick_searchWord,
+  .tryMatchWord    = quick_tryMatchWord,
   .totalMatch      = quick_totalMatch,
   .updateFrequency = quick_updateFrequency,
   .clearFrequency  = quick_clearFrequency,

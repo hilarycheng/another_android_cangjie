@@ -76,6 +76,11 @@ void Java_com_diycircuits_cangjie_TableLoader_searchCangjie(JNIEnv* env, jobject
 {
   input_method[mCurrentIm]->searchWord(key0, key1, key2, key3, key4);
 }
+
+jboolean Java_com_diycircuits_cangjie_TableLoader_tryMatchCangjie(JNIEnv* env, jobject thiz, jchar key0, jchar key1, jchar key2, jchar key3, jchar key4)
+{
+  return input_method[mCurrentIm]->tryMatchWord(key0, key1, key2, key3, key4);
+}
  
 jint Java_com_diycircuits_cangjie_TableLoader_totalMatch(JNIEnv* env, jobject thiz)
 {
