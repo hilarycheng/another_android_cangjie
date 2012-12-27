@@ -37,18 +37,10 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         private int numberOfKey = 0;
         private StringBuffer sb = new StringBuffer();
         private char[] single  = new char[26];
-        private char[][] cangjie = new char[13167][6];
-        private char[][] cangjie_hk = new char[17578][6];
     
-        private char[][] quick = new char[21529][4];
-        private int[] quick_idx = new int[21529];
 
-        private int[] cangjie_char_idx = new int[26];
-        private int[] cangjie_hk_char_idx = new int[26];
-        private int[] quick_char_idx = new int[26];
         private char[] user_input = new char[5];
         private int totalMatch = 0;
-        private int[] matchCharIdx = new int[21529];
         private char matchChar[] = new char[21529];
         private StringBuffer commit = new StringBuffer();
         private int imeOptions = 0;
@@ -104,9 +96,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		for (int count = 0; count < 5; count++) {
 		    user_input[count] = 0;
 		}
-		for (int count = 0; count < matchCharIdx.length; count++) {
-		    matchCharIdx[count] = 0;
-		}
 		try {
 		    mTable.setPath(appInfo.dataDir.getBytes("UTF-8"));
 		} catch (UnsupportedEncodingException ex) {
@@ -156,82 +145,6 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    }
         }
 
-        // private void loadCangjieTable() {
-	//     try {
-	// 	InputStream is = getResources().openRawResource(R.raw.cj);
-	// 	InputStreamReader input = new InputStreamReader(is, "UTF-8");
-	// 	BufferedReader reader = new BufferedReader(input);
-	// 	String str = null;
-	// 	int count = 0, index = 0;
-	// 	char c = 'a';
-
-	// 	count = 0;
-	// 	do {
-	// 	    str = reader.readLine();
-	// 	    if (str == null)
-	// 		break;
-	// 	    index = str.indexOf('\t');
-	// 	    if (index > 0) {
-	// 		str.getChars(0, index, cangjie[count], 0);
-	// 		str.getChars(index + 1, index + 2, cangjie[count], 5);
-	// 		if (cangjie[count][0] == c) {
-	// 		    cangjie_char_idx[c - 'a'] = count;
-	// 		    c = (char) (c + 1);
-	// 		}
-
-	// 		if (Character.isLetter(cangjie[count][5])) {
-	// 		    count++;
-	// 		} else {
-	// 		    for (int column = 0; column < 6; column++) cangjie[count][column] = 0;
-	// 		}
-	// 	    }
-	// 	} while (str != null && count < cangjie.length);
-		    
-	// 	reader.close();
-
-	//     } catch (Exception ex) {
-	// 	ex.printStackTrace();
-	//     }
-        // }
-    
-        // private void loadCangjieHKTable() {
-	//     try {
-	// 	InputStream is = getResources().openRawResource(R.raw.cj_hk);
-	// 	InputStreamReader input = new InputStreamReader(is, "UTF-8");
-	// 	BufferedReader reader = new BufferedReader(input);
-	// 	String str = null;
-	// 	int count = 0, index = 0;
-	// 	char c = 'a';
-
-	// 	count = 0;
-	// 	do {
-	// 	    str = reader.readLine();
-	// 	    if (str == null)
-	// 		break;
-	// 	    index = str.indexOf('\t');
-	// 	    if (index > 0) {
-	// 		str.getChars(0, index, cangjie_hk[count], 0);
-	// 		str.getChars(index + 1, index + 2, cangjie_hk[count], 5);
-	// 		if (cangjie_hk[count][0] == c) {
-	// 		    cangjie_hk_char_idx[c - 'a'] = count;
-	// 		    c = (char) (c + 1);
-	// 		}
-
-	// 		if (Character.isLetter(cangjie_hk[count][5])) {
-	// 		    count++;
-	// 		} else {
-	// 		    for (int column = 0; column < 6; column++) cangjie_hk[count][column] = 0;
-	// 		}
-	// 	    }
-	// 	} while (str != null && count < cangjie_hk.length);
-		    
-	// 	reader.close();
-
-	//     } catch (Exception ex) {
-	// 	ex.printStackTrace();
-	//     }
-        // }
-    
         public void characterSelected(char c, int idx) {
 	    if (idx >= 0) mTable.updateFrequencyQuick(c);
 	    commit.setLength(0);
@@ -248,7 +161,7 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 	    totalMatch = 0;
 	    if (mTable != null) mTable.reset();
 	    commit.setLength(0);
-	    // getCurrentInputConnection().setComposingText("", 1);
+
 	    sb.setLength(0);
 	    for (int cc = 0; cc < user_input.length; cc++) {
 		user_input[cc] = 0;
@@ -413,68 +326,17 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
         }
         
         private boolean matchCangjieHongKong() {
-	    int i = cangjie_hk_char_idx[user_input[0] - 'a'];
-	    int j = 0;
-	    
-	    if (user_input[0] == 'z') j = cangjie_hk.length;
-	    else j = cangjie_hk_char_idx[user_input[0] - 'a' + 1];
+	    mTable.searchCangjie(user_input[0], user_input[1], user_input[2], user_input[3], user_input[4]);
 
-	    totalMatch = 0;
-	    for (int c = i; c < j; c++) {
-		if (sb.length() == 1) {
-		    matchChar[totalMatch] = cangjie_hk[c][5];
-		    matchCharIdx[totalMatch] = c;
-		    totalMatch++;
-		} else {
-		    int l = 1;
-		    for (int k = 1; k < 5; k++) {
-			if (user_input[k] == cangjie_hk[c][k] && user_input[k] != 0) {
-			    l++;
-			}
-		    }
-		    if (l == 5 || user_input[l] == 0) {
-		        matchChar[totalMatch] = cangjie_hk[c][5];
-			matchCharIdx[totalMatch] = c;
-			totalMatch++;
-		    }
-		}
+	    for (int count = 0; count < mTable.totalMatch(); count++) {
+		matchChar[count] = mTable.getMatchChar(count);
 	    }
-
-	    mSelect.updateMatch(matchChar, totalMatch);
+	    mSelect.updateMatch(matchChar, mTable.totalMatch());
 
 	    return true;
 	}
 
         private boolean matchCangjie() {
-	    // int i = cangjie_char_idx[user_input[0] - 'a'];
-	    // int j = 0;
-	    
-	    // if (user_input[0] == 'z') j = cangjie.length;
-	    // else j = cangjie_char_idx[user_input[0] - 'a' + 1];
-
-	    // totalMatch = 0;
-	    // for (int c = i; c < j; c++) {
-	    // 	if (sb.length() == 1) {
-	    // 	    matchChar[totalMatch] = cangjie[c][5];
-	    // 	    matchCharIdx[totalMatch] = c;
-	    // 	    totalMatch++;
-	    // 	} else {
-	    // 	    int l = 1;
-	    // 	    for (int k = 1; k < 5; k++) {
-	    // 		if (user_input[k] == cangjie[c][k] && user_input[k] != 0) {
-	    // 		    l++;
-	    // 		}
-	    // 	    }
-	    // 	    if (l == 5 || user_input[l] == 0) {
-	    // 	        matchChar[totalMatch] = cangjie[c][5];
-	    // 		matchCharIdx[totalMatch] = c;
-	    // 		totalMatch++;
-	    // 	    }
-	    // 	}
-	    // }
-
-	    // mSelect.updateMatch(matchChar, totalMatch);
-
 	    mTable.searchCangjie(user_input[0], user_input[1], user_input[2], user_input[3], user_input[4]);
 
 	    for (int count = 0; count < mTable.totalMatch(); count++) {
