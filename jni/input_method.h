@@ -10,7 +10,6 @@
 typedef enum {
   QUICK = 0,
   CANGJIE = 1,
-  CANGJIE_HK = 2
 } INPUT_METHOD;
 
 struct _input_method {

@@ -2,6 +2,13 @@
 #include <string.h>
 #include "cangjie_method.h"
 #include "cangjie.h"
+#ifndef X86
+#include <android/log.h>
+#define  LOG_TAG    "Cangjie"
+#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+#else
+#define  LOGE(...)
+#endif
 
 void cangjie_init(char *path)
 {
@@ -40,50 +47,63 @@ int cangjie_maxKey(void)
 
 void cangjie_searchWord(jchar key0, jchar key1, jchar key2, jchar key3, jchar key4)
 {
+  jchar src[5];
   int total = sizeof(cangjie) / (sizeof(jchar) * CANGJIE_COLUMN);
   int count = 0;
   int loop  = 0;
   int i = 0;
   int j = 0;
   int found = 0;
+  int offset = 0;
+  int match = 0;
+  int count0 = 0, count1 = 0;
 
+  src[0] = key0;
+  src[1] = key1;
+  src[2] = key2;
+  src[3] = key3;
+  src[4] = key4;
+  
   for (count = 0; count < sizeof(cangjie_index) / sizeof(jint); count++) {
     cangjie_index[count] = 0;
   }
 
-  for (count = 0; count < total; count++) {
-    if (key1 == 0) {
-      if (cangjie[count][0] == key0) {
-	cangjie_index[loop] = count;
-	loop++;
-	found = 1;
-      } else if (found) {
-      	break;
-      }
-    } else {
-      if (cangjie[count][0] == key0 && cangjie[count][1] == key1) {
-	cangjie_index[loop] = count;
-	loop++;
-	found = 1;
-      } else if (found) {
-      	break;
-      }
+  for (count0 = 0; count0 < total; count0++) {
+    if (cangjie[count0][0] != src[0]) { // First code does not matched, skip it
+      if (found == 1)
+	break;
+      continue;
     }
-  }
 
-  if (loop > 1) {
-    int swap = 1;
-    while (swap) {
-      swap = 0;
-      for (i = 0; i < loop - 1; i++) {
-	if (cangjie_frequency[cangjie_index[i]] < cangjie_frequency[cangjie_index[i + 1]]) {
-	  int temp = cangjie_index[i];
-	  cangjie_index[i] = cangjie_index[i + 1];
-	  cangjie_index[i + 1] = temp;
-	  swap = 1;
-	}
+    match = 1;
+    for (count1 = 1; count1 < 5; count1++) {
+      if (src[count1] == 0)
+	break;
+      if (cangjie[count0][count1] == src[count1])
+	match = 1;
+      else {
+	match = 0;
+	break;
       }
     }
+    /* LOGE("Cangjie : %02x %02x %02x %02x %02x, %02x %02x %02x %02x %02x, Match %d\n", */
+    /* 	 cangjie[count0][0], */
+    /* 	 cangjie[count0][1], */
+    /* 	 cangjie[count0][2], */
+    /* 	 cangjie[count0][3], */
+    /* 	 cangjie[count0][4], */
+    /* 	 key0, */
+    /* 	 key1, */
+    /* 	 key2, */
+    /* 	 key3, */
+    /* 	 key4, */
+    /* 	 match); */
+    if (match != 0) {
+      cangjie_index[loop] = count0;
+      loop++;
+    }
+
+    found = 1;
   }
 
   cangjie_func.mTotalMatch = loop;
@@ -119,7 +139,7 @@ jchar cangjie_getMatchChar(int index)
   if (index >= total) return 0;
   if (cangjie_index[index] < 0) return 0;
 
-  return cangjie[cangjie_index[index]][2];
+  return cangjie[cangjie_index[index]][5];
 }
 
 void cangjie_reset(void)

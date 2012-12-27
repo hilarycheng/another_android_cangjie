@@ -8,24 +8,13 @@
 
 #include "input_method.h"
 
-/* typedef enum { */
-/*   QUICK      = 0, */
-/*   CANGJIE    = 1, */
-/*   CANGJIE_HK = 2, */
-/* } INPUT_METHOD; */
-
 int mTotalMatch = 0;
 int mSaved = 0;
+int mCurrentIm = CANGJIE;
 char data_path[1024] = "0";
 char quick_data[1024] = "0";
 char cangjie_data[1024] = "0";
 char cangjie_hk_data[1024] = "0";
-INPUT_METHOD mInputMethod = CANGJIE;
-
-void Java_com_diycircuits_cangjie_TableLoader_setInputMethod(JNIEnv *env, jobject thiz, jint inputMethod)
-{
-  mInputMethod = inputMethod;
-}
 
 void Java_com_diycircuits_cangjie_TableLoader_setPath(JNIEnv *env, jobject thiz, jbyteArray path)
 {
@@ -42,11 +31,13 @@ void Java_com_diycircuits_cangjie_TableLoader_setPath(JNIEnv *env, jobject thiz,
 void Java_com_diycircuits_cangjie_TableLoader_initialize(JNIEnv* env, jobject thiz)
 {
   input_method[QUICK]->init(quick_data);  
+  input_method[CANGJIE]->init(quick_data);  
 }
 
 void Java_com_diycircuits_cangjie_TableLoader_reset(JNIEnv* env, jobject thiz)
 {
   input_method[QUICK]->reset();
+  input_method[CANGJIE]->reset();
 }
  
 jchar Java_com_diycircuits_cangjie_TableLoader_getChar(JNIEnv* env, jobject thiz)
@@ -76,33 +67,40 @@ jchar Java_com_diycircuits_cangjie_TableLoader_passCharArray(JNIEnv* env, jobjec
   return 0;
 }
 
-void Java_com_diycircuits_cangjie_TableLoader_searchQuick(JNIEnv* env, jobject thiz, jchar key0, jchar key1)
+void Java_com_diycircuits_cangjie_TableLoader_setInputMethod(JNIEnv* env, jobject thiz, jint im)
 {
-  input_method[QUICK]->searchWord(key0, key1, 0, 0, 0);
+  mCurrentIm = im;
+}
+ 
+void Java_com_diycircuits_cangjie_TableLoader_searchCangjie(JNIEnv* env, jobject thiz, jchar key0, jchar key1, jchar key2, jchar key3, jchar key4)
+{
+  input_method[mCurrentIm]->searchWord(key0, key1, key2, key3, key4);
 }
  
 jint Java_com_diycircuits_cangjie_TableLoader_totalMatch(JNIEnv* env, jobject thiz)
 {
-  return input_method[QUICK]->totalMatch();
+  return input_method[mCurrentIm]->totalMatch();
 }
  
 jchar Java_com_diycircuits_cangjie_TableLoader_getMatchChar(JNIEnv* env, jobject thiz, jint index)
 {
-  return input_method[QUICK]->getMatchChar(index);
+  return input_method[mCurrentIm]->getMatchChar(index);
 }
  
 jint Java_com_diycircuits_cangjie_TableLoader_updateFrequencyQuick(JNIEnv* env, jobject thiz, jchar ch)
 {
-  return input_method[QUICK]->updateFrequency(ch);
+  return input_method[mCurrentIm]->updateFrequency(ch);
 }
 			
 void Java_com_diycircuits_cangjie_TableLoader_saveMatch(JNIEnv* env, jobject thiz)
 {
   input_method[QUICK]->saveMatch();
+  input_method[CANGJIE]->saveMatch();
 }
 
 void Java_com_diycircuits_cangjie_TableLoader_clearAllFrequency(JNIEnv *env, jobject thiz)
 {
   input_method[QUICK]->clearFrequency();
+  input_method[CANGJIE]->clearFrequency();
 }
 
