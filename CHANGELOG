@@ -1,3 +1,8 @@
+v0.7.3.9 ChangeLog:
+- Adjust Key Height
+- Change the Cangjie into Native
+- If Cangjie Code is not available, ignore the latest key
+
 v0.7.3.8 ChangLog:
 - Fix the Key Detection Again
 - Extend the Height of the Candidate Selection Page
