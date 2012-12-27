@@ -124,23 +124,38 @@ public class Convert {
 	    ex.printStackTrace();
 	}
     }
+
+    public static class CangjieChar {
+	public char c;
+	public boolean hk;
+
+	public CangjieChar(char _c, boolean _h) { c = _c; hk = _h; }
+    }
     
     public static void convertCangjieHK() {
 	try {
-	    int totalCangjieColumn = 6;
-	    FileInputStream fis = new FileInputStream("../../res/raw/cj_hk");
+	    ArrayList<String> codeList = new ArrayList<String>();
+	    HashMap<String, ArrayList<CangjieChar>> codeMap = new HashMap<String, ArrayList<CangjieChar>>();
+	    int totalCangjieColumn = 7;
+	    FileInputStream fis = new FileInputStream("cangjie3.txt");
 	    InputStreamReader input = new InputStreamReader(fis, "UTF-8");
 	    BufferedReader reader = new BufferedReader(input);
 	    String str = null;
 	    int index = 0;
 	    int total = 0;
 	    char column[] = new char[5];
-	    System.out.println("#define CANGJIE_HK_COLUMN " + totalCangjieColumn);
-	    System.out.println("const jchar cangjie_hk[][CANGJIE_HK_COLUMN] = {");
+	    boolean hkchar = false;
+
+	    System.out.println("#define CANGJIE_COLUMN " + totalCangjieColumn);
+	    System.out.println("const jchar cangjie[][CANGJIE_COLUMN] = {");
 	    do {
 		str = reader.readLine();
 		if (str == null)
 		    break;
+		if (str.compareTo("#####") == 0) {
+		    hkchar = true;
+		    continue;
+		}
 		index = str.indexOf('\t');
 		if (index < 0) index = str.indexOf(' ');
 		if (index > 0) {
@@ -151,26 +166,57 @@ public class Convert {
 			type == Character.DASH_PUNCTUATION  || type == Character.CONNECTOR_PUNCTUATION ||
 			type == Character.OTHER_SYMBOL      || type == Character.INITIAL_QUOTE_PUNCTUATION ||
 			type == Character.FINAL_QUOTE_PUNCTUATION || type == Character.SPACE_SEPARATOR) {
-			System.out.print("\t { ");
-			for (int count = 0; count < 5; count++) {
-			    if (count < index) {
-				column[count] = str.charAt(count);
-				if (column[count] < 'a' || column[count] > 'z') column[count] = 0;
-				if (((int) column[count]) >= 10 || ((int) column[count]) <= 99) System.out.print(' ');
-				if (((int) column[count]) <= 9) System.out.print(' ');
-				System.out.print(((int)	column[count]));
-			    } else {
-				System.out.print("  0");
-			    }
-			    System.out.print(", ");
+			// System.out.print("\t { ");
+			// for (int count = 0; count < 5; count++) {
+			//     if (count < index) {
+			// 	column[count] = str.charAt(count);
+			// 	if (column[count] < 'a' || column[count] > 'z') column[count] = 0;
+			// 	if (((int) column[count]) >= 10 || ((int) column[count]) <= 99) System.out.print(' ');
+			// 	if (((int) column[count]) <= 9) System.out.print(' ');
+			// 	System.out.print(((int)	column[count]));
+			//     } else {
+			// 	System.out.print("  0");
+			//     }
+			//     System.out.print(", ");
+			// }
+			// System.out.println((int) str.charAt(index + 1) + " }, ");
+
+			String cangjie = str.substring(0, index).trim();
+			char   ch      = str.charAt(index + 1);
+			if (!codeList.contains(cangjie)) codeList.add(cangjie);
+			ArrayList<CangjieChar> list = null;
+			if (codeMap.containsKey(cangjie)) {
+			    list = codeMap.get(cangjie);
+			} else {
+			    list = new ArrayList<CangjieChar>();
 			}
-			System.out.println((int) str.charAt(index + 1) + " }, ");
+			CangjieChar cc = new CangjieChar(ch, hkchar);
+			list.add(cc);
+			codeMap.put(cangjie, list);
+
 			total++;
 		    } else {
 			System.err.println("Character Not Found : " + str.charAt(index + 1) + " " + Character.getType(str.charAt(index + 1)));
 		    }
 		}
 	    } while (str != null);
+
+	    Collections.sort(codeList);
+
+	    for (int count0 = 0; count0 < codeList.size(); count0++) {
+		String _str = codeList.get(count0);
+		ArrayList<CangjieChar> ca = codeMap.get(_str);
+		for (int count1 = 0; count1 < ca.size(); count1++) {
+		    for (int count2 = 0; count2 < 5; count2++) {
+			if (count2 < _str.length()) 
+			    System.out.print("'" + _str.charAt(count2) + "', ");
+			else
+			    System.out.print("  0, ");
+		    }
+		    System.out.println(((int) ca.get(count1).c) + ", " + (ca.get(count1).hk ? 1 : 0) + ", ");
+		}
+	    }
+
 	    System.out.println("};");
 	    System.out.println("jint cangjie_hk_index[" + total + "];");
 	    System.out.println("jint cangjie_hk_frequency[" + total + "];");
@@ -183,14 +229,18 @@ public class Convert {
     }
     
     public static void main(String args[]) {
-	// System.out.println(args.length);
+
+	System.err.println("Compare " + "a".compareTo("abc"));
+	System.err.println("Compare " + "abc".compareTo("ab"));
+	System.err.println("Compare " + "az".compareTo("abcd"));
+	System.err.println("Compare " + "z".compareTo("abcd"));
+
 	if (args.length != 1) return;
 	if (args[0].compareTo("0") == 0)
 	    Convert.convertQuick();
 	if (args[0].compareTo("1") == 0)
-	    Convert.convertCangjie();
-	if (args[0].compareTo("2") == 0)
 	    Convert.convertCangjieHK();
+
     }
 
 }
