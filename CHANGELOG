@@ -1,3 +1,7 @@
+v0.7.3.10 ChangeLog:
+- Fix the Delete Key for Whatsapp Emoji
+- Lower the API version requirement.
+
 v0.7.3.9 ChangeLog:
 - Adjust Key Height
 - Change the Cangjie into Native
