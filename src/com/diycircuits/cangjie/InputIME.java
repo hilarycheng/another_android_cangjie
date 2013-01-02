@@ -2,6 +2,7 @@ package com.diycircuits.cangjie;
 
 import java.io.*;
 import java.util.*;
+import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.content.Context;
 import android.inputmethodservice.InputMethodService;
@@ -171,6 +172,14 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 		mSelect.closePopup();
 	    }
         }
+
+        private void simulateKeyEventDownUp(int keyCode) {
+	    InputConnection ic = getCurrentInputConnection();
+	    if (null == ic) return;
+
+	    ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, keyCode));
+	    ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, keyCode));
+	}
     
 	@Override
 	public void onKey(int _primaryKey, int[] keyCode) {
@@ -213,7 +222,9 @@ public class InputIME extends InputMethodService implements KeyboardView.OnKeybo
 			    getCurrentInputConnection().setSelection(mLastSelectionEnd, mLastSelectionEnd);
 			    getCurrentInputConnection().deleteSurroundingText(lengthToDelete, 0);
 			} else {
-			    getCurrentInputConnection().deleteSurroundingText(1, 0);
+			    // Needs to do compatible for old application
+			    // getCurrentInputConnection().deleteSurroundingText(1, 0);
+			    simulateKeyEventDownUp(KeyEvent.KEYCODE_DEL);
 			    mSelect.updateMatch(null, 0);
 			}
 		    }
