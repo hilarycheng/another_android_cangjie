@@ -134,6 +134,7 @@ public class Convert {
     
     public static void convertCangjieHK() {
 	try {
+	    Font font = new Font("Droid Sans Fallback", 16, Font.PLAIN);
 	    ArrayList<String> codeList = new ArrayList<String>();
 	    HashMap<String, ArrayList<CangjieChar>> codeMap = new HashMap<String, ArrayList<CangjieChar>>();
 	    int totalCangjieColumn = 7;
@@ -158,7 +159,7 @@ public class Convert {
 		}
 		index = str.indexOf('\t');
 		if (index < 0) index = str.indexOf(' ');
-		if (index > 0) {
+		if (index > 0 && font.canDisplay(str.charAt(index + 1))) {
 		    int type = Character.getType(str.charAt(index + 1));
 		    if (Character.isLetter(str.charAt(index + 1)) ||
 			type == Character.START_PUNCTUATION || type == Character.END_PUNCTUATION ||
@@ -218,8 +219,8 @@ public class Convert {
 	    }
 
 	    System.out.println("};");
-	    System.out.println("jint cangjie_hk_index[" + total + "];");
-	    System.out.println("jint cangjie_hk_frequency[" + total + "];");
+	    System.out.println("jint cangjie_index[" + total + "];");
+	    System.out.println("jint cangjie_frequency[" + total + "];");
 	    reader.close();
 	    input.close();
 	    fis.close();
