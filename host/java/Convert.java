@@ -137,7 +137,7 @@ public class Convert {
 	    Font font = new Font("Droid Sans Fallback", 16, Font.PLAIN);
 	    ArrayList<String> codeList = new ArrayList<String>();
 	    HashMap<String, ArrayList<CangjieChar>> codeMap = new HashMap<String, ArrayList<CangjieChar>>();
-	    int totalCangjieColumn = 7;
+	    int totalCangjieColumn = 8;
 	    FileInputStream fis = new FileInputStream("cangjie3.txt");
 	    InputStreamReader input = new InputStreamReader(fis, "UTF-8");
 	    BufferedReader reader = new BufferedReader(input);
@@ -146,7 +146,10 @@ public class Convert {
 	    int total = 0;
 	    char column[] = new char[5];
 	    boolean hkchar = false;
+	    int counter[] = new int[26];
 
+	    for (int count = 0; count < counter.length; count++) counter[count] = 0;
+	    
 	    System.out.println("#define CANGJIE_COLUMN " + totalCangjieColumn);
 	    System.out.println("const jchar cangjie[][CANGJIE_COLUMN] = {");
 	    do {
@@ -183,6 +186,7 @@ public class Convert {
 			// System.out.println((int) str.charAt(index + 1) + " }, ");
 
 			String cangjie = str.substring(0, index).trim();
+
 			char   ch      = str.charAt(index + 1);
 			if (!codeList.contains(cangjie)) codeList.add(cangjie);
 			ArrayList<CangjieChar> list = null;
@@ -195,7 +199,7 @@ public class Convert {
 			list.add(cc);
 			codeMap.put(cangjie, list);
 
-			total++;
+			// total++;
 		    } else {
 			System.err.println("Character Not Found : " + str.charAt(index + 1) + " " + Character.getType(str.charAt(index + 1)));
 		    }
@@ -204,21 +208,39 @@ public class Convert {
 
 	    Collections.sort(codeList);
 
+	    total = 0;
 	    for (int count0 = 0; count0 < codeList.size(); count0++) {
 		String _str = codeList.get(count0);
 		ArrayList<CangjieChar> ca = codeMap.get(_str);
 		for (int count1 = 0; count1 < ca.size(); count1++) {
+
+		    int i = _str.charAt(0) - 'a';
+		    counter[i]++;
+		    total++;
+			
+		    int l = 0;
 		    for (int count2 = 0; count2 < 5; count2++) {
-			if (count2 < _str.length()) 
+			if (count2 < _str.length()) {
+			    l = count2;
 			    System.out.print("'" + _str.charAt(count2) + "', ");
-			else
+			} else {
 			    System.out.print("  0, ");
+			}
 		    }
-		    System.out.println(((int) ca.get(count1).c) + ", " + (ca.get(count1).hk ? 1 : 0) + ", ");
+		    System.out.println(((int) ca.get(count1).c) + ", " + (ca.get(count1).hk ? 1 : 0) + ", " + (l + 1) + ", ");
 		}
 	    }
 
 	    System.out.println("};");
+
+	    int offset = 0;
+	    System.out.println("jint cangjie_code_index[26][2] = {");
+	    for (int count0 = 0; count0 < counter.length; count0++) {
+		System.out.println("{ " + offset + "," + counter[count0] + " },");
+		offset += counter[count0];
+	    }
+	    System.out.println("};");
+	    
 	    System.out.println("jint cangjie_index[" + total + "];");
 	    System.out.println("jint cangjie_frequency[" + total + "];");
 	    reader.close();
