@@ -250,6 +250,60 @@ public class Convert {
 	    ex.printStackTrace();
 	}
     }
+
+    public static void convertStroke() {
+	try {
+	    FileInputStream fis = new FileInputStream("StrokeOrder.sql");
+	    InputStreamReader input = new InputStreamReader(fis, "UTF-8");
+	    BufferedReader reader = new BufferedReader(input);
+
+	    String line = null;
+	    int total = 0, max = 0;
+	    do {
+		line = reader.readLine();
+		if (line == null)
+		    continue;
+		if (!line.startsWith("INSERT INTO StrokeOrder"))
+		    continue;
+		line = line.substring(62);
+		if (line.length() < 3)
+		    continue;
+		line = line.substring(0, line.length() - 2);
+		StringTokenizer token = new StringTokenizer(line, ",");
+		if (token.countTokens() != 3)
+		    continue;
+		String stroke = token.nextToken();
+		String ch     = token.nextToken();
+
+		if (!ch.startsWith("'") || !ch.endsWith("'"))
+		    continue;
+
+		if (!stroke.startsWith("'") || !stroke.endsWith("'"))
+		    continue;
+
+		byte[] b = ch.substring(1, 2).getBytes("BIG5");
+		if (b.length != 2)
+		    continue;
+
+		if (stroke.compareTo("'6'") == 0 ||
+		    stroke.compareTo("'7'") == 0)
+		    continue;
+
+		stroke = stroke.substring(1, stroke.length() - 1);
+		ch     = ch.substring(1, 2);
+
+		if (stroke.length() > max) max = stroke.length();
+
+		// System.out.println(total + " " + stroke + " " + ch + " " + b.length + " " + ch + " " + b[0]);
+
+		total++;
+	    } while (line != null);
+
+	    System.out.println("Max " + max);
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
     
     public static void main(String args[]) {
 
@@ -263,6 +317,8 @@ public class Convert {
 	    Convert.convertQuick();
 	if (args[0].compareTo("1") == 0)
 	    Convert.convertCangjieHK();
+	if (args[0].compareTo("2") == 0)
+	    Convert.convertStroke();
 
     }
 
