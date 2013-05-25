@@ -257,6 +257,8 @@ public class Convert {
 	    InputStreamReader input = new InputStreamReader(fis, "UTF-8");
 	    BufferedReader reader = new BufferedReader(input);
 
+	    HashMap<String, String> mapping = new HashMap<String, String>();
+	    ArrayList<String> order = new ArrayList<String>();
 	    String line = null;
 	    int total = 0, max = 0;
 	    do {
@@ -294,12 +296,39 @@ public class Convert {
 
 		if (stroke.length() > max) max = stroke.length();
 
+		if (mapping.containsKey(stroke)) {
+		    mapping.put(stroke, mapping.get(stroke) + ch);
+		} else {
+		    mapping.put(stroke, ch);
+		}
+
+		if (!order.contains(stroke)) order.add(stroke);
 		// System.out.println(total + " " + stroke + " " + ch + " " + b.length + " " + ch + " " + b[0]);
 
 		total++;
 	    } while (line != null);
 
-	    System.out.println("Max " + max);
+	    int allkey = 0;
+	    System.out.println("struct STROKE_ORDER {");
+	    System.out.println("char stroke[" + (max + 1) + "];");
+	    System.out.println("int ch;");
+	    System.out.println("int num;");
+	    System.out.println("} stroke[] = {");
+	    for (int count = 0; count < order.size(); count++) {
+		String ch = mapping.get(order.get(count));
+		for (int count0 = 0; count0 < ch.length(); count0++) {
+		    System.out.print(" { \"" + order.get(count) + "\", ");
+		    System.out.print((int) ch.charAt(count0));
+		    System.out.print(", ");
+		    System.out.print(order.get(count).length());
+		    System.out.println(" },");
+		    allkey++;
+		}
+	    }
+	    System.out.println("};");
+
+	    System.out.println("#define STROKE_MAXKEY " + max);
+	    System.out.println("#define STROKE_TOTAL " + allkey);
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
