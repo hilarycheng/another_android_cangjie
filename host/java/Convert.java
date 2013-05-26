@@ -253,6 +253,7 @@ public class Convert {
 
     public static void convertStroke() {
 	try {
+	    StringBuffer sb = new StringBuffer();
 	    FileInputStream fis = new FileInputStream("StrokeOrder.sql");
 	    InputStreamReader input = new InputStreamReader(fis, "UTF-8");
 	    BufferedReader reader = new BufferedReader(input);
@@ -309,24 +310,64 @@ public class Convert {
 	    } while (line != null);
 
 	    int allkey = 0;
+	    int lastKey = 0;
+	    int[] first_index = new int[5];
+	    int[] first_count = new int[5];
+	    int _max = ((max & ~0x01) + ((max & 0x01) << 1)) >> 1;
+	    for (int count = 0; count < 5; count++) first_count[count] = 0;
 	    System.out.println("struct STROKE_ORDER {");
-	    System.out.println("char stroke[" + (max + 1) + "];");
+	    System.out.println("char stroke[" + (_max + 1) + "];");
 	    System.out.println("int ch;");
 	    System.out.println("int num;");
 	    System.out.println("} stroke[] = {");
 	    for (int count = 0; count < order.size(); count++) {
 		String ch = mapping.get(order.get(count));
 		for (int count0 = 0; count0 < ch.length(); count0++) {
-		    System.out.print(" { \"" + order.get(count) + "\", ");
+		    if (lastKey != order.get(count).charAt(0)) {
+			lastKey = order.get(count).charAt(0);
+			System.err.println("Last Key " + lastKey + " " + count);
+			if (lastKey == '1')
+			    first_index[lastKey - '1'] = 0;
+			else
+			    first_index[lastKey - '1'] = first_count[lastKey - '1' - 1] + first_index[lastKey - '1' - 1];
+		    }
+		    sb.setLength(0);
+		    String key = order.get(count);
+		    int keylen = key.length();
+		    keylen = (keylen & ~0x01) + ((keylen & 1) << 1);
+		    char pair = 0;
+		    for (int count1 = 0; count1 < keylen; count1++) {
+			pair = (char) (pair << 4);
+			if (count1 < key.length()) {
+			    if (key.charAt(count1) < '1' || key.charAt(count1) > '5')
+				continue;
+			    char c = key.charAt(count1);
+			    pair = (char) (pair | (char) (c - '0'));
+			    if ((count1 & 0x01) == 0)
+				continue;
+			}
+			sb.append("\\x");
+			sb.append(Integer.toHexString((int) pair));
+			pair = 0;
+		    }
+		    System.out.print(" { \"" + sb.toString() + "\", ");
 		    System.out.print((int) ch.charAt(count0));
 		    System.out.print(", ");
 		    System.out.print(order.get(count).length());
 		    System.out.println(" },");
 		    allkey++;
 		}
+		first_count[lastKey - '1'] += ch.length();
 	    }
 	    System.out.println("};");
 
+	    System.out.println("struct STROKE_MAP {\nint index;\nint count;\n} stroke_map[5] = {");
+	    for (int count = 0; count < 5; count++) {
+		System.out.println("{ " + first_index[count] + ", " + first_count[count] + " },");
+	    }
+	    System.out.println("};");
+
+	    max = ((max & ~0x01) + ((max & 0x01) << 1)) >> 1;
 	    System.out.println("#define STROKE_MAXKEY " + max);
 	    System.out.println("#define STROKE_TOTAL " + allkey);
 	} catch (Exception ex) {
