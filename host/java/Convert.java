@@ -253,6 +253,7 @@ public class Convert {
 
     public static void convertStroke() {
 	try {
+	    Font font = new Font("Droid Sans Fallback", 16, Font.PLAIN);
 	    StringBuffer sb = new StringBuffer();
 	    FileInputStream fis = new FileInputStream("StrokeOrder.sql");
 	    InputStreamReader input = new InputStreamReader(fis, "UTF-8");
@@ -284,8 +285,11 @@ public class Convert {
 		if (!stroke.startsWith("'") || !stroke.endsWith("'"))
 		    continue;
 
-		byte[] b = ch.substring(1, 2).getBytes("BIG5");
+		byte[] b = ch.substring(1, 2).getBytes("Big5-HKSCS");
 		if (b.length != 2)
+		    continue;
+
+		if (!font.canDisplay(ch.substring(1, 2).charAt(0)))
 		    continue;
 
 		if (stroke.compareTo("'6'") == 0 ||
