@@ -505,7 +505,9 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1122132515','匿'
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('11221325154544','慝',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('11222','刊',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1122324111213215115','匶',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('112251454','适',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('11225221','盂',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1122551','邢',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1123134','攼',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('11232511154444','鳱',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('11234','未',500);
@@ -643,6 +645,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12111212511','掅
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121112154','拭',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1211121554234','塐',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1211122125121','搆',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121112251','括',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12111234','抹',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12111234','抺',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121112343534','款',500);
@@ -1160,6 +1163,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12113543','拢',5
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12113544','坺',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12113544','拔',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1211355','扼',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12113553','拋',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121135543','城',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12113554325221','墭',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12114312','坪',500);
@@ -1617,6 +1621,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12132344135112251
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1213234512115154','赮',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121323452','郝',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12132345254','赧',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1213234551','郝',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12132411121','堆',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12132411121','推',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121324111212525','擕',500);
@@ -1646,6 +1651,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121325114334','�
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121325114444','煮',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121325115','乽',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1213251152','都',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12132511552','都',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12132511541541','翥',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1213251154444','塢',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1213251154444','摀',500);
@@ -1719,6 +1725,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121341213542511',
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121341213543112','摰',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1213412135435','勢',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121341213544444','熱',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1213412135453','勢',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1213412143344334','燅',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12134121454','逵',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121341251','垥',500);
@@ -1869,6 +1876,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1213544544','恐'
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1213545252','捣',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1213545325121','塯',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121354554234','絷',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121355','扔',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1213551','坞',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121355112','埩',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121355112','挣',500);
@@ -2230,6 +2238,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121525341','拯',
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1215254','报',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121525454','逇',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12153','扔',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12153','功',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121531234','垜',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121531234','挅',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12153234454','逺',500);
@@ -2285,6 +2294,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1215452','抒',50
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121545231234','揉',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121545254','叝',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1215453','刧',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1215453','劫',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12154534','刼',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1215454','',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1215454541234','搡',500);
@@ -2310,6 +2320,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12155435','坳',5
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12155435','拗',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121554444355215','撧',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1215545','抝',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12155453','拗',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12155525111234','摷',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121555254315445445','擸',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('121555325431','堖',500);
@@ -2453,6 +2464,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('122115','芌',500
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1221152','苇',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1221152','邯',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1221154','芸',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12211551','邯',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12212','艼',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('122121','芏',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1221211134','荴',500);
@@ -2550,6 +2562,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1221251112135','�
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('122125111213534','歏',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12212511121354544','懃',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1221251112152','鄞',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1221251112153','勤',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12212511123312','蔪',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1221251112454','蓮',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1221251112523554554234','蘻',500);
@@ -2648,6 +2661,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1221251125121','�
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1221251125152','靷',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12212511251554','鞃',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1221251125215','靶',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12212511253','勒',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12212511253251','鞀',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12212511253254','鞁',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('122125112534','靭',500);
@@ -2754,6 +2768,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('122134425221','�
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('122134454','荙',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('122134515','巷',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('122134543','荗',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('122135113134','散',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12213513125125543','藏',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('122135333412132511','藸',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('122135333431121','蕤',500);
@@ -4695,6 +4710,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('124552135','勃',
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('124552135451','鹁',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1245521354544','愂',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('124552152','郣',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('124552153','勃',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1245554234','索',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1251','五',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12511','巨',500);
@@ -5181,6 +5197,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('125351154545454',
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12535115542511','酳',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('125351454','迺',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12535154','廼',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('12535353','協',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1254','支',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1254125441352211535','麗',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('125412544135221153532511154444','鸝',500);
@@ -5207,6 +5224,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1255','丏',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('13','丆',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('13','厂',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('13','',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1311121116','匪',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('13112','厈',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('131121353134','厫',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1311345','医',500);
@@ -5275,6 +5293,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('131543','戌',500
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('132','丌',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('132','廾',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1321112111','厞',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('13211225112521453','勵',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('13211234543','戚',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('13211234543132511134','顣',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('132112345432512134','蹙',500);
@@ -5857,6 +5876,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('13533345215','豝
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('13533434','豖',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1353343422','剢',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('135335','匢',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('13534','戊',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1353432','尬',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('13535','劢',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('135351355','卼',500);
@@ -5962,6 +5982,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1355132511134','�
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1355132534','顾',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('135531234','尮',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('135532511154444','鴄',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('135534','成',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('135543','成',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('13554325221','盛',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('13554352','郕',500);
@@ -6029,6 +6050,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('14524444251251251
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1452444425125125152','酃',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('14524444251251251531','孁',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1452444425134','雵',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1452444431112111','霏',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('145244443115','雮',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('14524444312154','霆',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('145244443155144','霉',500);
@@ -6179,6 +6201,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1523435451','鸫'
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1523454','迓',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('152352','邪',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('15235451','',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1523551','邪',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1525','屯',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1525132511134','頓',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1525132534','顿',500);
@@ -6189,6 +6212,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('152552','邨',500
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('153134','攷',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('153135','尧',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('153135541541','翘',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('15341534','戔',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1535','兂',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1535','旡',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1535','比',500);
@@ -6255,6 +6279,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('15551213251115444
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('155512135','勁',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('15551214154325','巰',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('1555121454','逕',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('155512153','勁',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2','丨',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2','亅',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('21','丄',500);
@@ -6453,6 +6478,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('21122511121124','
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2112251112211154','蕞',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('21122511122112','蓽',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('21122511134','莫',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2112251113453','募',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('21122511135','莧',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2112251122111','葺',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2112251122111543','蕺',500);
@@ -6473,6 +6499,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2112251251','茼'
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2112251251','莒',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2112251251115','萼',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('21122512512511123312','蘄',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('21122512513241112153','勸',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('211225134','英',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2112251341','茵',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('21122522112132511','薯',500);
@@ -6483,6 +6510,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2112252511','茴'
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('211225312341','菌',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('21122534','芮',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('211225525251','萵',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('211231112111','菲',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2112311222214444','蕪',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2112311234','茱',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('21123113432411121','薙',500);
@@ -6980,6 +7008,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('23433115','毟',5
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('234335','劣',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2344','尐',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2344','',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('234353','劣',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('235','凣',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('23511','归',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('24','卜',500);
@@ -7719,8 +7748,10 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25111341351312512
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251113414431','睑',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251113415','盻',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25111341534','眺',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251113415341534','賤',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25111341543','戝',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251113415431543','賤',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251113421111534','賬',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251113421251','貼',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251113422','則',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2511134224314311134','贌',500);
@@ -7874,6 +7905,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251115154334','�
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25111521325111','睸',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251115234','県',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25111525','旽',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2511153','助',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2511153135','晓',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2511153251','眧',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25111535','昆',500);
@@ -8720,6 +8752,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25121251212512145
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251212512125121554234','纍',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512125132541','園',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512125151454','遣',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25121252511551','鄙',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251212534','贵',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251212534454','遗',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25121312511121','畽',500);
@@ -8752,6 +8785,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512141121','蚟'
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25121411212511','蜻',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251214112155144','蝳',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512141121554234','螦',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251214112251','蛞',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512141132','蚈',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512141134','蚨',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512141135','蚖',500);
@@ -8895,6 +8929,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25121425112522154
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25121425113533','蜴',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251214251135345','蝎',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512142511353453534','蠍',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512142511521211511','蠅',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512142512','蚛',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25121425121','蚰',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25121425121','蚺',500);
@@ -8904,6 +8939,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25121425121425121
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25121425121425121425221','蠱',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25121425121554234','螺',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251214251221','蛐',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251214251225251','蝸',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512142512511','蜎',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25121425125115','蝇',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25121425125115431','蟈',500);
@@ -9172,6 +9208,27 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512432534','唢'
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25124345251121','嘡',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512434525125121','噹',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25124345251352511','嚐',500);
+INSERT into Strokeorder (Strokes,Character,Frequency) VALUES ('2512452511','骨',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512452511121121121135','髐',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512452511122135435132','髒',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251245251112251','骷',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25124525111251124124','髆',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25124525111251134','骾',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512452511131212511454','髓',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512452511134115','骻',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251245251125111234','髁',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251245251125112512531','髏',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25124525112512211251431','體',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25124525112522135251214','髑',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251245251132511312','髀',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512452511354','骫',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512452511354251','骼',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25124525113554','骰',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25124525114135','骯',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512452511415334','骸',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251245251144512332511134','髕',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512452511445354251','髂',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251245251153254','骳',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2512454','迚',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25124544','忠',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251251','吅',500);
@@ -9318,6 +9375,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25125431211444412
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25125431211444421251','嚸',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25125525251','喎',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251255452511','嗗',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25131112111','啡',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2513112','吘',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2513112','吽',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251311212','哖',500);
@@ -9611,6 +9669,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2515121','吜',50
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25151221113134','噉',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25151251','呞',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25151312251','啹',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25151315','呢',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251513154121','喔',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251513241342522135251214','囑',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2515132514143112','噼',500);
@@ -9641,6 +9700,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251525','吔',500
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2515251','囤',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25153','叧',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25153','叨',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25153','叻',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25153154','呶',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('251534','吸',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25154','叹',500);
@@ -9812,6 +9872,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25221','冊',500)
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25221','皿',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25221','罒',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2522111','囬',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25221111534','帳',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('252211124','峠',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('2522111454','逥',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('252211154','廽',500);
@@ -10401,6 +10462,9 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('25545251154154134
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('255455452','幽',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3','丿',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31','',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31112111','非',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('311121114134','斐',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31112111541541','翡',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31115','钅',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31115111253134','锲',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('311151113124','铸',500);
@@ -10680,6 +10744,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3112153534','欫'
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31121543','牫',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31121555121','牼',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31122121','垂',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('312121211551','郵',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('311221211554','甀',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3112212152','郵',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('311221234','乗',500);
@@ -10803,6 +10868,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31134432524312511
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31134454','迭',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('311344544','怣',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('311345152','矧',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3113551','邦',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3115','毛',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3115','气',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('311511212511','氰',500);
@@ -10927,6 +10993,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31234','禾',500)
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31234111253134','稧',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31234112','秆',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3123411212511134','積',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31234112251','秳',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3123411234','秣',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('312341154','秐',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31234121121121135','穘',500);
@@ -11168,8 +11235,10 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31251112125342511
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31251112135','動',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('312511121354444','勲',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('312511121354544','憅',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31251112153','動',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('312511354','复',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31251255154444','熈',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3125431121444453','勳',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31254312114444','熏',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3125431211444435','勳',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('313121','圱',500);
@@ -11299,6 +11368,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31431414524444324
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('314314145244443241112132411121','籱',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31431415112134','箑',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3143141523','笌',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('31431415341534','箋',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3143141535','笓',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('314314153512','筚',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('314314153515352511','簪',500);
@@ -11688,6 +11758,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3212151211251124'
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3212151335','屔',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3212152','邱',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3212154','佉',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('32121551','邱',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3212155121','俹',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('32121551214544','僫',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3212211','佄',500);
@@ -11824,6 +11895,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('321511132','舁',
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('321511154444','舃',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3215112134','倢',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3215112512135','舅',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3215112512153','舅',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('321511252','帠',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('321511254','叟',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('321511254454','遚',500);
@@ -12196,6 +12268,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('32354333','俢',5
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('32354354','侈',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3235444','佟',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3235445411234','傺',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('32355','仍',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3235511','',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3235515','佨',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('323552','仰',500);
@@ -12649,6 +12722,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('325434354','俊',
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('325452','伃',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('32545232534251','僪',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3254545434333','傪',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3255144','侮',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('32554554134543','僟',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('32555254315445445','儠',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('33','',500);
@@ -13135,6 +13209,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('34112431151534','
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('341124311523','釾',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('34112431152352','鋣',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('341124311525','鈍',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3411243115341534','錢',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('341124311535','鈚',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('34112431153515352511','鐕',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('34112431153532511','鍇',500);
@@ -13743,6 +13818,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('341534132511134',
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3415342511135','覜',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('34153432511154444','鴵',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('341534454','逃',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('34154544','念',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('342','个',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('342121','企',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3422','刈',500);
@@ -14207,6 +14283,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35111535','肶',5
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3511154121','胵',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35111555121','脛',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35112','用',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('351121111534','脹',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('351121112111','腓',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('351121124','胩',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('351121251','胋',500);
@@ -14394,6 +14471,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('351143113435','�
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('351143113435251211','',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('351143113435251214444','鰧',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35114311344111251','謄',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('351143113453','勝',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3511431134531','媵',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('351143113455','腃',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3511431134551','腾',500);
@@ -14443,6 +14521,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('351152252','朏',
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3511525','肔',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35115254','服',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3511525432511154444','鵩',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('351153','肋',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3511531','肗',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3511533','肠',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3511534','肕',500);
@@ -14495,6 +14574,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('351355132511134',
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3514312','匉',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3515','氏',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('351512','氒',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35151551','邸',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35152','印',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35152511','昏',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3515252','帋',500);
@@ -14933,6 +15013,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35251354325111544
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35251354354','够',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35251354454','逸',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3525135451','鸲',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('352513553','勉',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35251413534','袈',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35251454','迦',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('352515','乫',500);
@@ -15400,6 +15481,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3545535451','鸳'
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('354554544','怨',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('355','劜',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('355','饣',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('355','乃',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3551','乌',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35511','刍',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('355112','争',500);
@@ -15435,6 +15517,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35523355233251115
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('355233552352','鄒',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('355233552353254','皺',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('3552454','迎',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('355521','孕',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35525111234','馃',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35525111535','馄',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('35525112522154','馒',500);
@@ -15498,6 +15581,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41112511121353134
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('411125111213534','諘',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4111251112154','試',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41112511122125121','講',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4111251112251','話',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4111251113112','詽',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41112511132','訮',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41112511132543','誡',500);
@@ -15707,6 +15791,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41112513412524312
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('411125134132511','誵',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4111251341525221','諡',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4111251341534','誂',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('411125134154544','諗',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41112513425135','說',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4111251343123425121','譒',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('411125134333','診',500);
@@ -16005,6 +16090,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4125152135451','�
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4125152143251112','亸',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4125152152','郭',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4125152153534','裛',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41251521551','郭',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41251524444','烹',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41252','市',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('412521251431','凒',500);
@@ -16042,6 +16128,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4131215425221','�
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4131221111121122522114544','廳',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41312211113252214544','廰',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('413122111343312','廝',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('413122112512134551 ','鄺',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41312212511','庴',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41312212511121','廑',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41312212512134','廣',500);
@@ -16286,6 +16373,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4134125251131234'
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4134125342534531','瘿',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41341254312114444121','癦',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4134125525251','瘑',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4134131112111','痱',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4134131125222','痸',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4134131134','疾',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4134131134251','痴',500);
@@ -16460,6 +16548,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41343432511154444
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41343435','効',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41343435451','',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41343452','郊',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('413434551','郊',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4134425125431234','斓',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4134431','应',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4134435112','凈',500);
@@ -16717,6 +16806,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4143125135','勏'
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4143125135','竞',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41431251354143125135','競',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4143125152','部',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41431251551','部',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41431252132522','端',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('414313','产',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('414313115','竓',500);
@@ -16837,6 +16927,158 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4155441554','玆'
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4155441554521','孶',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('41554453112','牽',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4223535352511','愶',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42421111534','悵',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244111215','恇',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424411212511','情',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42441121554234','愫',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244113434345','愜',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244121124','恃',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424412121','怔',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244121222511134','憤',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424412143112','悻',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424412154','怯',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244122111122111122111','懾',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424412212511','惜',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424412225125132411121','懽',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244122252214525111','懵',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244122312511121','懂',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244122415325','慌',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424412251','怙',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42441225111134','慎',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424412344','怵',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244124','忖',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424412452512152134','懥',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42441245521','悖',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424412511123312','慚',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424412511214124','慱',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42441251234','悚',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42441251234352511134','懶',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42441251251','悟',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244125125121','愊',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424412512512515','慪',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424412512554121','慳',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42441252211234','慄',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244125351','恓',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42441254','忮',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244125441','恆',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244131212511','惰',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42441312515434544','憾',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42441324','怀',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424413251125111344','懨',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424413252','怖',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244132522111','愐',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244134334','恢',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424414312','怦',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424414524444132522','懦',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424415112531','悽',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424421112111','悱',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424421251','怗',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424421251112','悼',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244243135','恍',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42442432511','悄',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424424325251','惝',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424425111','怛',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42442511112','悍',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251112511132411121','懼',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251113422','惻',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251125114134','憫',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424425112522154','慢',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251131121','惺',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424425113533','惕',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251135345','愒',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251141251234','憬',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42442512','忡',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251212511134','憒',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42442512341','悃',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251251','恫',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42442512511','悁',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251251115','愕',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251251251112','憚',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424425134','怏',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42442515215','悒',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42442521251431','愷',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244252132522','惴',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42442522112143112','懌',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244252214135','愣',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42442534125221','慍',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424425431415','惘',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42443112','忤',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424431121','性',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244311222214444','憮',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42443115431234','愾',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424431211','怍',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42443121251454','慥',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244312251','恬',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244312344334','愀',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424431234521','悸',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424431251112135','慟',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244312511354','愎',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42443155144','悔',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424432411121','惟',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244324111214444','憔',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424432511','怕',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244325111121','惶',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244325113554','愧',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244325221','恤',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244325431234134','懊',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42443312','忻',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244341251','恰',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244341251122','愉',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244341534','恌',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42443425135','悅',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424434341211121111543','懺',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42443443321511','慆',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42443445113251','愴',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42443454','忪',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424435121251','惆',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424435152511','惛',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244352511','恂',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424435251521','惸',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424435334544','惚',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42443535112533112','懈',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244354251','恪',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42444124','忭',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424441251521','惇',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42444125221241343534','懷',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42444125251131234','懍',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424441321251','惦',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424441343412','悴',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424441351124134','慷',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424441351125112','慵',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244414312511','愔',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244414312511121','憧',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42444143125114544','憶',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424441432533543211','懠',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244415','忙',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424443113455','惓',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244431234354152','憐',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42444313252','悕',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42444315112234','慊',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244432524312511','憎',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42444351523','悌',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424444534121','悾',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424444535455','惋',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42444511534','悢',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244451251112','惲',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42444535','忱',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244511534','恨',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244511541535','慨',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42445121','忸',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424451335','怩',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42445134','快',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424451532','怫',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424453','忉',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424454121','怪',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424454154132511','慴',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424454154134333','憀',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424454251','怡',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42445434354','悛',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424454545434333','慘',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424454545454','惙',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424455212511134','慣',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244555325431','惱',500);
+
+
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('425','门',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4251','闩',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('425111','闫',500);
@@ -17099,6 +17341,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4312343541525','�
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('43123435415252','鄰',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('431234354152541541','翷',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('43123435415255','粼',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('431234354152551','鄰',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('431234354242511','糌',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('43123435431234','粷',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4312343554','殺',500);
@@ -17156,6 +17399,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('431253511124454',
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('431253511134','奠',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4312535111344','猷',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('43125351113452','鄭',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('431253511134551','鄭',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('431253511251214251214','蠤',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('431253511454','遒',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('431325111','首',500);
@@ -17363,6 +17607,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4334251212511','�
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4334251214','烛',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4334251214251214251214','爞',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('43342512211311534','燶',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4334251225251','煱',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('43342512341','焑',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4334251251','烔',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4334251251','焒',500);
@@ -17563,6 +17808,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('43344334454111251
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4334433445413534','褮',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('43344334454334','熒',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4334433445512','煢',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('433443344553','勞',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4334433445531','嫈',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4334433445554234','縈',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4334433452','郯',500);
@@ -17664,6 +17910,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('44111212534','渍
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4411121353134','滶',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4411121554234','溸',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4411122125121','溝',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('441112251','活',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('44111225221','盓',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('44111234','沫',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('44111234','沬',500);
@@ -17937,6 +18184,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('44115151234','渠
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('441151534','洟',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4411525','沌',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('441153135','浇',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('44115341534','淺',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4411535','沘',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('441153515351251254312','灊',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('441153515352511','潛',500);
@@ -18100,6 +18348,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('44125122112514313
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4412512211311534','濃',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('44125122134','淟',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('44125122511','涸',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('441251225251','渦',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4412512341','涃',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('441251251','洞',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4412512511','涓',500);
@@ -18645,6 +18894,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('441515122111','�
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('44151513425243434343','瀰',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('44151515','泯',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('441515152511','湣',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('44151521111534','漲',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('441515251251214','漒',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4415153154','涨',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('44151532','沸',500);
@@ -19041,6 +19291,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4511543511121','�
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('451154352','郎',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4511543534','欴',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('45115452','郎',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('451154551','郎',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4512','计',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4512','订',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('45121','讧',500);
@@ -19678,8 +19929,10 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5113251431112','�
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5113251431112','群',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('51132514444','焄',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('511325152','郡',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5113251551','郡',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('511352','那',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('511354','夛',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5113551','那',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5114312343453132','彛',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('511431234554234132','彞',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5114334','灵',500);
@@ -19741,6 +19994,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5131234','杘',50
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('51312524444','屚',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5131311534','屒',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('513135435','屍',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('51315','尼',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5131515','屁',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5131535','屁',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('513154121','屋',500);
@@ -19867,6 +20121,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5151532511154444'
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5151555121','弳',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5152','弔',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5152','引',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('51521111534','張',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('515225221','盄',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5152432511','弰',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5152511122112','彃',500);
@@ -20235,6 +20490,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('52555144','乸',5
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5255525111234','隟',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53','乃',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53','刀',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53','力',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('531','女',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5311112','妦',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('531111342511','媋',500);
@@ -20669,6 +20925,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53154515','弩',5
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5315452','妤',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53154521','孥',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('531545231234','媃',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5315453','努',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53154545454','娺',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53154551','驽',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('531551','妈',500);
@@ -20677,7 +20934,10 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53155444432511252
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53212','丱',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53234','尕',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53251','召',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53251','加',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53251115132125','鼐',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('532511211254444','駕',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('532511234','架',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53251214','虱',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5325122','刟',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('532513115','毠',500);
@@ -20713,6 +20973,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53454','辺',500)
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('53521','孕',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('535353','刕',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5353532511','脋',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5353533511','脅',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5354','夃',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('535425221','盈',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5354252211543','戤',500);
@@ -20830,6 +21091,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('54334125143125111
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('54334125143135','凳',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('543341251431454','邆',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('54334125143152','鄧',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('543341251431551','鄧',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('543343554','癹',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('543345153554','發',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5434','以',500);
@@ -20875,6 +21137,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('54523313432511154
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('54523313434112431','鍪',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('54523313435451','鹜',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5452331344544','愗',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('54523313453','務',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('545233134531','婺',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('545233134551','骛',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('545233445','矜',500);
@@ -21186,6 +21449,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5523354','阪',50
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5523411234','除',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('552341251122','隃',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5523412512513434','險',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55234154544','陰',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55234431215114544','隱',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55234451154','陰',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55235311252','陶',500);
@@ -21219,6 +21483,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55345115452325251
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55345115452341511534','饗',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55345115452344511534','饗',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55345115452414312511','響',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('553451154551','鄉',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5535115452','郷',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('554','幺',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55412143112313425221','盭',500);
@@ -21396,6 +21661,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55444425431252','
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55444425431415','網',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55444425525251','緺',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('554444255452511','縎',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55444431112111','緋',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55444431122121','綞',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('554444311234','絑',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55444431134','紩',500);
@@ -21609,6 +21875,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55444455525111234
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55444455525121','緇',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5545','乣',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('5545','幻',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('55453','幼',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('554554125121543','畿',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('554554134543','幾',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('554554155455412251214251214','蠿',500);
