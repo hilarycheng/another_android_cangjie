@@ -22377,3 +22377,4 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('7','╱',480);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('7','╲',480);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('7','╳',480);
 
+
