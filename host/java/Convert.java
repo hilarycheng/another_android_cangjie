@@ -370,6 +370,250 @@ public class Convert {
 	}
     }
 
+    public static void convertCantonese() {
+	try {
+	    Font font = new Font("Droid Sans Fallback", 16, Font.PLAIN);
+	    ArrayList<String> codeList = new ArrayList<String>();
+	    HashMap<String, ArrayList<CangjieChar>> codeMap = new HashMap<String, ArrayList<CangjieChar>>();
+	    int totalCangjieColumn = 9;
+	    FileInputStream fis = new FileInputStream("Cantonese.txt.in");
+	    InputStreamReader input = new InputStreamReader(fis, "UTF-8");
+	    BufferedReader reader = new BufferedReader(input);
+	    String str = null;
+	    int index = 0;
+	    int total = 0;
+	    char column[] = new char[5];
+	    boolean hkchar = false;
+	    int counter[] = new int[26];
+
+	    for (int count = 0; count < counter.length; count++) counter[count] = 0;
+	    
+	    System.out.println("#define CANTONESE_COLUMN " + totalCangjieColumn);
+	    System.out.println("const jchar cantonese[][CANTONESE_COLUMN] = {");
+	    do {
+		str = reader.readLine();
+		if (str == null)
+		    break;
+		if (str.compareTo("#####") == 0) {
+		    hkchar = true;
+		    continue;
+		}
+		index = str.indexOf('\t');
+		if (index < 0) index = str.indexOf(' ');
+		if (index > 0 && font.canDisplay(str.charAt(index + 1))) {
+		    int type = Character.getType(str.charAt(index + 1));
+		    if (Character.isLetter(str.charAt(index + 1)) ||
+			type == Character.START_PUNCTUATION || type == Character.END_PUNCTUATION ||
+			type == Character.OTHER_PUNCTUATION || type == Character.MATH_SYMBOL ||
+			type == Character.DASH_PUNCTUATION  || type == Character.CONNECTOR_PUNCTUATION ||
+			type == Character.OTHER_SYMBOL      || type == Character.INITIAL_QUOTE_PUNCTUATION ||
+			type == Character.FINAL_QUOTE_PUNCTUATION || type == Character.SPACE_SEPARATOR) {
+			// System.out.print("\t { ");
+			// for (int count = 0; count < 5; count++) {
+			//     if (count < index) {
+			// 	column[count] = str.charAt(count);
+			// 	if (column[count] < 'a' || column[count] > 'z') column[count] = 0;
+			// 	if (((int) column[count]) >= 10 || ((int) column[count]) <= 99) System.out.print(' ');
+			// 	if (((int) column[count]) <= 9) System.out.print(' ');
+			// 	System.out.print(((int)	column[count]));
+			//     } else {
+			// 	System.out.print("  0");
+			//     }
+			//     System.out.print(", ");
+			// }
+			// System.out.println((int) str.charAt(index + 1) + " }, ");
+
+			String cangjie = str.substring(0, index).trim();
+
+			char   ch      = str.charAt(index + 1);
+			if (!codeList.contains(cangjie)) codeList.add(cangjie);
+			ArrayList<CangjieChar> list = null;
+			if (codeMap.containsKey(cangjie)) {
+			    list = codeMap.get(cangjie);
+			} else {
+			    list = new ArrayList<CangjieChar>();
+			}
+			CangjieChar cc = new CangjieChar(ch, hkchar);
+			list.add(cc);
+			codeMap.put(cangjie, list);
+
+			// total++;
+		    } else {
+			System.err.println("Character Not Found : " + str.charAt(index + 1) + " " + Character.getType(str.charAt(index + 1)));
+		    }
+		}
+	    } while (str != null);
+
+	    Collections.sort(codeList);
+
+	    total = 0;
+	    for (int count0 = 0; count0 < codeList.size(); count0++) {
+		String _str = codeList.get(count0);
+		ArrayList<CangjieChar> ca = codeMap.get(_str);
+		for (int count1 = 0; count1 < ca.size(); count1++) {
+
+		    int i = _str.charAt(0) - 'a';
+		    counter[i]++;
+		    total++;
+			
+		    int l = 0;
+		    for (int count2 = 0; count2 < 6; count2++) {
+			if (count2 < _str.length()) {
+			    l = count2;
+			    System.out.print("'" + _str.charAt(count2) + "', ");
+			} else {
+			    System.out.print("  0, ");
+			}
+		    }
+		    System.out.println(((int) ca.get(count1).c) + ", " + (ca.get(count1).hk ? 1 : 0) + ", " + (l + 1) + ", ");
+		}
+	    }
+
+	    System.out.println("};");
+
+	    int offset = 0;
+	    System.out.println("jint cantonese_code_index[26][2] = {");
+	    for (int count0 = 0; count0 < counter.length; count0++) {
+		System.out.println("{ " + offset + "," + counter[count0] + " },");
+		offset += counter[count0];
+	    }
+	    System.out.println("};");
+	    
+	    System.out.println("jint cantonese_index[" + total + "];");
+	    System.out.println("jint cantonese_frequency[" + total + "];");
+	    reader.close();
+	    input.close();
+	    fis.close();
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
+
+    public static void convertDayi3() {
+	try {
+	    String keyMap = ",./0123456789;ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+	    Font font = new Font("Droid Sans Fallback", 16, Font.PLAIN);
+	    ArrayList<String> codeList = new ArrayList<String>();
+	    HashMap<String, ArrayList<CangjieChar>> codeMap = new HashMap<String, ArrayList<CangjieChar>>();
+	    int totalCangjieColumn = 9;
+	    FileInputStream fis = new FileInputStream("dayi3.cin");
+	    InputStreamReader input = new InputStreamReader(fis, "UTF-8");
+	    BufferedReader reader = new BufferedReader(input);
+	    String str = null;
+	    int index = 0;
+	    int total = 0;
+	    char column[] = new char[5];
+	    boolean hkchar = false;
+	    int counter[] = new int[40];
+
+	    for (int count = 0; count < counter.length; count++) counter[count] = 0;
+	    
+	    System.out.println("#define DAYI3_COLUMN " + totalCangjieColumn);
+	    System.out.println("const jchar dayi3[][DAYI3_COLUMN] = {");
+	    do {
+		str = reader.readLine();
+		if (str == null)
+		    break;
+		if (str.compareTo("#####") == 0) {
+		    hkchar = true;
+		    continue;
+		}
+		index = str.indexOf('\t');
+		if (index < 0) index = str.lastIndexOf(' ');
+		if (index > 0 && font.canDisplay(str.charAt(index + 1))) {
+		    int type = Character.getType(str.charAt(index + 1));
+		    if (Character.isLetter(str.charAt(index + 1)) ||
+			type == Character.START_PUNCTUATION || type == Character.END_PUNCTUATION ||
+			type == Character.OTHER_PUNCTUATION || type == Character.MATH_SYMBOL ||
+			type == Character.DASH_PUNCTUATION  || type == Character.CONNECTOR_PUNCTUATION ||
+			type == Character.OTHER_SYMBOL      || type == Character.INITIAL_QUOTE_PUNCTUATION ||
+			type == Character.FINAL_QUOTE_PUNCTUATION || type == Character.SPACE_SEPARATOR) {
+			// System.out.print("\t { ");
+			// for (int count = 0; count < 5; count++) {
+			//     if (count < index) {
+			// 	column[count] = str.charAt(count);
+			// 	if (column[count] < 'a' || column[count] > 'z') column[count] = 0;
+			// 	if (((int) column[count]) >= 10 || ((int) column[count]) <= 99) System.out.print(' ');
+			// 	if (((int) column[count]) <= 9) System.out.print(' ');
+			// 	System.out.print(((int)	column[count]));
+			//     } else {
+			// 	System.out.print("  0");
+			//     }
+			//     System.out.print(", ");
+			// }
+			// System.out.println((int) str.charAt(index + 1) + " }, ");
+
+			String cangjie = str.substring(0, index).trim();
+
+			char   ch      = str.charAt(index + 1);
+			if (!codeList.contains(cangjie)) codeList.add(cangjie);
+			ArrayList<CangjieChar> list = null;
+			if (codeMap.containsKey(cangjie)) {
+			    list = codeMap.get(cangjie);
+			} else {
+			    list = new ArrayList<CangjieChar>();
+			}
+			CangjieChar cc = new CangjieChar(ch, hkchar);
+			list.add(cc);
+			codeMap.put(cangjie, list);
+
+			// total++;
+		    } else {
+			System.err.println("Character Not Found : " + str.charAt(index + 1) + " " + Character.getType(str.charAt(index + 1)));
+		    }
+		}
+	    } while (str != null);
+
+	    Collections.sort(codeList);
+
+	    total = 0;
+	    for (int count0 = 0; count0 < codeList.size(); count0++) {
+		String _str = codeList.get(count0);
+		ArrayList<CangjieChar> ca = codeMap.get(_str);
+		for (int count1 = 0; count1 < ca.size(); count1++) {
+
+		    // int i = _str.charAt(0) - 'a';
+		    // System.err.println("Key " + _str.charAt(0) + " " +
+		    // 		       keyMap.indexOf(_str.charAt(0)));
+		    int i = keyMap.indexOf(_str.charAt(0));
+		    if (i < 0) continue;
+		    counter[i]++;
+		    total++;
+			
+		    int l = 0;
+		    for (int count2 = 0; count2 < 6; count2++) {
+			if (count2 < _str.length()) {
+			    l = count2;
+			    System.out.print("'" + _str.charAt(count2) + "', ");
+			} else {
+			    System.out.print("  0, ");
+			}
+		    }
+		    System.out.println(((int) ca.get(count1).c) + ", " + (ca.get(count1).hk ? 1 : 0) + ", " + (l + 1) + ", ");
+		}
+	    }
+
+	    System.out.println("};");
+
+	    int offset = 0;
+	    System.out.println("jint dayi3_code_index[40][2] = {");
+	    for (int count0 = 0; count0 < counter.length; count0++) {
+		System.out.println("{ " + offset + "," + counter[count0] + " },");
+		offset += counter[count0];
+	    }
+	    System.out.println("};");
+	    
+	    System.out.println("jint dayi3_index[" + total + "];");
+	    System.out.println("jint dayi3_frequency[" + total + "];");
+	    reader.close();
+	    input.close();
+	    fis.close();
+	} catch (Exception ex) {
+	    ex.printStackTrace();
+	}
+    }
+
     public static void convertStroke() {
 	try {
 	    Font font = new Font("Droid Sans Fallback", 16, Font.PLAIN);
@@ -514,6 +758,10 @@ public class Convert {
 	    Convert.convertStroke();
 	if (args[0].compareTo("3") == 0)
 	    Convert.convertCangjie5();
+	if (args[0].compareTo("4") == 0)
+	    Convert.convertCantonese();
+	if (args[0].compareTo("5") == 0)
+	    Convert.convertDayi3();
 
     }
 
