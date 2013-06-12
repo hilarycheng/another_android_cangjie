@@ -17113,7 +17113,7 @@ INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42442511112','悍
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251112511132411121','懼',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251113422','惻',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251125114134','憫',500);
-INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424425112522154','慢',500);
+INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('42425112522154','慢',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251131121','惺',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('424425113533','惕',500);
 INSERT INTO StrokeOrder (Strokes,Character,Frequency) VALUES ('4244251135345','愒',500);
